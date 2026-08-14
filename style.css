@@ -268,3 +268,158 @@ input.invalid,select.invalid,textarea.invalid{border-color:#c92828}
 .map-brand-label strong{font-size:12px;letter-spacing:.14em;color:var(--blue-deep)}
 .map-brand-label small{font-size:11px;color:#556d80}
 .floating-wa svg{width:30px;height:30px;fill:#fff;display:block}
+
+/* ===== Premium information architecture additions ===== */
+.why-section{padding:108px 0;background:linear-gradient(180deg,#f7fbfe 0%,#fff 100%)}
+.why-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:54px;align-items:start}
+.why-intro{position:sticky;top:28px}
+.why-intro>p:last-child{margin-top:18px;max-width:540px}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.why-item{padding:30px 28px;min-height:220px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.72)}
+.why-item span{display:inline-flex;margin-bottom:34px;font-size:11px;font-weight:800;letter-spacing:.18em;color:var(--blue-deep)}
+.why-item h3{font-size:1.28rem}
+.why-item p{margin-top:12px;font-size:.94rem}
+
+.planning-section{padding:110px 0;background:#07131d;color:#fff}
+.planning-head{display:grid;grid-template-columns:1fr .72fr;gap:42px;align-items:end;margin-bottom:40px}
+.planning-head .eyebrow{color:#7ecbf0}
+.planning-head h2{color:#fff}
+.planning-head>p{color:#aebdca}
+.planning-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}
+.process-panel,.documents-panel{border:1px solid rgba(255,255,255,.11);border-radius:28px;background:rgba(255,255,255,.045);padding:30px}
+.panel-label{font-size:11px;font-weight:800;letter-spacing:.22em;color:#7ecbf0;margin-bottom:24px}
+.process-list{list-style:none;margin:0;padding:0}
+.process-list li{display:grid;grid-template-columns:50px 1fr;gap:18px;padding:18px 0;border-top:1px solid rgba(255,255,255,.09)}
+.process-list li:first-child{border-top:0;padding-top:0}
+.process-list li>span{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue-deep),var(--blue));font-size:11px;font-weight:800;color:#fff}
+.process-list strong{display:block;color:#fff;font-size:1rem}
+.process-list p{margin-top:5px;color:#9fb0be;font-size:.92rem}
+.document-groups{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.document-groups>div{display:flex;flex-direction:column;gap:8px}
+.document-groups strong{color:#fff;font-size:.98rem;margin-bottom:5px}
+.document-groups span{position:relative;padding-left:15px;color:#aebdca;font-size:.9rem}
+.document-groups span::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.documents-note{margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.09);color:#8799a8;font-size:.82rem}
+
+.faq-section{padding:108px 0;background:#fff}
+.faq-layout{display:grid;grid-template-columns:.78fr 1.22fr;gap:60px;align-items:start}
+.faq-intro>p:last-child{margin-top:16px;max-width:420px}
+.faq-list{border-top:1px solid var(--line)}
+.faq-list details{border-bottom:1px solid var(--line)}
+.faq-list summary{list-style:none;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:23px 0;font-weight:800;color:var(--text);cursor:pointer}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary span{position:relative;width:22px;height:22px;flex:0 0 22px}
+.faq-list summary span::before,.faq-list summary span::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--blue-deep);transform:translate(-50%,-50%);transition:transform .22s ease}
+.faq-list summary span::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq-list details[open] summary span::after{transform:translate(-50%,-50%) rotate(0)}
+.faq-list details p{padding:0 44px 22px 0;max-width:780px;font-size:.94rem}
+
+/* Adaptive travel enquiry: only show the service-specific second field. */
+#serviceDetailRow.single-field{grid-template-columns:1fr}
+#serviceDetailRow.single-field>label:first-child{max-width:calc(50% - 8px)}
+
+/* Branded map pinpoint on top of the real map. */
+.office-map-pin{position:absolute;left:54%;top:54%;z-index:4;transform:translate(-50%,-50%);pointer-events:none;display:flex;flex-direction:column;align-items:center}
+.pin-pulse{position:absolute;left:50%;top:25px;width:64px;height:64px;border-radius:50%;background:rgba(0,158,227,.18);transform:translate(-50%,-50%);animation:pinPulse 1.8s ease-out 1}
+.pin-head{position:relative;width:42px;height:42px;border-radius:50% 50% 50% 10px;transform:rotate(-45deg);background:linear-gradient(135deg,var(--blue-deep),var(--blue));border:3px solid #fff;box-shadow:0 12px 30px rgba(0,74,127,.34);z-index:2}
+.pin-head i{position:absolute;left:50%;top:50%;width:10px;height:10px;border-radius:50%;background:#fff;transform:translate(-50%,-50%)}
+.pin-label{margin-top:9px;padding:8px 11px;border-radius:11px;background:rgba(7,19,29,.92);box-shadow:0 10px 28px rgba(6,20,35,.24);text-align:center;white-space:nowrap;z-index:2}
+.pin-label strong{display:block;color:#fff;font-size:10px;letter-spacing:.12em}
+.pin-label small{display:block;margin-top:2px;color:#9ed9f5;font-size:9px}
+@keyframes pinPulse{0%{opacity:0;transform:translate(-50%,-50%) scale(.55)}35%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1.65)}}
+.map-brand-label{display:none}
+
+/* Premium footer: visible logo + compact information links. */
+.site-footer{padding:58px 0 22px;background:#07131d;color:#d8e4ed}
+.footer-grid{display:grid;grid-template-columns:1.35fr .7fr .7fr;gap:50px;padding-bottom:36px}
+.footer-brand img{height:64px;width:auto;filter:brightness(0) invert(1);opacity:.98;margin-bottom:18px}
+.footer-brand p{max-width:420px;color:#9db0bf;font-size:.92rem}
+.footer-brand>a{display:inline-flex;margin-top:16px;color:#fff;font-weight:800}
+.footer-links-group{display:grid;align-content:start;gap:10px}
+.footer-links-group>p{margin-bottom:5px;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#67c1ee}
+.footer-links-group a{font-size:.9rem;color:#b8c7d2;transition:color .2s ease,transform .2s ease}
+.footer-links-group a:hover{color:#fff;transform:translateX(2px)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.09)}
+.footer-bottom small{color:#728796}
+.privacy-link{border:0;background:transparent;color:#b8c7d2;font-size:.86rem;font-weight:700;padding:0}
+.privacy-link:hover{color:#fff}
+
+.privacy-dialog{width:min(660px,calc(100vw - 28px));border:0;padding:0;border-radius:28px;background:transparent;box-shadow:0 30px 100px rgba(0,0,0,.35)}
+.privacy-dialog::backdrop{background:rgba(5,15,24,.68);backdrop-filter:blur(6px)}
+.privacy-card{position:relative;padding:34px;background:#fff;border-radius:28px}
+.privacy-card h2{font-size:2rem;max-width:500px}
+.privacy-copy{display:grid;gap:14px;margin-top:22px}
+.privacy-copy p{font-size:.94rem}
+.privacy-close{position:absolute;right:18px;top:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#f6f9fb;color:var(--text);font-size:24px;line-height:1}
+
+@media(max-width:1024px){
+  .why-layout,.planning-head,.planning-grid,.faq-layout{grid-template-columns:1fr}
+  .why-intro{position:static}
+  .footer-grid{grid-template-columns:1.2fr .8fr .8fr;gap:30px}
+}
+
+@media(max-width:720px){
+  .why-section,.planning-section,.faq-section{padding:78px 0}
+  .why-grid,.document-groups{grid-template-columns:1fr}
+  .why-item{min-height:auto;padding:24px 22px}
+  .why-item span{margin-bottom:20px}
+  .process-panel,.documents-panel{padding:24px 20px}
+  .process-list li{grid-template-columns:42px 1fr;gap:12px}
+  #serviceDetailRow.single-field>label:first-child{max-width:none}
+  .office-map-pin{left:55%;top:55%;transform:translate(-50%,-50%) scale(.88)}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px 24px}
+  .footer-brand{grid-column:1/-1}
+  .footer-brand img{height:58px}
+  .footer-bottom{align-items:flex-start}
+}
+
+/* --- Premium FAQ refresh --- */
+.faq-section{padding:112px 0;background:linear-gradient(180deg,#f7fafc 0%,#fff 100%)}
+.faq-layout{display:grid;grid-template-columns:.76fr 1.24fr;gap:64px;align-items:start}
+.faq-intro{position:sticky;top:28px}
+.faq-intro>p:nth-of-type(2){margin-top:18px;max-width:430px}
+.faq-contact-link{display:inline-flex;align-items:center;gap:10px;margin-top:24px;font-size:14px;font-weight:800;color:var(--blue-deep)}
+.faq-contact-link::after{content:"→";transition:transform .2s ease}
+.faq-contact-link:hover::after{transform:translateX(4px)}
+.faq-list{display:grid;gap:12px;border:0}
+.faq-list .faq-item{border:1px solid #dce6ee;border-radius:20px;background:#fff;overflow:hidden;box-shadow:0 12px 30px rgba(9,35,58,.045);transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease}
+.faq-list .faq-item:hover{border-color:#bfd9ea;box-shadow:0 18px 38px rgba(9,35,58,.075)}
+.faq-list .faq-item[open]{border-color:rgba(0,121,190,.28);box-shadow:0 20px 46px rgba(0,79,141,.10)}
+.faq-list .faq-item summary{list-style:none;display:grid;grid-template-columns:46px 1fr 34px;gap:16px;align-items:center;padding:20px 22px;cursor:pointer;color:var(--text)}
+.faq-list .faq-item summary::-webkit-details-marker{display:none}
+.faq-no{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#f0f7fb;color:var(--blue-deep);font-size:11px;font-weight:800;letter-spacing:.1em;transition:background .22s ease,color .22s ease}
+.faq-item[open] .faq-no{background:linear-gradient(135deg,var(--blue-deep),var(--blue));color:#fff}
+.faq-question{font-size:.98rem;font-weight:800;line-height:1.42;letter-spacing:-.01em}
+.faq-toggle{position:relative;width:32px;height:32px;border-radius:50%;border:1px solid #d5e2eb;background:#f9fbfc}
+.faq-toggle::before,.faq-toggle::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.5px;background:var(--blue-deep);transform:translate(-50%,-50%);transition:transform .22s ease}
+.faq-toggle::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq-item[open] .faq-toggle::after{transform:translate(-50%,-50%) rotate(0)}
+.faq-answer{padding:0 72px 22px 84px}
+.faq-answer p{font-size:.94rem;line-height:1.75;color:#64798b;max-width:720px}
+
+/* Hajj / Umrah sector selector */
+.hajj-sector-row{margin-top:-2px}
+#customSectorField[hidden],#hajjSectorRow[hidden]{display:none!important}
+
+/* Use the marker supplied by Google Maps itself so the pin stays attached to the map while panning/zooming. */
+.map-surface::before{display:none}
+.map-surface iframe{z-index:1;filter:saturate(.92) contrast(.98)}
+
+@media(max-width:1024px){
+  .faq-layout{grid-template-columns:1fr;gap:34px}
+  .faq-intro{position:static;max-width:720px}
+}
+@media(max-width:720px){
+  .faq-section{padding:78px 0}
+  .faq-list .faq-item summary{grid-template-columns:38px 1fr 30px;gap:12px;padding:17px 16px}
+  .faq-no{width:36px;height:36px;border-radius:11px}
+  .faq-question{font-size:.93rem}
+  .faq-toggle{width:28px;height:28px}
+  .faq-answer{padding:0 52px 18px 66px}
+  .hajj-sector-row{grid-template-columns:1fr}
+}
+/* Neutralise legacy accordion span rules so the refreshed FAQ remains clean. */
+.faq-list .faq-item .faq-no,.faq-list .faq-item .faq-question,.faq-list .faq-item .faq-toggle{position:relative;flex:initial}
+.faq-list .faq-item .faq-question{width:auto;height:auto}
+.faq-list .faq-item .faq-no::before,.faq-list .faq-item .faq-no::after,.faq-list .faq-item .faq-question::before,.faq-list .faq-item .faq-question::after{content:none!important}
+.faq-list .faq-item .faq-answer p{padding:0}

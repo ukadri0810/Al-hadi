@@ -48,3 +48,16 @@ LATEST UPDATE
 - Economy package image updated to a different Makkah hotel-room visual.
 - Contact section now includes icon-based Call, Email and Instagram CTA buttons.
 - Economy image source used for this client demo: Hotels Platform / Elaf Ajyad Hotel Makkah room image. Replace with client-authorised hotel imagery before final commercial publication if package hotels are confirmed.
+
+LATEST UI/UX UPDATE
+- Travel enquiry now adapts to the selected service:
+  Hajj & Umrah -> Package
+  Hotel Booking -> Hotel name
+  Flight Tickets -> Preferred airline
+  Forex -> no secondary field
+  Gulf Visa Assistance -> Country
+- Added Why Choose Al Hadi section after Services.
+- Added combined Process + Documents Required section after Packages.
+- Added compact FAQ accordion after Travel Enquiry.
+- Added branded pinpoint overlay on the real Google Maps preview.
+- Footer redesigned with visible logo, Travel Information links, Connect links and Privacy modal.

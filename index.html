@@ -1,418 +1,483 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#02518f">
-  <meta name="description" content="Al Hadi Tours & Travels, Dongri Mumbai — Hajj & Umrah tours, flight tickets, hotel booking, forex, Gulf visa assistance and Saudi recruitment services.">
-  <meta property="og:title" content="Al Hadi Tours & Travels">
-  <meta property="og:description" content="Hajj, Umrah, Gulf travel services and Saudi recruitment from Dongri, Mumbai.">
-  <meta property="og:type" content="website">
-  <title>Al Hadi Tours & Travels | Hajj, Umrah & Saudi Recruitment</title>
-  <link rel="icon" href="assets/logo/favicon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#02518f" name="theme-color"/>
+<meta content="Al Hadi Tours &amp; Travels, Dongri Mumbai — Hajj &amp; Umrah tours, flight tickets, hotel booking, forex, Gulf visa assistance and Saudi recruitment services." name="description"/>
+<meta content="Al Hadi Tours &amp; Travels" property="og:title"/>
+<meta content="Hajj, Umrah, Gulf travel services and Saudi recruitment from Dongri, Mumbai." property="og:description"/>
+<meta content="website" property="og:type"/>
+<title>Al Hadi Tours &amp; Travels | Hajj, Umrah &amp; Saudi Recruitment</title>
+<link href="assets/logo/favicon.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body data-mode="travel">
-  <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" id="top">
+<div class="shell nav-wrap">
+<a aria-label="Al Hadi home" class="brand" href="#travel-home">
+<img alt="Al Hadi Tours and Travels" src="assets/logo/al-hadi-logo.png"/>
+</a>
+<nav aria-label="Travel navigation" class="nav desktop-nav travel-nav">
+<a href="#travel-services">Services</a>
+<a href="#packages">Packages</a>
+<a href="#travel-enquiry">Enquiry</a>
+<a href="#contact">Contact</a>
+</nav>
+<nav aria-label="Recruitment navigation" class="nav desktop-nav recruitment-nav">
+<a href="#recruitment-overview">Recruitment</a>
+<a href="#candidate-enquiry">Send Resume</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="nav-actions">
+<a class="call-chip" href="tel:+919167493183">
+<small>Call us</small>
+<strong>+91 91674 93183</strong>
+</a>
+<button aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu" class="menu-button" type="button">
+<span></span><span></span><span></span>
+</button>
+</div>
+</div>
+<div aria-hidden="true" class="mobile-menu" id="mobileMenu">
+<nav class="mobile-travel-nav">
+<a href="#travel-services">Services</a>
+<a href="#packages">Packages</a>
+<a href="#travel-enquiry">Enquiry</a>
+<a href="#contact">Contact</a>
+</nav>
+<nav class="mobile-recruitment-nav">
+<a href="#recruitment-overview">Recruitment</a>
+<a href="#candidate-enquiry">Send Resume</a>
+<a href="#contact">Contact</a>
+</nav>
+<a class="mobile-contact" href="tel:+919167493183">Speak with Al Hadi</a>
+</div>
+</header>
+<aside aria-label="Switch Al Hadi division" class="division-switch">
+<div class="switch-capsule">
+<span aria-hidden="true" class="switch-slider"></span>
+<button aria-pressed="true" class="switch-option is-active" data-mode-option="travel" type="button">
+<strong>Hajj / Umrah</strong>
+</button>
+<button aria-pressed="false" class="switch-option" data-mode-option="recruitment" type="button">
+<strong>Recruitment</strong>
+</button>
+</div>
+</aside>
+<main id="main">
+<section class="hero travel-mode" data-panel="travel" id="travel-home">
+<div class="hero-media">
+<figure class="hero-slide is-active" data-place="Makkah Al Mukarramah" data-title="The Holy Kaaba">
+<img alt="The Holy Kaaba in Makkah" src="assets/images/hero-kaaba.jpg"/>
+</figure>
+<figure class="hero-slide" data-place="Makkah Al Mukarramah" data-title="Abraj Al Bait Clock Tower">
+<img alt="Clock Tower in Makkah" src="assets/images/hero-clock-tower.jpg"/>
+</figure>
+<figure class="hero-slide" data-place="Al Madinah Al Munawwarah" data-title="Masjid an Nabawi">
+<img alt="Masjid an Nabawi in Madinah" src="assets/images/hero-madinah.jpg"/>
+</figure>
+<figure class="hero-slide" data-place="Al Madinah Al Munawwarah" data-title="The Green Dome">
+<img alt="Green Dome in Madinah" src="assets/images/hero-green-dome.jpg"/>
+</figure>
+<figure class="hero-slide" data-place="Arafat, Makkah" data-title="Jabal Ar-Rahmah">
+<img alt="Jabal Ar-Rahmah in Arafat" src="assets/images/hero-arafat.jpg"/>
+</figure>
+</div>
+<div class="hero-overlay"></div>
+<div class="shell hero-shell">
+<div class="hero-copy reveal">
+<p class="eyebrow light">AL HADI PILGRIMAGE SERVICES / DONGRI · MUMBAI</p>
+<h1>Your journey to the holy lands, guided with care.</h1>
+<p class="hero-lead">Trusted support for Hajj &amp; Umrah, flight tickets, hotel booking, forex and Gulf visa assistance — coordinated through one travel desk.</p>
+<div class="hero-actions">
+<a class="btn btn-solid" href="#travel-enquiry">Start an enquiry</a>
+<a class="btn btn-outline" href="#packages">Explore packages</a>
+</div>
+</div>
+<div class="hero-card reveal">
+<div class="hero-card-head">
+<small id="heroCount">01 / 05</small>
+<span>Featured sacred destination</span>
+</div>
+<h2 id="heroTitle">The Holy Kaaba</h2>
+<p id="heroPlace">Makkah Al Mukarramah</p>
+<div aria-label="Hero image controls" class="hero-dots">
+<button aria-label="Show slide 1" class="hero-dot is-active" data-hero-index="0" type="button"></button>
+<button aria-label="Show slide 2" class="hero-dot" data-hero-index="1" type="button"></button>
+<button aria-label="Show slide 3" class="hero-dot" data-hero-index="2" type="button"></button>
+<button aria-label="Show slide 4" class="hero-dot" data-hero-index="3" type="button"></button>
+<button aria-label="Show slide 5" class="hero-dot" data-hero-index="4" type="button"></button>
+</div>
+</div>
+</div>
+</section>
+<div class="travel-view" data-panel="travel">
+<section class="service-strip">
+<div class="shell service-strip-track">
+<span>Hajj &amp; Umrah</span>
+<span>Flight Tickets</span>
+<span>Hotel Booking</span>
+<span>Forex</span>
+<span>Gulf Visa Assistance</span>
+</div>
+</section>
+<section class="intro-section shell two-col-intro">
+<div class="section-copy reveal">
+<p class="eyebrow">A JOURNEY HANDLED THOUGHTFULLY</p>
+<h2>A calmer, clearer way to plan sacred travel.</h2>
+</div>
+<div class="section-side reveal">
+<p>Al Hadi Tours &amp; Travels supports families, individuals and groups travelling to the Kingdom of Saudi Arabia with dependable coordination from the first enquiry to the final departure.</p>
+<a class="text-arrow" href="#travel-services">View travel services</a>
+</div>
+</section>
+<section class="services-section shell" id="travel-services">
+<div class="section-heading reveal">
+<p class="eyebrow">TRAVEL SERVICES</p>
+<h2>What Al Hadi can arrange for your journey.</h2>
+</div>
+<div class="services-grid">
+<button class="service-tile reveal" data-service="Hajj &amp; Umrah" type="button"><span>01</span><h3>Hajj &amp; Umrah</h3><p>Spiritual travel planning with clear step-by-step support.</p><b>Enquire now</b></button>
+<button class="service-tile reveal" data-service="Flight Tickets" type="button"><span>02</span><h3>Flight Tickets</h3><p>Assistance with routes and timings suited to your plan.</p><b>Enquire now</b></button>
+<button class="service-tile reveal" data-service="Hotel Booking" type="button"><span>03</span><h3>Hotel Booking</h3><p>Stay coordination in Makkah, Madinah and nearby zones.</p><b>Enquire now</b></button>
+<button class="service-tile reveal" data-service="Forex" type="button"><span>04</span><h3>Forex</h3><p>Foreign exchange support for your international travel needs.</p><b>Enquire now</b></button>
+<button class="service-tile reveal" data-service="Gulf Visa Assistance" type="button"><span>05</span><h3>Gulf Visa Assistance</h3><p>Visa help for Saudi Arabia, Kuwait and other Gulf destinations.</p><b>Enquire now</b></button>
+</div>
+</section><section class="why-section" id="why-al-hadi">
+<div class="shell why-layout">
+<div class="why-intro reveal">
+<p class="eyebrow">WHY CHOOSE AL HADI</p>
+<h2>Clear guidance, direct communication and one dependable travel desk.</h2>
+<p>Designed around the things travellers value most: simple communication, relevant assistance and an office you can reach in Mumbai.</p>
+</div>
+<div class="why-grid">
+<article class="why-item reveal"><span>01</span><h3>One travel desk</h3><p>Hajj &amp; Umrah, flights, hotels, forex and Gulf visa assistance coordinated through one point of contact.</p></article>
+<article class="why-item reveal"><span>02</span><h3>Saudi-focused support</h3><p>Travel services centred around journeys to the Kingdom of Saudi Arabia and the wider Gulf region.</p></article>
+<article class="why-item reveal"><span>03</span><h3>Mumbai office access</h3><p>A physical office in Dongri Bazar for customers who prefer direct, face-to-face assistance.</p></article>
+<article class="why-item reveal"><span>04</span><h3>Direct communication</h3><p>Call, WhatsApp or email the Al Hadi team without unnecessary layers between you and your enquiry.</p></article>
+</div>
+</div>
+</section>
+<section class="packages-section shell" id="packages">
+<div class="section-heading reveal">
+<p class="eyebrow">HAJJ &amp; UMRAH PACKAGES</p>
+<h2>Three package directions, each with its own journey style.</h2>
+<p class="section-note">All package prices are shared only after discussing dates, hotel preference, group size and availability.</p>
+</div>
+<article class="package-band reveal">
+<div class="package-visual">
+<img alt="Standard hotel room for an Economy package experience" src="assets/images/package-economy-hotel-v2.jpg"/>
+</div>
+<div class="package-details">
+<div class="package-meta"><small>PACKAGE 01</small><span>VALUE-LED</span></div>
+<h3>Economy</h3>
+<p>An essential package direction for pilgrims who want the journey organised carefully, while keeping the focus on value and necessary arrangements.</p>
+<div class="package-columns">
+<ul>
+<li>Visa assistance</li>
+<li>Flight coordination</li>
+<li>Standard hotel options</li>
+</ul>
+<ul>
+<li>Group transport guidance</li>
+<li>Ziyarat support</li>
+<li>Meals as applicable</li>
+</ul>
+</div>
+<div class="package-tail"><strong>Best for</strong><span>Travellers seeking a practical, respectful and budget-conscious pilgrimage plan.</span></div>
+<button class="package-action" data-package="Economy" type="button">Request Economy details</button>
+</div>
+</article>
+<article class="package-band reverse reveal">
+<div class="package-visual">
+<img alt="Premium hotel room overlooking Makkah" src="assets/images/package-premium-hotel.jpg"/>
+</div>
+<div class="package-details">
+<div class="package-meta"><small>PACKAGE 02</small><span>COMFORT-LED</span></div>
+<h3>Premium</h3>
+<p>A more comfort-focused package direction for those who prefer a smoother travel experience, stronger coordination and upgraded stay preferences.</p>
+<div class="package-columns">
+<ul>
+<li>Visa assistance</li>
+<li>Flight coordination</li>
+<li>Better-category hotels</li>
+</ul>
+<ul>
+<li>Travel coordination support</li>
+<li>Ziyarat support</li>
+<li>Meals as applicable</li>
+</ul>
+</div>
+<div class="package-tail"><strong>Best for</strong><span>Families and pilgrims who want additional comfort while keeping the process straightforward.</span></div>
+<button class="package-action" data-package="Premium" type="button">Request Premium details</button>
+</div>
+</article>
+<article class="package-band reveal">
+<div class="package-visual">
+<img alt="Luxury hotel suite for a tailored Custom package" src="assets/images/package-custom-hotel.jpg"/>
+</div>
+<div class="package-details">
+<div class="package-meta"><small>PACKAGE 03</small><span>TAILORED</span></div>
+<h3>Custom</h3>
+<p>A tailored package direction for travellers who want a more elevated plan shaped around family requirements, hotel preference and trip expectations.</p>
+<div class="package-columns">
+<ul>
+<li>Flexible travel planning</li>
+<li>Preferred hotel category</li>
+<li>Travel route preferences</li>
+</ul>
+<ul>
+<li>Private / family planning</li>
+<li>Ziyarat and transport options</li>
+<li>Visa and forex add-ons</li>
+</ul>
+</div>
+<div class="package-tail"><strong>Best for</strong><span>Travellers wanting a more personalised arrangement with room for comfort upgrades and custom planning.</span></div>
+<button class="package-action" data-package="Custom" type="button">Discuss a custom plan</button>
+</div>
+</article>
+</section><section class="planning-section" id="process">
+<div class="shell">
+<div class="planning-head reveal">
+<div><p class="eyebrow">PLAN WITH CONFIDENCE</p><h2>A simple process, with the right information ready.</h2></div>
+<p>We keep the planning stage easy to understand. Exact documents can vary by service, destination and current travel requirements.</p>
+</div>
+<div class="planning-grid">
+<div class="process-panel reveal">
+<div class="panel-label">OUR PROCESS</div>
+<ol class="process-list">
+<li><span>01</span><div><strong>Send your enquiry</strong><p>Choose the service you need and share the basic travel details.</p></div></li>
+<li><span>02</span><div><strong>Discuss your requirement</strong><p>The team understands your dates, traveller count, hotel or package preference.</p></div></li>
+<li><span>03</span><div><strong>Documentation guidance</strong><p>Receive guidance on the documents relevant to your selected service.</p></div></li>
+<li><span>04</span><div><strong>Confirm &amp; coordinate</strong><p>Once details are agreed, the required travel arrangements can be coordinated with the Al Hadi team.</p></div></li>
+</ol>
+</div>
+<div class="documents-panel reveal" id="documents-required">
+<div class="panel-label">DOCUMENTS &amp; DETAILS</div>
+<div class="document-groups">
+<div><strong>Hajj / Umrah</strong><span>Passport</span><span>Photographs</span><span>Required ID / supporting documents</span><span>Preferred travel dates</span></div>
+<div><strong>Flight tickets</strong><span>Passenger names</span><span>Passport details where required</span><span>Route &amp; travel date</span></div>
+<div><strong>Hotel booking</strong><span>City</span><span>Check-in / check-out dates</span><span>Guest count</span><span>Hotel preference</span></div>
+<div><strong>Visa assistance</strong><span>Passport</span><span>Photograph</span><span>Country-specific supporting documents</span></div>
+</div>
+<p class="documents-note">Document requirements are indicative. The exact list depends on the service, destination and applicable requirements at the time of travel.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="enquiry-section" id="travel-enquiry">
+<div class="shell enquiry-layout">
+<div class="enquiry-copy reveal">
+<p class="eyebrow">TRAVEL ENQUIRY</p>
+<h2>Tell us the essentials.<br/>We’ll prepare the next step.</h2>
+<p>The enquiry is designed for quick filling. After submission, WhatsApp opens with your details already prepared.</p>
+<div class="contact-stack">
+<a href="tel:+919167493183">+91 91674 93183</a>
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=hadisaudi%40gmail.com" rel="noopener" target="_blank">hadisaudi@gmail.com</a>
+</div>
+</div>
+<form class="travel-form reveal" id="travelForm" novalidate="">
+<div class="field-row two">
+<label><span>Full name *</span><input autocomplete="name" id="travelName" placeholder="Your name" type="text"/></label>
+<label><span>WhatsApp number *</span><input autocomplete="tel" id="travelPhone" inputmode="tel" placeholder="Mobile number" type="tel"/></label>
+</div>
+<div class="field-row two" id="serviceDetailRow">
+<label><span>Service *</span><select id="travelService"><option value="">Select service</option><option>Hajj &amp; Umrah</option><option>Flight Tickets</option><option>Hotel Booking</option><option>Forex</option><option>Gulf Visa Assistance</option></select></label>
 
-  <header class="site-header" id="top">
-    <div class="shell nav-wrap">
-      <a class="brand" href="#travel-home" aria-label="Al Hadi home">
-        <img src="assets/logo/al-hadi-logo.png" alt="Al Hadi Tours and Travels">
-      </a>
+<label id="packageField"><span>Package</span><select id="travelPackage"><option value="Not selected">Not selected</option><option>Economy</option><option>Premium</option><option>Custom</option></select></label><label hidden="" id="hotelField"><span>Hotel name</span><input id="hotelName" placeholder="Enter hotel name or preference" type="text"/></label><label hidden="" id="airlineField"><span>Preferred airline</span><select id="preferredAirline"><option value="">Select airline</option><option>IndiGo</option><option>Air India</option><option>Air India Express</option><option>Saudia</option><option>Emirates</option><option>Etihad Airways</option><option>Qatar Airways</option><option>Flynas</option><option>Kuwait Airways</option><option>Gulf Air</option><option>Oman Air</option><option>Other / No preference</option></select></label><label hidden="" id="visaCountryField"><span>Gulf country</span><select id="visaCountry"><option value="">Select country</option><option>Saudi Arabia</option><option>Kuwait</option><option>United Arab Emirates</option><option>Qatar</option><option>Oman</option><option>Bahrain</option><option>Other Gulf Country</option></select></label></div>
+<div class="field-row two hajj-sector-row" hidden id="hajjSectorRow">
+<label><span>Arrival sector / airport *</span><select id="hajjSector"><option value="">Select arrival sector</option><option>Madinah</option><option>Jeddah</option><option>Riyadh</option><option>Dammam</option><option value="Other">Other / Add manually</option></select></label>
+<label hidden id="customSectorField"><span>Other sector / airport *</span><input id="customSector" type="text" placeholder="Enter airport, city or sector"/></label>
+</div>
+<div class="field-row two">
+<label><span>Preferred travel date</span><input id="travelDate" type="date"/></label>
+<label><span>Number of travellers</span><select id="travelPeople"><option>1 traveller</option><option>2 travellers</option><option>3 travellers</option><option>4 travellers</option><option>5 travellers</option><option>6–10 travellers</option><option>10+ travellers</option></select></label>
+</div>
 
-      <nav class="nav desktop-nav travel-nav" aria-label="Travel navigation">
-        <a href="#travel-services">Services</a>
-        <a href="#packages">Packages</a>
-        <a href="#travel-enquiry">Enquiry</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <nav class="nav desktop-nav recruitment-nav" aria-label="Recruitment navigation">
-        <a href="#recruitment-overview">Recruitment</a>
-        <a href="#candidate-enquiry">Send Resume</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="nav-actions">
-        <a class="call-chip" href="tel:+919167493183">
-          <small>Call us</small>
-          <strong>+91 91674 93183</strong>
-        </a>
-        <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <nav class="mobile-travel-nav">
-        <a href="#travel-services">Services</a>
-        <a href="#packages">Packages</a>
-        <a href="#travel-enquiry">Enquiry</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <nav class="mobile-recruitment-nav">
-        <a href="#recruitment-overview">Recruitment</a>
-        <a href="#candidate-enquiry">Send Resume</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="mobile-contact" href="tel:+919167493183">Speak with Al Hadi</a>
-    </div>
-  </header>
-
-  <aside class="division-switch" aria-label="Switch Al Hadi division">
-    <div class="switch-capsule">
-      <span class="switch-slider" aria-hidden="true"></span>
-      <button class="switch-option is-active" data-mode-option="travel" type="button" aria-pressed="true">
-        <strong>Hajj / Umrah</strong>
-      </button>
-      <button class="switch-option" data-mode-option="recruitment" type="button" aria-pressed="false">
-        <strong>Recruitment</strong>
-      </button>
-    </div>
-  </aside>
-
-  <main id="main">
-    <section class="hero travel-mode" id="travel-home" data-panel="travel">
-      <div class="hero-media">
-        <figure class="hero-slide is-active" data-title="The Holy Kaaba" data-place="Makkah Al Mukarramah">
-          <img src="assets/images/hero-kaaba.jpg" alt="The Holy Kaaba in Makkah">
-        </figure>
-        <figure class="hero-slide" data-title="Abraj Al Bait Clock Tower" data-place="Makkah Al Mukarramah">
-          <img src="assets/images/hero-clock-tower.jpg" alt="Clock Tower in Makkah">
-        </figure>
-        <figure class="hero-slide" data-title="Masjid an Nabawi" data-place="Al Madinah Al Munawwarah">
-          <img src="assets/images/hero-madinah.jpg" alt="Masjid an Nabawi in Madinah">
-        </figure>
-        <figure class="hero-slide" data-title="The Green Dome" data-place="Al Madinah Al Munawwarah">
-          <img src="assets/images/hero-green-dome.jpg" alt="Green Dome in Madinah">
-        </figure>
-        <figure class="hero-slide" data-title="Jabal Ar-Rahmah" data-place="Arafat, Makkah">
-          <img src="assets/images/hero-arafat.jpg" alt="Jabal Ar-Rahmah in Arafat">
-        </figure>
-      </div>
-      <div class="hero-overlay"></div>
-      <div class="shell hero-shell">
-        <div class="hero-copy reveal">
-          <p class="eyebrow light">AL HADI PILGRIMAGE SERVICES / DONGRI · MUMBAI</p>
-          <h1>Your journey to the holy lands, guided with care.</h1>
-          <p class="hero-lead">Trusted support for Hajj & Umrah, flight tickets, hotel booking, forex and Gulf visa assistance — coordinated through one travel desk.</p>
-          <div class="hero-actions">
-            <a class="btn btn-solid" href="#travel-enquiry">Start an enquiry</a>
-            <a class="btn btn-outline" href="#packages">Explore packages</a>
-          </div>
-        </div>
-
-        <div class="hero-card reveal">
-          <div class="hero-card-head">
-            <small id="heroCount">01 / 05</small>
-            <span>Featured sacred destination</span>
-          </div>
-          <h2 id="heroTitle">The Holy Kaaba</h2>
-          <p id="heroPlace">Makkah Al Mukarramah</p>
-          <div class="hero-dots" aria-label="Hero image controls">
-            <button class="hero-dot is-active" type="button" data-hero-index="0" aria-label="Show slide 1"></button>
-            <button class="hero-dot" type="button" data-hero-index="1" aria-label="Show slide 2"></button>
-            <button class="hero-dot" type="button" data-hero-index="2" aria-label="Show slide 3"></button>
-            <button class="hero-dot" type="button" data-hero-index="3" aria-label="Show slide 4"></button>
-            <button class="hero-dot" type="button" data-hero-index="4" aria-label="Show slide 5"></button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="travel-view" data-panel="travel">
-      <section class="service-strip">
-        <div class="shell service-strip-track">
-          <span>Hajj & Umrah</span>
-          <span>Flight Tickets</span>
-          <span>Hotel Booking</span>
-          <span>Forex</span>
-          <span>Gulf Visa Assistance</span>
-        </div>
-      </section>
-
-      <section class="intro-section shell two-col-intro">
-        <div class="section-copy reveal">
-          <p class="eyebrow">A JOURNEY HANDLED THOUGHTFULLY</p>
-          <h2>A calmer, clearer way to plan sacred travel.</h2>
-        </div>
-        <div class="section-side reveal">
-          <p>Al Hadi Tours & Travels supports families, individuals and groups travelling to the Kingdom of Saudi Arabia with dependable coordination from the first enquiry to the final departure.</p>
-          <a class="text-arrow" href="#travel-services">View travel services</a>
-        </div>
-      </section>
-
-      <section class="services-section shell" id="travel-services">
-        <div class="section-heading reveal">
-          <p class="eyebrow">TRAVEL SERVICES</p>
-          <h2>What Al Hadi can arrange for your journey.</h2>
-        </div>
-        <div class="services-grid">
-          <button type="button" class="service-tile reveal" data-service="Hajj & Umrah"><span>01</span><h3>Hajj & Umrah</h3><p>Spiritual travel planning with clear step-by-step support.</p><b>Enquire now</b></button>
-          <button type="button" class="service-tile reveal" data-service="Flight Tickets"><span>02</span><h3>Flight Tickets</h3><p>Assistance with routes and timings suited to your plan.</p><b>Enquire now</b></button>
-          <button type="button" class="service-tile reveal" data-service="Hotel Booking"><span>03</span><h3>Hotel Booking</h3><p>Stay coordination in Makkah, Madinah and nearby zones.</p><b>Enquire now</b></button>
-          <button type="button" class="service-tile reveal" data-service="Forex"><span>04</span><h3>Forex</h3><p>Foreign exchange support for your international travel needs.</p><b>Enquire now</b></button>
-          <button type="button" class="service-tile reveal" data-service="Gulf Visa Assistance"><span>05</span><h3>Gulf Visa Assistance</h3><p>Visa help for Saudi Arabia, Kuwait and other Gulf destinations.</p><b>Enquire now</b></button>
-        </div>
-      </section>
-
-      <section class="packages-section shell" id="packages">
-        <div class="section-heading reveal">
-          <p class="eyebrow">HAJJ & UMRAH PACKAGES</p>
-          <h2>Three package directions, each with its own journey style.</h2>
-          <p class="section-note">All package prices are shared only after discussing dates, hotel preference, group size and availability.</p>
-        </div>
-
-        <article class="package-band reveal">
-          <div class="package-visual">
-            <img src="assets/images/package-economy-hotel-v2.jpg" alt="Standard hotel room for an Economy package experience">
-          </div>
-          <div class="package-details">
-            <div class="package-meta"><small>PACKAGE 01</small><span>VALUE-LED</span></div>
-            <h3>Economy</h3>
-            <p>An essential package direction for pilgrims who want the journey organised carefully, while keeping the focus on value and necessary arrangements.</p>
-            <div class="package-columns">
-              <ul>
-                <li>Visa assistance</li>
-                <li>Flight coordination</li>
-                <li>Standard hotel options</li>
-              </ul>
-              <ul>
-                <li>Group transport guidance</li>
-                <li>Ziyarat support</li>
-                <li>Meals as applicable</li>
-              </ul>
-            </div>
-            <div class="package-tail"><strong>Best for</strong><span>Travellers seeking a practical, respectful and budget-conscious pilgrimage plan.</span></div>
-            <button class="package-action" type="button" data-package="Economy">Request Economy details</button>
-          </div>
-        </article>
-
-        <article class="package-band reverse reveal">
-          <div class="package-visual">
-            <img src="assets/images/package-premium-hotel.jpg" alt="Premium hotel room overlooking Makkah">
-          </div>
-          <div class="package-details">
-            <div class="package-meta"><small>PACKAGE 02</small><span>COMFORT-LED</span></div>
-            <h3>Premium</h3>
-            <p>A more comfort-focused package direction for those who prefer a smoother travel experience, stronger coordination and upgraded stay preferences.</p>
-            <div class="package-columns">
-              <ul>
-                <li>Visa assistance</li>
-                <li>Flight coordination</li>
-                <li>Better-category hotels</li>
-              </ul>
-              <ul>
-                <li>Travel coordination support</li>
-                <li>Ziyarat support</li>
-                <li>Meals as applicable</li>
-              </ul>
-            </div>
-            <div class="package-tail"><strong>Best for</strong><span>Families and pilgrims who want additional comfort while keeping the process straightforward.</span></div>
-            <button class="package-action" type="button" data-package="Premium">Request Premium details</button>
-          </div>
-        </article>
-
-        <article class="package-band reveal">
-          <div class="package-visual">
-            <img src="assets/images/package-custom-hotel.jpg" alt="Luxury hotel suite for a tailored Custom package">
-          </div>
-          <div class="package-details">
-            <div class="package-meta"><small>PACKAGE 03</small><span>TAILORED</span></div>
-            <h3>Custom</h3>
-            <p>A tailored package direction for travellers who want a more elevated plan shaped around family requirements, hotel preference and trip expectations.</p>
-            <div class="package-columns">
-              <ul>
-                <li>Flexible travel planning</li>
-                <li>Preferred hotel category</li>
-                <li>Travel route preferences</li>
-              </ul>
-              <ul>
-                <li>Private / family planning</li>
-                <li>Ziyarat and transport options</li>
-                <li>Visa and forex add-ons</li>
-              </ul>
-            </div>
-            <div class="package-tail"><strong>Best for</strong><span>Travellers wanting a more personalised arrangement with room for comfort upgrades and custom planning.</span></div>
-            <button class="package-action" type="button" data-package="Custom">Discuss a custom plan</button>
-          </div>
-        </article>
-      </section>
-
-      <section class="enquiry-section" id="travel-enquiry">
-        <div class="shell enquiry-layout">
-          <div class="enquiry-copy reveal">
-            <p class="eyebrow">TRAVEL ENQUIRY</p>
-            <h2>Tell us the essentials.<br>We’ll prepare the next step.</h2>
-            <p>The enquiry is designed for quick filling. After submission, WhatsApp opens with your details already prepared.</p>
-            <div class="contact-stack">
-              <a href="tel:+919167493183">+91 91674 93183</a>
-              <a href="mailto:hadisaudi@gmail.com">hadisaudi@gmail.com</a>
-            </div>
-          </div>
-
-          <form class="travel-form reveal" id="travelForm" novalidate>
-            <div class="field-row two">
-              <label><span>Full name *</span><input id="travelName" type="text" autocomplete="name" placeholder="Your name"></label>
-              <label><span>WhatsApp number *</span><input id="travelPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Mobile number"></label>
-            </div>
-            <div class="field-row two">
-              <label><span>Service *</span><select id="travelService"><option value="">Select service</option><option>Hajj & Umrah</option><option>Flight Tickets</option><option>Hotel Booking</option><option>Forex</option><option>Gulf Visa Assistance</option></select></label>
-              <label><span>Package</span><select id="travelPackage"><option value="Not selected">Not selected</option><option>Economy</option><option>Premium</option><option>Custom</option></select></label>
-            </div>
-            <div class="field-row two">
-              <label><span>Preferred travel date</span><input id="travelDate" type="date"></label>
-              <label><span>Number of travellers</span><select id="travelPeople"><option>1 traveller</option><option>2 travellers</option><option>3 travellers</option><option>4 travellers</option><option>5 travellers</option><option>6–10 travellers</option><option>10+ travellers</option></select></label>
-            </div>
-            <label id="visaCountryField" hidden><span>Gulf country</span><select id="visaCountry"><option value="">Select country</option><option>Saudi Arabia</option><option>Kuwait</option><option>United Arab Emirates</option><option>Qatar</option><option>Oman</option><option>Bahrain</option><option>Other Gulf Country</option></select></label>
-            <label><span>Extra note <em>Optional</em></span><textarea id="travelMessage" rows="3" placeholder="Hotel preference, family requirement, visa query, etc."></textarea></label>
-            <button class="form-submit" type="submit">Continue on WhatsApp</button>
-            <p class="form-status" id="travelStatus" aria-live="polite"></p>
-          </form>
-        </div>
-      </section>
-    </div>
-
-    <div class="recruitment-view" data-panel="recruitment" hidden>
-      <section class="recruitment-hero" id="recruitment-overview">
-        <div class="shell recruitment-hero-grid">
-          <div class="recruitment-copy reveal">
-            <p class="eyebrow">AL HADI RECRUITMENT / KINGDOM OF SAUDI ARABIA</p>
-            <h1>Saudi recruitment, handled with a clear and professional process.</h1>
-            <p>For labour, skilled, technical, engineering and professional categories. Fill the short enquiry form, then continue on WhatsApp or Email and attach your resume there.</p>
-            <a class="btn btn-dark" href="#candidate-enquiry">Send your resume</a>
-          </div>
-          <div class="recruitment-frame reveal">
-            <img src="assets/images/recruitment-team.jpg" alt="Professional office environment for recruitment services">
-            <div class="recruitment-badge">
-              <small>Recruitment categories</small>
-              <strong>Labour · Skilled · Technical · Engineering</strong>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="shell recruitment-intro two-col-intro">
-        <div class="section-copy reveal">
-          <p class="eyebrow">RECRUITMENT SUPPORT</p>
-          <h2>A direct candidate route without unnecessary steps.</h2>
-        </div>
-        <div class="section-side reveal">
-          <p>We are not displaying open jobs on the website. Instead, candidates can share their basic details and continue through WhatsApp or Email with their resume attached there.</p>
-        </div>
-      </section>
-
-      <section class="recruitment-categories shell">
-        <div class="category-grid reveal">
-          <button type="button" data-category="Labour / General Worker"><span>01</span><strong>Labour & General</strong><small>Helpers, general workers and support roles</small></button>
-          <button type="button" data-category="Skilled Trade"><span>02</span><strong>Skilled Trades</strong><small>Electricians, welders, carpenters, plumbers and more</small></button>
-          <button type="button" data-category="Technical"><span>03</span><strong>Technical</strong><small>Operators, technicians and maintenance roles</small></button>
-          <button type="button" data-category="Engineering / Professional"><span>04</span><strong>Engineering & Professional</strong><small>Engineering, QA/QC, site and professional roles</small></button>
-        </div>
-      </section>
-
-      <section class="candidate-section" id="candidate-enquiry">
-        <div class="shell candidate-layout">
-          <div class="candidate-copy reveal">
-            <p class="eyebrow">CANDIDATE ENQUIRY</p>
-            <h2>Fill your details, then attach your resume in WhatsApp or Email.</h2>
-            <p>The website does not store your CV. This keeps the process simple and avoids duplicate uploading.</p>
-          </div>
-          <form class="candidate-form reveal" id="candidateForm" novalidate>
-            <div class="field-row two">
-              <label><span>Full name *</span><input id="candidateName" type="text" autocomplete="name" placeholder="Your name"></label>
-              <label><span>Mobile number *</span><input id="candidatePhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Mobile number"></label>
-            </div>
-            <div class="field-row two">
-              <label><span>Email</span><input id="candidateEmail" type="email" autocomplete="email" placeholder="Email address"></label>
-              <label><span>Current location</span><input id="candidateLocation" type="text" placeholder="City / country"></label>
-            </div>
-            <div class="field-row two">
-              <label><span>Category *</span><select id="candidateCategory"><option value="">Select category</option><option>Labour / General Worker</option><option>Skilled Trade</option><option>Technical</option><option>Engineering / Professional</option></select></label>
-              <label><span>Position / trade *</span><select id="candidateRole" disabled><option value="">Select category first</option></select></label>
-            </div>
-            <div class="field-row two">
-              <label><span>Experience</span><select id="candidateExperience"><option>Fresher</option><option>Less than 2 years</option><option>2–5 years</option><option>5–10 years</option><option>10+ years</option></select></label>
-              <label><span>Passport status</span><select id="candidatePassport"><option>Valid passport</option><option>Passport applied</option><option>No passport yet</option></select></label>
-            </div>
-            <label><span>Short note <em>Optional</em></span><textarea id="candidateNote" rows="3" placeholder="Current role, availability, preferred position, etc."></textarea></label>
-            <div class="resume-note"><strong>Resume step:</strong> after the next click, attach your resume in the app that opens.</div>
-            <div class="candidate-actions">
-              <button class="form-submit" type="button" id="sendCandidateWhatsApp">Continue on WhatsApp</button>
-              <button class="form-submit secondary" type="button" id="sendCandidateEmail">Continue by Email</button>
-            </div>
-            <p class="form-status" id="candidateStatus" aria-live="polite"></p>
-          </form>
-        </div>
-      </section>
-    </div>
-
-    <section class="contact-section" id="contact">
-      <div class="shell contact-layout">
-        <div class="contact-copy reveal">
-          <p class="eyebrow">OFFICE ADDRESS / DONGRI BAZAR</p>
-          <h2>Visit or contact the Al Hadi office.</h2>
-          <p class="address">82 Khairunnisa Height, Shop No. 03, Ground Floor,<br>Dongri Bazar, Mumbai – 400009</p>
-          <div class="contact-links">
-            <a class="contact-cta call-cta" href="tel:+919167493183" aria-label="Call Al Hadi">
-              <span class="contact-icon phone-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M6.7 2.9 9.3 2c.7-.2 1.5.1 1.8.8l1.3 3.1c.3.7.1 1.5-.5 2l-1.6 1.3a14 14 0 0 0 4.5 4.5l1.3-1.6c.5-.6 1.3-.8 2-.5l3.1 1.3c.7.3 1 1.1.8 1.8l-.9 2.6c-.3.9-1.2 1.6-2.2 1.6C10.8 18.9 5.1 13.2 5.1 6.1c0-1 .7-1.9 1.6-2.2Z"/></svg>
-              </span>
-              <span><small>Call us</small><strong>+91 91674 93183</strong></span>
-            </a>
-            <a class="contact-cta email-cta" href="mailto:hadisaudi@gmail.com" aria-label="Email Al Hadi">
-              <span class="contact-icon email-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M3 5h18v14H3z"/><path d="m4 6 8 6 8-6"/></svg>
-              </span>
-              <span><small>Email us</small><strong>hadisaudi@gmail.com</strong></span>
-            </a>
-            <a class="contact-cta instagram-cta" href="https://www.instagram.com/alhadi.mumbai" target="_blank" rel="noopener" aria-label="Follow Al Hadi on Instagram">
-              <span class="contact-icon instagram-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-              </span>
-              <span><small>Follow us</small><strong>@alhadi.mumbai</strong></span>
-            </a>
-          </div>
-        </div>
-        <div class="map-card reveal">
-          <div class="map-surface">
-            <iframe
-              title="Map showing Al Hadi Tours and Travels in Dongri Bazar, Mumbai"
-              src="https://www.google.com/maps?q=82%20Khairunnisa%20Height%20Shop%20No%2003%20Ground%20Floor%20Dongri%20Bazar%20Mumbai%20400009&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              allowfullscreen>
-            </iframe>
-            <div class="map-brand-label"><strong>AL HADI</strong><small>Dongri Bazar · Mumbai</small></div>
-          </div>
-          <div class="map-info">
-            <div>
-              <small>Location preview</small>
-              <strong>Get directions to our office</strong>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=82%20Khairunnisa%20Height%20Shop%20No%2003%20Ground%20Floor%20Dongri%20Bazar%20Mumbai%20400009" target="_blank" rel="noopener">Get Directions</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="shell footer-wrap">
-      <img src="assets/logo/al-hadi-logo.png" alt="Al Hadi Tours and Travels">
-      <p>Hajj & Umrah · Gulf Travel Services · Saudi Recruitment</p>
-      <small>© 2026 Al Hadi Tours & Travels. Mumbai.</small>
-    </div>
-  </footer>
-
-  <a class="floating-wa" href="https://wa.me/919167493183" target="_blank" rel="noopener" aria-label="Open WhatsApp chat with Al Hadi">
-    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16.04 3C8.86 3 3.02 8.82 3.02 15.98c0 2.52.73 4.97 2.12 7.07L3 29l6.14-2.02a13 13 0 0 0 6.9 1.99h.01c7.17 0 13.01-5.82 13.01-12.98C29.06 8.82 23.22 3 16.04 3Zm0 23.78h-.01a10.78 10.78 0 0 1-5.5-1.51l-.39-.23-3.64 1.2 1.2-3.55-.25-.4a10.76 10.76 0 0 1-1.66-5.72c0-5.95 4.85-10.79 10.82-10.79 5.96 0 10.82 4.84 10.82 10.79 0 5.95-4.86 10.79-10.82 10.79Zm5.94-8.08c-.32-.16-1.91-.94-2.21-1.05-.3-.11-.51-.16-.73.16-.21.32-.84 1.05-1.03 1.26-.19.21-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.61-1.91-1.8-2.23-.19-.32-.02-.49.14-.65.15-.14.32-.38.49-.57.16-.19.21-.32.32-.54.11-.21.05-.4-.03-.57-.08-.16-.73-1.75-1-2.4-.26-.63-.53-.55-.73-.56h-.62c-.21 0-.57.08-.86.4-.3.32-1.14 1.11-1.14 2.71 0 1.59 1.16 3.13 1.32 3.35.16.21 2.28 3.49 5.53 4.9.77.33 1.38.53 1.85.68.78.25 1.49.21 2.05.13.63-.09 1.91-.78 2.18-1.54.27-.76.27-1.41.19-1.54-.08-.14-.3-.22-.62-.38Z"/></svg>
-  </a>
-  <script src="script.js"></script>
+<label><span>Extra note <em>Optional</em></span><textarea id="travelMessage" placeholder="Hotel preference, family requirement, visa query, etc." rows="3"></textarea></label>
+<button class="form-submit" type="submit">Continue on WhatsApp</button>
+<p aria-live="polite" class="form-status" id="travelStatus"></p>
+</form>
+</div>
+</section><section class="faq-section" id="faq">
+<div class="shell faq-layout">
+<div class="faq-intro reveal">
+<p class="eyebrow">TRAVEL HELP DESK</p>
+<h2>Answers to the questions travellers usually ask first.</h2>
+<p>Clear information before you enquire. For live prices, departure dates and availability, speak directly with the Al Hadi team.</p>
+<a class="faq-contact-link" href="#travel-enquiry">Still have a question? Send an enquiry</a>
+</div>
+<div class="faq-list reveal">
+<details class="faq-item" open><summary><span class="faq-no">01</span><span class="faq-question">How do I get the price for a Hajj or Umrah package?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>Package pricing is shared after discussing your travel date, number of travellers, arrival sector, hotel preference and package level.</p></div></details>
+<details class="faq-item"><summary><span class="faq-no">02</span><span class="faq-question">Can I choose my arrival airport or sector?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>Yes. For Hajj &amp; Umrah enquiries you can select Madinah, Jeddah, Riyadh or Dammam, or enter another airport or sector manually.</p></div></details>
+<details class="faq-item"><summary><span class="faq-no">03</span><span class="faq-question">Can I request a specific hotel?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>Yes. Choose Hotel Booking in the enquiry form and enter the hotel name or your preferred stay requirement.</p></div></details>
+<details class="faq-item"><summary><span class="faq-no">04</span><span class="faq-question">Can I choose a preferred airline?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>Yes. Selecting Flight Tickets reveals an airline list so you can quickly share your preference.</p></div></details>
+<details class="faq-item"><summary><span class="faq-no">05</span><span class="faq-question">Which Gulf countries can I enquire about for visa assistance?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>The enquiry form includes Saudi Arabia, Kuwait, UAE, Qatar, Oman and Bahrain, plus an option for another Gulf country.</p></div></details>
+<details class="faq-item"><summary><span class="faq-no">06</span><span class="faq-question">How do recruitment candidates send their resume?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>Fill the candidate form, choose WhatsApp or Email, then attach your resume directly in the app that opens. The website does not store your CV.</p></div></details>
+</div>
+</div>
+</section>
+</div>
+<div class="recruitment-view" data-panel="recruitment" hidden="">
+<section class="recruitment-hero" id="recruitment-overview">
+<div class="shell recruitment-hero-grid">
+<div class="recruitment-copy reveal">
+<p class="eyebrow">AL HADI RECRUITMENT / KINGDOM OF SAUDI ARABIA</p>
+<h1>Saudi recruitment, handled with a clear and professional process.</h1>
+<p>For labour, skilled, technical, engineering and professional categories. Fill the short enquiry form, then continue on WhatsApp or Email and attach your resume there.</p>
+<a class="btn btn-dark" href="#candidate-enquiry">Send your resume</a>
+</div>
+<div class="recruitment-frame reveal">
+<img alt="Professional office environment for recruitment services" src="assets/images/recruitment-team.jpg"/>
+<div class="recruitment-badge">
+<small>Recruitment categories</small>
+<strong>Labour · Skilled · Technical · Engineering</strong>
+</div>
+</div>
+</div>
+</section>
+<section class="shell recruitment-intro two-col-intro">
+<div class="section-copy reveal">
+<p class="eyebrow">RECRUITMENT SUPPORT</p>
+<h2>A direct candidate route without unnecessary steps.</h2>
+</div>
+<div class="section-side reveal">
+<p>We are not displaying open jobs on the website. Instead, candidates can share their basic details and continue through WhatsApp or Email with their resume attached there.</p>
+</div>
+</section>
+<section class="recruitment-categories shell">
+<div class="category-grid reveal">
+<button data-category="Labour / General Worker" type="button"><span>01</span><strong>Labour &amp; General</strong><small>Helpers, general workers and support roles</small></button>
+<button data-category="Skilled Trade" type="button"><span>02</span><strong>Skilled Trades</strong><small>Electricians, welders, carpenters, plumbers and more</small></button>
+<button data-category="Technical" type="button"><span>03</span><strong>Technical</strong><small>Operators, technicians and maintenance roles</small></button>
+<button data-category="Engineering / Professional" type="button"><span>04</span><strong>Engineering &amp; Professional</strong><small>Engineering, QA/QC, site and professional roles</small></button>
+</div>
+</section>
+<section class="candidate-section" id="candidate-enquiry">
+<div class="shell candidate-layout">
+<div class="candidate-copy reveal">
+<p class="eyebrow">CANDIDATE ENQUIRY</p>
+<h2>Fill your details, then attach your resume in WhatsApp or Email.</h2>
+<p>The website does not store your CV. This keeps the process simple and avoids duplicate uploading.</p>
+</div>
+<form class="candidate-form reveal" id="candidateForm" novalidate="">
+<div class="field-row two">
+<label><span>Full name *</span><input autocomplete="name" id="candidateName" placeholder="Your name" type="text"/></label>
+<label><span>Mobile number *</span><input autocomplete="tel" id="candidatePhone" inputmode="tel" placeholder="Mobile number" type="tel"/></label>
+</div>
+<div class="field-row two">
+<label><span>Email</span><input autocomplete="email" id="candidateEmail" placeholder="Email address" type="email"/></label>
+<label><span>Current location</span><input id="candidateLocation" placeholder="City / country" type="text"/></label>
+</div>
+<div class="field-row two">
+<label><span>Category *</span><select id="candidateCategory"><option value="">Select category</option><option>Labour / General Worker</option><option>Skilled Trade</option><option>Technical</option><option>Engineering / Professional</option></select></label>
+<label><span>Position / trade *</span><select disabled="" id="candidateRole"><option value="">Select category first</option></select></label>
+</div>
+<div class="field-row two">
+<label><span>Experience</span><select id="candidateExperience"><option>Fresher</option><option>Less than 2 years</option><option>2–5 years</option><option>5–10 years</option><option>10+ years</option></select></label>
+<label><span>Passport status</span><select id="candidatePassport"><option>Valid passport</option><option>Passport applied</option><option>No passport yet</option></select></label>
+</div>
+<label><span>Short note <em>Optional</em></span><textarea id="candidateNote" placeholder="Current role, availability, preferred position, etc." rows="3"></textarea></label>
+<div class="resume-note"><strong>Resume step:</strong> after the next click, attach your resume in the app that opens.</div>
+<div class="candidate-actions">
+<button class="form-submit" id="sendCandidateWhatsApp" type="button">Continue on WhatsApp</button>
+<button class="form-submit secondary" id="sendCandidateEmail" type="button">Continue by Email</button>
+</div>
+<p aria-live="polite" class="form-status" id="candidateStatus"></p>
+</form>
+</div>
+</section>
+</div>
+<section class="contact-section" id="contact">
+<div class="shell contact-layout">
+<div class="contact-copy reveal">
+<p class="eyebrow">OFFICE ADDRESS / DONGRI BAZAR</p>
+<h2>Visit or contact the Al Hadi office.</h2>
+<p class="address">82 Khairunnisa Height, Shop No. 03, Ground Floor,<br/>Dongri Bazar, Mumbai – 400009</p>
+<div class="contact-links">
+<a aria-label="Call Al Hadi" class="contact-cta call-cta" href="tel:+919167493183">
+<span aria-hidden="true" class="contact-icon phone-icon">
+<svg viewbox="0 0 24 24"><path d="M6.7 2.9 9.3 2c.7-.2 1.5.1 1.8.8l1.3 3.1c.3.7.1 1.5-.5 2l-1.6 1.3a14 14 0 0 0 4.5 4.5l1.3-1.6c.5-.6 1.3-.8 2-.5l3.1 1.3c.7.3 1 1.1.8 1.8l-.9 2.6c-.3.9-1.2 1.6-2.2 1.6C10.8 18.9 5.1 13.2 5.1 6.1c0-1 .7-1.9 1.6-2.2Z"></path></svg>
+</span>
+<span><small>Call us</small><strong>+91 91674 93183</strong></span>
+</a>
+<a aria-label="Email Al Hadi" class="contact-cta email-cta" href="https://mail.google.com/mail/?view=cm&fs=1&to=hadisaudi%40gmail.com" rel="noopener" target="_blank">
+<span aria-hidden="true" class="contact-icon email-icon">
+<svg viewbox="0 0 24 24"><path d="M3 5h18v14H3z"></path><path d="m4 6 8 6 8-6"></path></svg>
+</span>
+<span><small>Email us</small><strong>hadisaudi@gmail.com</strong></span>
+</a>
+<a aria-label="Follow Al Hadi on Instagram" class="contact-cta instagram-cta" href="https://www.instagram.com/alhadi.mumbai" rel="noopener" target="_blank">
+<span aria-hidden="true" class="contact-icon instagram-icon">
+<svg viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>
+</span>
+<span><small>Follow us</small><strong>@alhadi.mumbai</strong></span>
+</a>
+</div>
+</div>
+<div class="map-card reveal">
+<div class="map-surface">
+<iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=AL%20HADI%20TOURS%20AND%20TRAVELS%2082%20Khairunnisa%20Height%20Shop%20No%2003%20Ground%20Floor%20Dongri%20Bazar%20Mumbai%20400009&amp;output=embed" title="Interactive map showing Al Hadi Tours and Travels in Dongri Bazar, Mumbai">
+</iframe>
+</div>
+<div class="map-info">
+<div>
+<small>Location preview</small>
+<strong>Get directions to our office</strong>
+</div>
+<a href="https://www.google.com/maps/search/?api=1&amp;query=82%20Khairunnisa%20Height%20Shop%20No%2003%20Ground%20Floor%20Dongri%20Bazar%20Mumbai%20400009" rel="noopener" target="_blank">Get Directions</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="shell footer-grid">
+<div class="footer-brand">
+<img alt="Al Hadi Tours and Travels" src="assets/logo/al-hadi-logo.png"/>
+<p>Hajj &amp; Umrah · Gulf Travel Services · Saudi Recruitment</p>
+<a href="tel:+919167493183">+91 91674 93183</a>
+</div>
+<div class="footer-links-group">
+<p>Travel information</p>
+<a data-travel-footer-link="" href="#why-al-hadi">Why Choose Al Hadi</a>
+<a data-travel-footer-link="" href="#process">Our Process</a>
+<a data-travel-footer-link="" href="#documents-required">Documents Required</a>
+<a data-travel-footer-link="" href="#faq">FAQ</a>
+</div>
+<div class="footer-links-group">
+<p>Connect</p>
+<a href="https://wa.me/919167493183" rel="noopener" target="_blank">WhatsApp</a>
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=hadisaudi%40gmail.com" rel="noopener" target="_blank">Email</a>
+<a href="https://www.instagram.com/alhadi.mumbai" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.google.com/maps/search/?api=1&amp;query=82%20Khairunnisa%20Height%20Shop%20No%2003%20Ground%20Floor%20Dongri%20Bazar%20Mumbai%20400009" rel="noopener" target="_blank">Get Directions</a>
+</div>
+</div>
+<div class="shell footer-bottom">
+<small>© 2026 Al Hadi Tours &amp; Travels. Mumbai.</small>
+<button class="privacy-link" id="openPrivacy" type="button">Privacy</button>
+</div>
+</footer>
+<dialog class="privacy-dialog" id="privacyDialog">
+<div class="privacy-card">
+<button aria-label="Close privacy information" class="privacy-close" id="closePrivacy" type="button">×</button>
+<p class="eyebrow">PRIVACY</p>
+<h2>How enquiry information is handled.</h2>
+<div class="privacy-copy">
+<p>Information entered in the travel enquiry form is used to prepare your enquiry and open WhatsApp for direct communication with Al Hadi Tours &amp; Travels.</p>
+<p>For recruitment enquiries, the website prepares your details for WhatsApp or Email. Resumes are attached by the candidate in the selected app and are not stored by this website.</p>
+<p>Do not submit sensitive information beyond what is necessary for your enquiry. For questions about information you have sent, contact Al Hadi directly at hadisaudi@gmail.com.</p>
+</div>
+</div>
+</dialog><a aria-label="Open WhatsApp chat with Al Hadi" class="floating-wa" href="https://wa.me/919167493183" rel="noopener" target="_blank">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 32 32"><path d="M16.04 3C8.86 3 3.02 8.82 3.02 15.98c0 2.52.73 4.97 2.12 7.07L3 29l6.14-2.02a13 13 0 0 0 6.9 1.99h.01c7.17 0 13.01-5.82 13.01-12.98C29.06 8.82 23.22 3 16.04 3Zm0 23.78h-.01a10.78 10.78 0 0 1-5.5-1.51l-.39-.23-3.64 1.2 1.2-3.55-.25-.4a10.76 10.76 0 0 1-1.66-5.72c0-5.95 4.85-10.79 10.82-10.79 5.96 0 10.82 4.84 10.82 10.79 0 5.95-4.86 10.79-10.82 10.79Zm5.94-8.08c-.32-.16-1.91-.94-2.21-1.05-.3-.11-.51-.16-.73.16-.21.32-.84 1.05-1.03 1.26-.19.21-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.61-1.91-1.8-2.23-.19-.32-.02-.49.14-.65.15-.14.32-.38.49-.57.16-.19.21-.32.32-.54.11-.21.05-.4-.03-.57-.08-.16-.73-1.75-1-2.4-.26-.63-.53-.55-.73-.56h-.62c-.21 0-.57.08-.86.4-.3.32-1.14 1.11-1.14 2.71 0 1.59 1.16 3.13 1.32 3.35.16.21 2.28 3.49 5.53 4.9.77.33 1.38.53 1.85.68.78.25 1.49.21 2.05.13.63-.09 1.91-.78 2.18-1.54.27-.76.27-1.41.19-1.54-.08-.14-.3-.22-.62-.38Z"></path></svg>
+</a>
+<script src="script.js"></script>
 </body>
 </html>

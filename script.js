@@ -97,24 +97,71 @@ function scrollToId(id) {
 function whatsappUrl(text) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
+function gmailComposeUrl({ to = RECRUITMENT_EMAIL, subject = '', body = '' } = {}) {
+  const params = new URLSearchParams({ view: 'cm', fs: '1', to, su: subject, body });
+  return `https://mail.google.com/mail/?${params.toString()}`;
+}
 
 const travelService = document.getElementById('travelService');
 const travelPackage = document.getElementById('travelPackage');
+const packageField = document.getElementById('packageField');
+const hotelField = document.getElementById('hotelField');
+const hotelName = document.getElementById('hotelName');
+const airlineField = document.getElementById('airlineField');
+const preferredAirline = document.getElementById('preferredAirline');
 const visaCountryField = document.getElementById('visaCountryField');
 const visaCountry = document.getElementById('visaCountry');
+const hajjSectorRow = document.getElementById('hajjSectorRow');
+const hajjSector = document.getElementById('hajjSector');
+const customSectorField = document.getElementById('customSectorField');
+const customSector = document.getElementById('customSector');
+const serviceDetailRow = document.getElementById('serviceDetailRow');
 const travelDate = document.getElementById('travelDate');
 if (travelDate) travelDate.min = new Date().toISOString().slice(0, 10);
-function syncVisaCountry() {
-  const show = travelService?.value === 'Gulf Visa Assistance';
-  if (visaCountryField) visaCountryField.hidden = !show;
-  if (!show && visaCountry) visaCountry.value = '';
+
+function syncTravelDetails() {
+  const service = travelService?.value || '';
+  [packageField, hotelField, airlineField, visaCountryField].forEach((field) => {
+    if (field) field.hidden = true;
+  });
+  if (serviceDetailRow) serviceDetailRow.classList.remove('single-field');
+
+  if (hajjSectorRow) hajjSectorRow.hidden = service !== 'Hajj & Umrah';
+  if (service === 'Hajj & Umrah') {
+    if (packageField) packageField.hidden = false;
+  } else if (service === 'Hotel Booking') {
+    if (hotelField) hotelField.hidden = false;
+  } else if (service === 'Flight Tickets') {
+    if (airlineField) airlineField.hidden = false;
+  } else if (service === 'Gulf Visa Assistance') {
+    if (visaCountryField) visaCountryField.hidden = false;
+  } else if (serviceDetailRow) {
+    serviceDetailRow.classList.add('single-field');
+  }
+
+  if (service !== 'Hotel Booking' && hotelName) hotelName.value = '';
+  if (service !== 'Flight Tickets' && preferredAirline) preferredAirline.value = '';
+  if (service !== 'Gulf Visa Assistance' && visaCountry) visaCountry.value = '';
+  if (service !== 'Hajj & Umrah' && travelPackage) travelPackage.value = 'Not selected';
+  if (service !== 'Hajj & Umrah') {
+    if (hajjSector) hajjSector.value = '';
+    if (customSector) customSector.value = '';
+    if (customSectorField) customSectorField.hidden = true;
+  }
 }
-travelService?.addEventListener('change', syncVisaCountry);
+travelService?.addEventListener('change', syncTravelDetails);
+hajjSector?.addEventListener('change', () => {
+  const custom = hajjSector.value === 'Other';
+  if (customSectorField) customSectorField.hidden = !custom;
+  if (!custom && customSector) customSector.value = '';
+});
+syncTravelDetails();
+
 function prefillTravel({ service, packageName } = {}) {
   setMode('travel', { scroll: false });
   if (service && travelService) travelService.value = service;
+  syncTravelDetails();
   if (packageName && travelPackage) travelPackage.value = packageName;
-  syncVisaCountry();
   scrollToId('travel-enquiry');
   setTimeout(() => document.getElementById('travelName')?.focus({ preventScroll: true }), 350);
 }
@@ -138,26 +185,61 @@ travelForm?.addEventListener('submit', (event) => {
     markInvalid(field, bad);
     if (bad) valid = false;
   });
+
+  if (travelService?.value === 'Hajj & Umrah') {
+    const badSector = !String(hajjSector?.value || '').trim();
+    markInvalid(hajjSector, badSector);
+    if (badSector) valid = false;
+    const needsCustom = hajjSector?.value === 'Other';
+    const badCustomSector = needsCustom && !String(customSector?.value || '').trim();
+    markInvalid(customSector, badCustomSector);
+    if (badCustomSector) valid = false;
+  }
+
+  if (travelService?.value === 'Gulf Visa Assistance') {
+    const badCountry = !String(visaCountry?.value || '').trim();
+    markInvalid(visaCountry, badCountry);
+    if (badCountry) valid = false;
+  }
+
   if (!valid) {
-    travelStatus.textContent = 'Please complete your name, WhatsApp number and service.';
+    if (travelService?.value === 'Hajj & Umrah') {
+      travelStatus.textContent = 'Please complete your name, WhatsApp number, service and arrival sector.';
+    } else if (travelService?.value === 'Gulf Visa Assistance') {
+      travelStatus.textContent = 'Please complete your name, WhatsApp number, service and Gulf country.';
+    } else {
+      travelStatus.textContent = 'Please complete your name, WhatsApp number and service.';
+    }
     travelStatus.className = 'form-status error';
     return;
   }
+
   const dateValue = travelDate?.value
     ? new Date(`${travelDate.value}T00:00:00`).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
     : 'Flexible / not selected';
+
+  const service = travelService.value;
+  const serviceSpecific = [];
+  if (service === 'Hajj & Umrah') {
+    serviceSpecific.push(`Package: ${travelPackage?.value || 'Not selected'}`);
+    const sectorLabel = hajjSector?.value === 'Other' ? customSector?.value.trim() : hajjSector?.value;
+    serviceSpecific.push(`Arrival sector / airport: ${sectorLabel || 'Not selected'}`);
+  }
+  if (service === 'Hotel Booking') serviceSpecific.push(`Hotel preference: ${hotelName?.value.trim() || 'Not specified'}`);
+  if (service === 'Flight Tickets') serviceSpecific.push(`Preferred airline: ${preferredAirline?.value || 'No preference'}`);
+  if (service === 'Gulf Visa Assistance') serviceSpecific.push(`Country: ${visaCountry?.value || 'Not selected'}`);
+
   const lines = [
     'Assalamu Alaikum, I would like to enquire with Al Hadi Tours & Travels.',
     '',
     `Name: ${name.value.trim()}`,
     `WhatsApp: ${phone.value.trim()}`,
-    `Service: ${travelService.value}`,
-    `Package: ${travelPackage.value}`,
-    travelService.value === 'Gulf Visa Assistance' ? `Country: ${visaCountry?.value || 'Not selected'}` : null,
+    `Service: ${service}`,
+    ...serviceSpecific,
     `Preferred travel date: ${dateValue}`,
     `Travellers: ${document.getElementById('travelPeople').value}`,
     `Requirement: ${document.getElementById('travelMessage').value.trim() || 'No additional note'}`,
-  ].filter(Boolean);
+  ];
   travelStatus.textContent = 'Opening WhatsApp with your enquiry prepared…';
   travelStatus.className = 'form-status success';
   window.open(whatsappUrl(lines.join('\n')), '_blank', 'noopener');
@@ -235,8 +317,39 @@ document.getElementById('sendCandidateWhatsApp')?.addEventListener('click', () =
 document.getElementById('sendCandidateEmail')?.addEventListener('click', () => {
   const message = candidatePayload();
   if (!message) return;
-  candidateStatus.textContent = 'Your email app is opening. Please attach your resume before sending.';
+  candidateStatus.textContent = 'Gmail is opening with your enquiry prepared. Please attach your resume before sending.';
   candidateStatus.className = 'form-status success';
   const subject = 'Saudi Recruitment Candidate Enquiry — Al Hadi';
-  window.location.href = `mailto:${RECRUITMENT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+  window.open(gmailComposeUrl({ subject, body: message }), '_blank', 'noopener');
+});
+
+
+// Footer travel information links remain useful even when Recruitment mode is active.
+document.querySelectorAll('[data-travel-footer-link]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const targetId = link.getAttribute('href')?.replace('#', '');
+    setMode('travel', { scroll: false });
+    requestAnimationFrame(() => scrollToId(targetId));
+  });
+});
+
+// Compact privacy modal keeps policy information out of the main page flow.
+const privacyDialog = document.getElementById('privacyDialog');
+document.getElementById('openPrivacy')?.addEventListener('click', () => {
+  if (privacyDialog?.showModal) privacyDialog.showModal();
+});
+document.getElementById('closePrivacy')?.addEventListener('click', () => privacyDialog?.close());
+privacyDialog?.addEventListener('click', (event) => {
+  if (event.target === privacyDialog) privacyDialog.close();
+});
+
+// Premium FAQ behaviour: keep one answer open at a time for a cleaner reading flow.
+document.querySelectorAll('.faq-item').forEach((item) => {
+  item.addEventListener('toggle', () => {
+    if (!item.open) return;
+    document.querySelectorAll('.faq-item').forEach((other) => {
+      if (other !== item) other.open = false;
+    });
+  });
 });
