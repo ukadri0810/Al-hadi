@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none">
+<defs><linearGradient id="n" x1="20" y1="20" x2="72" y2="77"><stop stop-color="#1763bd"/><stop offset="1" stop-color="#0b2f67"/></linearGradient><linearGradient id="g" x1="22" y1="15" x2="75" y2="80"><stop stop-color="#ffd76f"/><stop offset="1" stop-color="#c88e28"/></linearGradient><filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#0b2f67" flood-opacity=".22"/></filter></defs>
+<g filter="url(#s)">
+ <rect x="20" y="31" width="53" height="43" rx="5" fill="url(#n)"/>
+ <rect x="17" y="27" width="59" height="10" rx="3" fill="#0a254b"/>
+ <path d="M17 27h59l-7-9H24l-7 9Z" fill="url(#g)"/>
+ <rect x="39" y="31" width="15" height="43" fill="#101113"/>
+ <rect x="20" y="43" width="53" height="5" fill="#ffd76f"/>
+ <path d="M69 17c8 2 14 7 18 14" stroke="#ffd76f" stroke-width="4" stroke-linecap="round"/>
+ <path d="m85 24 3 10-10-1" fill="#ffd76f"/>
+ <circle cx="21" cy="75" r="7" fill="#ffd76f" opacity=".9"/>
+</g></svg>
