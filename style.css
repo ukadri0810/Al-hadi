@@ -388,3 +388,235 @@ textarea{resize:vertical;min-height:100px}
 .hero-meta-simple .hero-dots{margin-left:auto}
 .hero-slide img{image-rendering:auto;backface-visibility:hidden;transform:translateZ(0)}
 @media(max-width:720px){.hero-meta-simple{align-items:center}.hero-meta-simple .hero-dots{justify-content:flex-end}}
+
+/* =========================================================
+   2026 MOBILE-FIRST RESPONSIVE PASS
+   Keeps desktop visual language while making phone/tablet
+   layouts intentional, compact, readable and touch-friendly.
+   ========================================================= */
+body{overflow-x:hidden}
+.nav-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px}
+
+/* Tablet / compact desktop */
+@media (max-width:980px){
+  .site-header{padding:12px 0 8px}
+  .nav-wrap{grid-template-columns:minmax(0,1fr) auto;gap:14px}
+  .brand{min-width:0;display:flex;align-items:center}
+  .brand img{width:min(178px,48vw);height:auto;max-height:58px;object-fit:contain;object-position:left center}
+  .desktop-nav,.call-chip{display:none!important}
+  .menu-button{display:block;width:44px;height:44px;border-radius:13px;box-shadow:0 8px 20px rgba(15,60,131,.16)}
+  .menu-button span{left:13px;right:13px}
+  .menu-button span:nth-child(1){top:14px}.menu-button span:nth-child(2){top:21px}.menu-button span:nth-child(3){top:28px}
+
+  .switch-row{padding:8px 0 2px;justify-content:center}
+  .division-switch{width:min(290px,100%)}
+  .switch-capsule{min-width:0;width:100%;padding:4px;border-width:1px}
+  .switch-slider{left:4px;top:4px;bottom:4px;width:calc(50% - 4px)}
+  .switch-option{padding:10px 12px;font-size:13px;white-space:nowrap}
+
+  .mobile-menu{position:absolute;left:max(12px,calc((100vw - 1180px)/2));right:max(12px,calc((100vw - 1180px)/2));top:calc(100% + 6px);padding:10px 14px 14px;border-radius:18px;background:rgba(255,255,255,.98);box-shadow:0 22px 60px rgba(9,34,70,.18);border:1px solid #e2e9f1;backdrop-filter:blur(14px)}
+  .mobile-menu.is-open{display:grid;gap:10px}
+  .mobile-menu .mobile-travel-nav,.mobile-menu .mobile-recruitment-nav{display:none}
+  body[data-mode="travel"] .mobile-menu .mobile-travel-nav{display:grid}
+  body[data-mode="recruitment"] .mobile-menu .mobile-recruitment-nav{display:grid}
+  .mobile-menu nav{gap:0}
+  .mobile-menu nav a{display:flex;align-items:center;min-height:46px;padding:10px 4px;border-bottom:1px solid #edf1f5;font-size:14px;font-weight:750;color:#203c5a}
+  .mobile-menu nav a:last-child{border-bottom:0}
+  .mobile-contact{min-height:46px;margin-top:2px;border-radius:12px;border:0!important;background:linear-gradient(180deg,#153f74,#0d3264);color:#fff!important}
+
+  .hero-shell{grid-template-columns:1fr;gap:24px;padding:52px 0}
+  .hero-copy{max-width:680px}
+  .hero-card{width:min(520px,100%);justify-self:end}
+
+  .services-grid-five{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .package-cards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .package-card:last-child{grid-column:1/-1;width:min(520px,100%);justify-self:center}
+  .package-benefits{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .highlight-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .process-grid{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:26px}
+  .process-grid::before{display:none}
+
+  .recruitment-hero-grid,.themed-enquiry,.candidate-layout,.contact-layout{grid-template-columns:1fr}
+  .recruitment-frame{min-height:360px}
+  .category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .contact-copy{max-width:720px}
+}
+
+/* Phone layout */
+@media (max-width:720px){
+  :root{--radius:16px}
+  .shell{width:calc(100vw - 28px)}
+  .site-header{padding:9px 0 7px}
+  .brand img{width:min(156px,48vw);max-height:50px}
+  .menu-button{width:42px;height:42px;border-radius:12px}
+  .switch-row{padding-top:7px}
+  .division-switch{width:min(258px,82vw)}
+  .switch-option{padding:9px 8px;font-size:12px}
+
+  h1{font-size:clamp(2.15rem,11vw,2.8rem);line-height:1.02}
+  h2{font-size:clamp(1.65rem,8vw,2.15rem);line-height:1.12}
+  .eyebrow{font-size:10px;letter-spacing:.16em;margin-bottom:9px}
+
+  /* Hero image remains fully legible; enquiry lives beneath the image. */
+  .hero{display:block;min-height:0;overflow:hidden;background:#f5f8fc}
+  .hero-media,.hero-overlay{height:520px;bottom:auto}
+  .hero-media{overflow:hidden;background:#0a2f67}
+  .hero-slide,.hero-slide img{height:520px}
+  .hero-slide img{object-fit:cover;object-position:center center}
+  .hero-overlay{background:linear-gradient(180deg,rgba(5,25,52,.08) 0%,rgba(5,25,52,.18) 38%,rgba(6,26,55,.83) 78%,rgba(6,25,53,.96) 100%)}
+  .hero-shell{display:block;padding:0 0 18px}
+  .hero-copy{height:520px;max-width:none;padding:150px 2px 28px;display:flex;flex-direction:column;justify-content:flex-end}
+  .hero-script{font-size:2.15rem;margin-bottom:5px;text-shadow:0 2px 14px rgba(0,0,0,.28)}
+  .hero-lead{margin-top:10px;font-size:.88rem;line-height:1.58;max-width:100%;color:#f2f6fb;text-shadow:0 2px 12px rgba(0,0,0,.28)}
+  .hero-feature-strip{grid-template-columns:1fr 1fr;gap:4px 7px;margin-top:14px;max-width:100%}
+  .hero-feature-strip span{grid-template-columns:30px 1fr;gap:6px;padding:5px 2px;font-size:9.5px;line-height:1.25}
+  .hero-feature-strip img{width:30px;height:30px;filter:drop-shadow(0 5px 10px rgba(0,0,0,.18))}
+  .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+  .hero-actions .btn{min-height:43px;padding:11px 10px;border-radius:11px;font-size:12px;text-align:center}
+  .hero-card{position:relative;width:100%;margin-top:14px;padding:16px;border-radius:18px;box-shadow:0 16px 34px rgba(10,33,74,.12);border:1px solid #e6ecf3}
+  .hero-card-top small{font-size:10px}.hero-card-top span{font-size:12px;margin-top:3px}
+  .hero-card-grid{grid-template-columns:1fr 1fr;gap:9px;margin-top:13px}
+  .hero-card .mini-field{padding:9px 10px;min-width:0}
+  .hero-card .mini-field:nth-child(5){grid-column:1/-1}
+  .hero-card .mini-field span{font-size:8.5px}
+  .hero-card .mini-field input,.hero-card .mini-field select{font-size:12px;min-width:0}
+  .hero-enquiry-button{min-height:44px;margin-top:11px;padding:11px 14px;border-radius:11px;font-size:13px}
+  .hero-meta-bar{margin-top:10px;padding-top:10px}
+  .hero-meta-simple #heroCount{font-size:10px}
+  .hero-dot{width:23px;height:5px;padding:0}
+
+  /* General vertical rhythm */
+  .services-section,.highlights-section,.enquiry-section,.contact-section,.recruitment-intro,.recruitment-categories,.candidate-section{padding:56px 0}
+  .section-heading{margin-bottom:24px}
+  .section-heading h2{font-size:1.72rem}
+  .section-heading .section-note{font-size:.88rem;line-height:1.6}
+
+  /* Services are compact, swipeable cards instead of full-screen blocks. */
+  .service-cards-grid{
+    display:grid!important;
+    grid-template-columns:none!important;
+    grid-auto-flow:column;
+    grid-auto-columns:clamp(205px,61vw,238px);
+    gap:12px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:2px 2px 16px;
+    margin-right:-14px;
+    scroll-snap-type:x mandatory;
+    scroll-padding-left:2px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .service-cards-grid::-webkit-scrollbar{display:none}
+  .service-card-image{width:auto;scroll-snap-align:start;border-radius:20px;transform:none!important}
+  .service-card-art{width:100%;height:auto;border-radius:20px;box-shadow:0 10px 24px rgba(10,33,74,.10)}
+
+  /* Packages remain readable but less oversized. */
+  .package-theme .shell{padding-top:58px;padding-bottom:58px}
+  .package-cards-grid{grid-template-columns:1fr;gap:15px}
+  .package-card,.package-card:last-child{grid-column:auto;width:100%;border-radius:17px}
+  .package-card-image{height:178px}
+  .package-card-body{padding:16px;gap:10px}
+  .package-card p{font-size:.87rem;line-height:1.62}
+  .package-card ul{grid-template-columns:1fr 1fr;gap:8px 12px}
+  .package-card li{font-size:.82rem;padding-left:14px}
+  .package-action{min-height:44px;padding:11px 14px}
+  .package-benefits{grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}
+  .package-benefits span{min-height:76px;padding:10px;gap:8px;border-radius:12px;font-size:11px;line-height:1.35}
+  .package-benefits img{width:42px;height:42px;flex:0 0 42px}
+
+  /* Why choose: horizontal information cards, less vertical scrolling. */
+  .highlight-grid{grid-template-columns:1fr;gap:10px}
+  .highlight-item{display:grid;grid-template-columns:62px 1fr;grid-template-rows:auto auto;column-gap:13px;row-gap:3px;text-align:left;padding:15px 16px;border-radius:16px}
+  .highlight-item:hover{transform:none}
+  .highlight-item img{grid-column:1;grid-row:1/3;width:62px;height:62px;margin:0;align-self:center}
+  .highlight-item strong{grid-column:2;grid-row:1;font-size:.93rem;align-self:end}
+  .highlight-item span{grid-column:2;grid-row:2;font-size:.79rem;line-height:1.5;align-self:start}
+
+  /* Journey steps become a compact horizontal snap row. */
+  .alt-process .shell{padding-top:54px;padding-bottom:54px}
+  .process-grid{
+    display:grid;
+    grid-template-columns:none!important;
+    grid-auto-flow:column;
+    grid-auto-columns:150px;
+    gap:10px;
+    overflow-x:auto;
+    padding:2px 2px 14px;
+    margin-right:-14px;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+  }
+  .process-grid::-webkit-scrollbar{display:none}
+  .process-item{scroll-snap-align:start;padding:8px 5px}
+  .process-item img{width:72px;height:72px;padding:9px;margin-bottom:7px}
+  .process-item strong{font-size:.88rem}.process-item small{font-size:.73rem;line-height:1.42}
+
+  /* Enquiry forms: one field per row on phones, generous tap targets. */
+  .themed-enquiry,.candidate-layout{gap:14px}
+  .enquiry-copy,.candidate-copy{padding:24px 20px;border-radius:18px}
+  .enquiry-copy h2,.candidate-copy h2{font-size:1.72rem}
+  .enquiry-copy p,.candidate-copy p{font-size:.88rem}
+  .travel-form,.candidate-form{padding:18px;border-radius:18px}
+  .field-row.two{grid-template-columns:1fr;gap:12px;margin-bottom:12px}
+  label{gap:6px}label span{font-size:12px}
+  input,select,textarea{min-height:47px;padding:12px 13px;border-radius:11px;font-size:14px}
+  textarea{min-height:92px}
+  .candidate-actions{grid-template-columns:1fr;gap:9px}
+
+  /* Documents / FAQ */
+  .planning-section,.faq-section{padding:58px 0}
+  .planning-head{grid-template-columns:1fr;gap:14px;margin-bottom:22px}
+  .planning-head p:last-child{font-size:.87rem;line-height:1.62}
+  .planning-grid{grid-template-columns:1fr;gap:14px}
+  .process-panel,.documents-panel{padding:20px 16px;border-radius:18px}
+  .process-list{gap:13px}.process-list li{grid-template-columns:38px 1fr;gap:11px}.process-list li span{width:36px;height:36px;border-radius:10px}.process-list li p{font-size:.82rem;line-height:1.55}
+  .document-groups{grid-template-columns:1fr;gap:10px}.document-groups div{padding:15px;border-radius:15px}.document-groups span{font-size:.8rem}
+  .faq-layout{grid-template-columns:1fr;gap:24px}.faq-intro{position:static}.faq-intro>p:nth-of-type(2){font-size:.87rem;line-height:1.62}.faq-contact-link{font-size:13px;margin-top:17px}
+  .faq-list{gap:8px}.faq-list .faq-item{border-radius:15px}.faq-list .faq-item summary{grid-template-columns:34px 1fr 28px;gap:9px;padding:14px 12px}.faq-no{width:32px;height:32px;border-radius:9px;font-size:9px}.faq-question{font-size:.84rem;line-height:1.42}.faq-toggle{width:26px;height:26px}.faq-answer{padding:0 45px 14px 55px}.faq-answer p{font-size:.8rem;line-height:1.62}
+
+  /* Recruitment */
+  .recruitment-hero{padding:50px 0}.recruitment-hero-grid{gap:20px}.recruitment-copy h1{font-size:2rem;line-height:1.08}.recruitment-copy p{font-size:.9rem}.recruitment-frame{min-height:280px;border-radius:18px}.recruitment-badge{left:14px;right:14px;bottom:14px;padding:14px;border-radius:14px}.recruitment-badge strong{font-size:.85rem}
+  .category-grid{grid-template-columns:1fr;gap:10px}.category-grid button{padding:17px;border-radius:15px}
+
+  /* Contact/map */
+  .contact-layout{gap:22px}.address{font-size:.94rem;line-height:1.65}.contact-links{gap:10px}.contact-cta{padding:13px 14px;border-radius:15px;gap:11px}.contact-icon{width:43px;height:43px;border-radius:12px}.contact-cta strong{font-size:.85rem;overflow-wrap:anywhere}.map-card{border-radius:18px}.map-surface{height:300px}.map-brand-label{left:12px;top:12px;padding:9px 11px;border-radius:11px}.map-info{padding:15px;gap:12px}.map-info strong{font-size:.92rem}.map-info a{width:100%;min-height:44px;padding:10px 14px}
+
+  /* Footer */
+  .site-footer{padding:44px 0 18px}.footer-grid{grid-template-columns:1fr 1fr;gap:28px 20px;padding-bottom:28px}.footer-brand{grid-column:1/-1}.footer-brand img{height:52px;margin-bottom:13px}.footer-brand p{font-size:.82rem}.footer-brand>a{font-size:.9rem;margin-top:12px}.footer-links-group>p{font-size:10px}.footer-links-group a{font-size:.82rem}.footer-bottom{align-items:flex-start;flex-direction:column;gap:8px;padding-top:16px}.privacy-card{padding:28px 20px;border-radius:20px}.privacy-card h2{font-size:1.55rem;padding-right:36px}.privacy-copy p{font-size:.84rem;line-height:1.65}.privacy-close{width:36px;height:36px;right:12px;top:12px}
+
+  .floating-wa{width:52px;height:52px;right:13px;bottom:13px}.floating-wa svg{width:28px;height:28px}
+}
+
+/* Very narrow phones */
+@media (max-width:390px){
+  .shell{width:calc(100vw - 22px)}
+  .brand img{width:145px}
+  .division-switch{width:min(246px,82vw)}
+  .hero-media,.hero-overlay,.hero-slide,.hero-slide img,.hero-copy{height:500px}
+  .hero-copy{padding-bottom:23px}
+  .hero-feature-strip span:nth-child(2),.hero-feature-strip span:nth-child(4){padding-left:4px}
+  .hero-actions{grid-template-columns:1fr}
+  .hero-actions .btn{min-height:40px}
+  .hero-card-grid{grid-template-columns:1fr}
+  .hero-card .mini-field:nth-child(5){grid-column:auto}
+  .service-cards-grid{grid-auto-columns:clamp(192px,65vw,220px)}
+  .package-card ul{grid-template-columns:1fr}
+  .package-benefits{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}.footer-brand{grid-column:auto}
+}
+
+/* Landscape phones: avoid an excessively tall hero. */
+@media (max-width:900px) and (orientation:landscape) and (max-height:520px){
+  .hero-media,.hero-overlay,.hero-slide,.hero-slide img,.hero-copy{height:430px}
+  .hero-copy{padding-top:90px;padding-bottom:20px}
+  .hero-feature-strip{display:none}
+  .hero-script{font-size:1.9rem}.hero-lead{font-size:.82rem;max-width:620px}
+  .hero-actions{margin-top:12px;max-width:390px}
+}
+
+@media (min-width:481px) and (max-width:720px){
+  .service-cards-grid{grid-auto-columns:clamp(220px,42vw,270px)}
+  .hero-card-grid{grid-template-columns:1fr 1fr}
+  .hero-card .mini-field:nth-child(5){grid-column:1/-1}
+}

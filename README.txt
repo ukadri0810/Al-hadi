@@ -48,3 +48,11 @@ LATEST UPDATE
 - Economy package image updated to a different Makkah hotel-room visual.
 - Contact section now includes icon-based Call, Email and Instagram CTA buttons.
 - Economy image source used for this client demo: Hotels Platform / Elaf Ajyad Hotel Makkah room image. Replace with client-authorised hotel imagery before final commercial publication if package hotels are confirmed.
+
+MOBILE RESPONSIVE UPDATE
+------------------------
+- Header rebuilt for compact phone/tablet layouts with aligned logo, hamburger navigation and centered division switch.
+- Hajj/Umrah hero uses a dedicated mobile presentation: photography remains visible and the quick enquiry card sits below the image instead of covering it.
+- Main service cards become a compact horizontal swipe row on phones so individual cards do not consume an entire viewport.
+- Package, benefit, Why Choose, process, forms, FAQ, contact/map, recruitment and footer layouts have phone/tablet-specific spacing and grids.
+- Mobile navigation closes on outside click, Escape and desktop resize.

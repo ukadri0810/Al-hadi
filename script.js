@@ -402,3 +402,28 @@ document.querySelectorAll('.faq-item').forEach((item) => {
     });
   });
 });
+
+// Mobile navigation polish: close on outside click, Escape and tablet/desktop resize.
+document.addEventListener('click', (event) => {
+  if (!mobileMenu?.classList.contains('is-open')) return;
+  if (mobileMenu.contains(event.target) || menuButton?.contains(event.target)) return;
+  menuButton?.setAttribute('aria-expanded', 'false');
+  mobileMenu.classList.remove('is-open');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  body.classList.remove('menu-open');
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape' || !mobileMenu?.classList.contains('is-open')) return;
+  menuButton?.setAttribute('aria-expanded', 'false');
+  mobileMenu.classList.remove('is-open');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  body.classList.remove('menu-open');
+  menuButton?.focus();
+});
+window.addEventListener('resize', () => {
+  if (window.innerWidth <= 980 || !mobileMenu?.classList.contains('is-open')) return;
+  menuButton?.setAttribute('aria-expanded', 'false');
+  mobileMenu.classList.remove('is-open');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  body.classList.remove('menu-open');
+});
