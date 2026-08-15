@@ -39,27 +39,39 @@ function setMode(mode, { scroll = true } = {}) {
 modeButtons.forEach((button) => button.addEventListener('click', () => setMode(button.dataset.modeOption)));
 
 const heroSlides = [...document.querySelectorAll('.hero-slide')];
-const heroDots = [...document.querySelectorAll('.hero-dot')];
 const heroCount = document.getElementById('heroCount');
-const heroTitle = document.getElementById('heroTitle');
-const heroPlace = document.getElementById('heroPlace');
+const heroDotsContainer = document.getElementById('heroDots');
+let heroDots = [];
 let currentHero = 0;
 let heroTimer;
+
+// Dots and counter are generated from the actual number of slides.
+// Future hero photos only require adding another .hero-slide in the HTML.
+if (heroDotsContainer) {
+  heroDotsContainer.innerHTML = '';
+  heroDots = heroSlides.map((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = `hero-dot${i === 0 ? ' is-active' : ''}`;
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Show hero image ${i + 1}`);
+    dot.addEventListener('click', () => showHero(i));
+    heroDotsContainer.appendChild(dot);
+    return dot;
+  });
+}
+
 function showHero(index, restart = true) {
+  if (!heroSlides.length) return;
   currentHero = (index + heroSlides.length) % heroSlides.length;
   heroSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === currentHero));
   heroDots.forEach((dot, i) => dot.classList.toggle('is-active', i === currentHero));
-  const active = heroSlides[currentHero];
   if (heroCount) heroCount.textContent = `${String(currentHero + 1).padStart(2, '0')} / ${String(heroSlides.length).padStart(2, '0')}`;
-  if (heroTitle) heroTitle.textContent = active.dataset.title;
-  if (heroPlace) heroPlace.textContent = active.dataset.place;
   if (restart && !reduceMotion && body.dataset.mode === 'travel') startHeroTimer();
 }
 function startHeroTimer() {
   clearInterval(heroTimer);
-  heroTimer = setInterval(() => showHero(currentHero + 1, false), 5200);
+  if (heroSlides.length > 1) heroTimer = setInterval(() => showHero(currentHero + 1, false), 5200);
 }
-heroDots.forEach((dot, i) => dot.addEventListener('click', () => showHero(i)));
 document.querySelector('.hero')?.addEventListener('mouseenter', () => clearInterval(heroTimer));
 document.querySelector('.hero')?.addEventListener('mouseleave', () => {
   if (!reduceMotion && body.dataset.mode === 'travel') startHeroTimer();
@@ -156,6 +168,43 @@ hajjSector?.addEventListener('change', () => {
   if (!custom && customSector) customSector.value = '';
 });
 syncTravelDetails();
+
+// Hero quick enquiry: collect the essentials, then continue into the adaptive detailed form.
+const heroQuickForm = document.getElementById('heroQuickForm');
+const heroQuickName = document.getElementById('heroQuickName');
+const heroQuickPhone = document.getElementById('heroQuickPhone');
+const heroQuickDate = document.getElementById('heroQuickDate');
+const heroQuickTravellers = document.getElementById('heroQuickTravellers');
+const heroQuickService = document.getElementById('heroQuickService');
+const heroQuickStatus = document.getElementById('heroQuickStatus');
+if (heroQuickDate) heroQuickDate.min = new Date().toISOString().slice(0, 10);
+heroQuickForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const required = [heroQuickName, heroQuickPhone, heroQuickService];
+  let valid = true;
+  required.forEach((field) => {
+    const bad = !String(field?.value || '').trim();
+    markInvalid(field, bad);
+    if (bad) valid = false;
+  });
+  if (!valid) {
+    if (heroQuickStatus) heroQuickStatus.textContent = 'Please enter your name, mobile number and service.';
+    return;
+  }
+  document.getElementById('travelName').value = heroQuickName.value.trim();
+  document.getElementById('travelPhone').value = heroQuickPhone.value.trim();
+  if (travelDate && heroQuickDate?.value) travelDate.value = heroQuickDate.value;
+  const people = document.getElementById('travelPeople');
+  if (people && heroQuickTravellers?.value) people.value = heroQuickTravellers.value;
+  if (travelService) travelService.value = heroQuickService.value;
+  syncTravelDetails();
+  if (heroQuickStatus) heroQuickStatus.textContent = '';
+  scrollToId('travel-enquiry');
+  setTimeout(() => {
+    const nextField = document.querySelector('#travelForm [required], #travelForm select:not([hidden])');
+    document.getElementById('travelService')?.focus({ preventScroll: true });
+  }, 350);
+});
 
 function prefillTravel({ service, packageName } = {}) {
   setMode('travel', { scroll: false });
