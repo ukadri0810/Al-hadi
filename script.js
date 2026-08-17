@@ -532,14 +532,14 @@ const advisorMeta = {
     labels:['Service','Preference','Arrival / route']
   },
   recruitment:{
-    eyebrow:'AL HADI RECRUITMENT ADVISOR',
-    heading:'A clearer route from candidate enquiry to resume handoff.',
-    intro:'Ask about categories, passport status, applying or sending your resume for Saudi recruitment. Your choices stay visible while you move through the process.',
-    badge:'RECRUITMENT', kicker:'SAUDI CANDIDATE GUIDANCE', name:'Recruitment Advisor',
-    title:'What do you need help with?',
-    copy:'Ask in your own words, for example “How do I send my CV?” or “Do you recruit engineers?”.',
-    placeholder:'Ask about applying, categories, passport or your CV…',
-    prompts:['How do I apply?','How do I send my CV?','Do you recruit engineers?','What passport status is needed?'],
+    eyebrow:'ASK AL HADI · RECRUITMENT',
+    heading:'Questions about applying? Ask Al Hadi.',
+    intro:'Ask about job categories, passport status, sending your CV or how the application works. For current openings, contact the Al Hadi team directly.',
+    badge:'RECRUITMENT', kicker:'APPLICATION HELP', name:'Ask Al Hadi',
+    title:'What would you like to know?',
+    copy:'Try “How do I send my CV?” or “Which category should I choose?”.',
+    placeholder:'Ask about job categories, your CV, passport or applying…',
+    prompts:['How do I apply?','How do I send my CV?','Which category should I choose?','Do I need a passport?'],
     labels:['Category','Passport status','Next step']
   }
 };
@@ -570,7 +570,7 @@ function advisorUpdateSessionCopy(){
     advisorSessionTitle.textContent=advisorContext.service?`Planning ${advisorContext.service}`:'Your journey is taking shape.';
     advisorSessionText.textContent=active.join(' · ');
   }else{
-    advisorSessionTitle.textContent=advisorContext.service?`${advisorContext.service} enquiry`:'Your candidate route is taking shape.';
+    advisorSessionTitle.textContent=advisorContext.service?`${advisorContext.service} enquiry`:'Your application details will appear here.';
     advisorSessionText.textContent=active.join(' · ');
   }
 }
@@ -633,8 +633,8 @@ function advisorDetectTravelIntent(query){
 function advisorDetectRecruitmentIntent(query){
   const q=advisorNormalize(query);
   if(/\b(engineer|engineering|professional)\b/.test(q))advisorSetContext('service','Engineering / Professional');
-  else if(/\b(labour|worker|helper|general)\b/.test(q))advisorSetContext('service','Labour / General');
-  else if(/\b(technical|technician|operator)\b/.test(q))advisorSetContext('service','Technical');
+  else if(/\b(labour|worker|helper|general)\b/.test(q))advisorSetContext('service','General Workforce');
+  else if(/\b(technical|technician|operator)\b/.test(q))advisorSetContext('service','Technical Roles');
   else if(/\b(skilled|electrician|welder|carpenter|plumber)\b/.test(q))advisorSetContext('service','Skilled Trades');
   if(/\b(resume|cv|curriculum)\b/.test(q))return 'resume';
   if(/\b(category|categories|engineer|engineering|labour|worker|technical|skilled|professional)\b/.test(q))return 'categories';
@@ -648,7 +648,7 @@ function advisorStartProcessing(query,done){
   advisorClearTimers();advisorBusy=true;if(advisorInput)advisorInput.disabled=true;if(advisorSubmit)advisorSubmit.disabled=true;
   advisorOpening.hidden=true;advisorResponse.hidden=true;advisorProcessing.hidden=false;
   advisorProcessingQuestion.textContent=query.length>58?`${query.slice(0,58)}…`:query;
-  const notes=advisorMode==='travel'?['Reading the travel need behind your question.','Checking the relevant Al Hadi travel service.','Preparing the most useful next decision.']:['Reading the candidate requirement.','Checking the relevant recruitment route.','Preparing the next candidate step.'];
+  const notes=advisorMode==='travel'?['Reading the travel need behind your question.','Checking the relevant Al Hadi travel service.','Preparing the most useful next decision.']:['Checking your question.','Finding the relevant recruitment information.','Preparing the next step.'];
   advisorProcessNodes.forEach((node,i)=>{node.classList.toggle('is-active',i===0);node.classList.remove('is-done');});
   advisorProcessingCount.textContent='01 / 03';advisorProcessingNote.textContent=notes[0];advisorStatusText.textContent='Preparing guidance';
   const steps=reduceMotion?[0,80,160]:[0,360,760];
@@ -718,28 +718,28 @@ function advisorRenderSimple(kind){
 }
 function advisorRenderFallback(){
   const prompts=advisorMeta[advisorMode].prompts.map(q=>`<button type="button" class="advisor-fallback-prompt" data-fallback-query="${escapeHtml(q)}">${escapeHtml(q)}<span>→</span></button>`).join('');
-  advisorShow(advisorBaseResponse('LET’S NARROW IT DOWN','I need one clearer travel detail.','Choose the closest example below, or ask another short question.',`<div class="advisor-fallback-grid">${prompts}</div>`,''));
+  advisorShow(advisorBaseResponse('LET’S NARROW IT DOWN',advisorMode==='recruitment'?'Please give me one more detail.':'I need one clearer travel detail.',advisorMode==='recruitment'?'Choose the closest question below, or type another short question.':'Choose the closest example below, or ask another short question.',`<div class="advisor-fallback-grid">${prompts}</div>`,''));
   advisorResponse.querySelectorAll('[data-fallback-query]').forEach(btn=>btn.addEventListener('click',()=>advisorAsk(btn.dataset.fallbackQuery)));
 }
 
 function advisorRenderRecruitment(kind){
   if(kind==='categories'){
-    const cats=['Labour / General','Skilled Trades','Technical','Engineering / Professional'];
-    const body=`<div class="advisor-category-board">${cats.map(c=>`<button type="button" data-recruit-category="${c}" class="advisor-category-card${advisorContext.service===c?' is-selected':''}"><span></span><strong>${c}</strong><small>Select category</small></button>`).join('')}</div><div class="advisor-category-note" id="advisorCategoryNote">Choose a category to carry it into your candidate route.</div>`;
-    advisorShow(advisorBaseResponse('RECRUITMENT CATEGORIES','Which category best describes your work?','Al Hadi accepts recruitment enquiries from labour through engineering and professional categories.',body,advisorAction('Open candidate form','candidate-form')+advisorAction('WhatsApp recruitment','whatsapp',true)));
-    advisorResponse.querySelectorAll('[data-recruit-category]').forEach(btn=>btn.addEventListener('click',()=>{advisorSelectedCategory=btn.dataset.recruitCategory;advisorSetContext('service',advisorSelectedCategory);advisorResponse.querySelectorAll('[data-recruit-category]').forEach(b=>b.classList.toggle('is-selected',b===btn));document.getElementById('advisorCategoryNote').innerHTML=`<strong>${escapeHtml(advisorSelectedCategory)}</strong><span>Added to your candidate planning session.</span>`;}));
+    const cats=['General Workforce','Skilled Trades','Technical Roles','Engineering / Professional'];
+    const body=`<div class="advisor-category-board">${cats.map(c=>`<button type="button" data-recruit-category="${c}" class="advisor-category-card${advisorContext.service===c?' is-selected':''}"><span></span><strong>${c}</strong><small>Choose category</small></button>`).join('')}</div><div class="advisor-category-note" id="advisorCategoryNote">Choose the category that best matches your experience.</div>`;
+    advisorShow(advisorBaseResponse('RECRUITMENT CATEGORIES','Which category best matches your experience?','We accept enquiries for general workforce, skilled trades, technical, engineering and professional roles.',body,advisorAction('Open candidate form','candidate-form')+advisorAction('WhatsApp recruitment','whatsapp',true)));
+    advisorResponse.querySelectorAll('[data-recruit-category]').forEach(btn=>btn.addEventListener('click',()=>{advisorSelectedCategory=btn.dataset.recruitCategory;advisorSetContext('service',advisorSelectedCategory);advisorResponse.querySelectorAll('[data-recruit-category]').forEach(b=>b.classList.toggle('is-selected',b===btn));document.getElementById('advisorCategoryNote').innerHTML=`<strong>${escapeHtml(advisorSelectedCategory)}</strong><span>Added to your application details.</span>`;}));
     return;
   }
   if(kind==='passport'){
     const statuses=['Valid passport','Passport applied','No passport yet'];
     const body=`<div class="advisor-passport-options">${statuses.map(s=>`<button data-passport-status="${s}">${s}</button>`).join('')}</div><div class="advisor-category-note" id="advisorPassportNote">Choose your current status accurately.</div>`;
-    advisorShow(advisorBaseResponse('PASSPORT STATUS','Your current status can be recorded as it is.','The candidate form supports all three common passport states, so you do not need to wait before making an enquiry.',body,advisorAction('Open candidate form','candidate-form')));
-    advisorResponse.querySelectorAll('[data-passport-status]').forEach(btn=>btn.addEventListener('click',()=>{advisorSelectedPassport=btn.dataset.passportStatus;advisorSetContext('preference',advisorSelectedPassport);advisorResponse.querySelectorAll('[data-passport-status]').forEach(b=>b.classList.toggle('is-selected',b===btn));document.getElementById('advisorPassportNote').innerHTML=`<strong>${escapeHtml(advisorSelectedPassport)}</strong><span>Added to your candidate planning session.</span>`;}));return;
+    advisorShow(advisorBaseResponse('PASSPORT STATUS','Select your current passport status.','You can still send an enquiry if your passport is applied for or not yet available.',body,advisorAction('Open candidate form','candidate-form')));
+    advisorResponse.querySelectorAll('[data-passport-status]').forEach(btn=>btn.addEventListener('click',()=>{advisorSelectedPassport=btn.dataset.passportStatus;advisorSetContext('preference',advisorSelectedPassport);advisorResponse.querySelectorAll('[data-passport-status]').forEach(b=>b.classList.toggle('is-selected',b===btn));document.getElementById('advisorPassportNote').innerHTML=`<strong>${escapeHtml(advisorSelectedPassport)}</strong><span>Added to your application details.</span>`;}));return;
   }
   const info={
-    apply:['APPLICATION ROUTE','Start with the candidate enquiry form.','Enter your details, category, role, experience and passport status. Then choose WhatsApp or Email and attach your resume in the app that opens.',['No CV is stored on the website','Your enquiry is prepared before WhatsApp or Gmail opens']],
-    resume:['RESUME PROCESS','Attach your CV after the website prepares your enquiry.','Complete the candidate form, choose WhatsApp or Email, and attach the resume directly there before sending.',['The website does not upload or store CV files','This avoids asking you to upload the same resume twice']],
-    country:['DESTINATION','Recruitment enquiries focus on Saudi Arabia.','The recruitment destination provided for this website is the Kingdom of Saudi Arabia.',['Categories range from labour to engineering','Live vacancies are not displayed on the website']]
+    apply:['APPLICATION ROUTE','Start with the short candidate form.','Enter your contact details, category, position, experience and passport status. Then continue to WhatsApp or Gmail and attach your CV before sending.',['Your CV is not stored on this website','The enquiry message is prepared before WhatsApp or Gmail opens']],
+    resume:['RESUME PROCESS','Send your CV through WhatsApp or Gmail.','Complete the candidate form, choose WhatsApp or Gmail, and attach your CV in the app that opens before sending.',['The website does not upload or store CV files','Your CV goes directly through the app you choose']],
+    country:['DESTINATION','Our recruitment enquiries currently focus on Saudi Arabia.','Saudi Arabia is the main recruitment market listed on this website.',['Categories range from general workforce to engineering','Current openings are shared directly by the Al Hadi team']]
   }[kind]||null;
   if(!info){advisorRenderFallback();return;}
   advisorSetContext('route',kind==='country'?'Saudi Arabia':'Candidate form');
@@ -771,7 +771,7 @@ function advisorDoAction(action){
   if(action==='whatsapp'){window.open(`https://wa.me/${WHATSAPP_NUMBER}`,'_blank','noopener');return;}
   if(action==='candidate-form'){
     setMode('recruitment',{scroll:false});
-    requestAnimationFrame(()=>{const cat=document.getElementById('candidateCategory');if(cat&&advisorSelectedCategory){const map={'Labour / General':'Labour / General Worker','Skilled Trades':'Skilled Trade','Technical':'Technical','Engineering / Professional':'Engineering / Professional'};cat.value=map[advisorSelectedCategory]||advisorSelectedCategory;cat.dispatchEvent(new Event('change',{bubbles:true}));}const pass=document.getElementById('candidatePassport');if(pass&&advisorSelectedPassport)pass.value=advisorSelectedPassport;advisorScrollTo('candidate-enquiry');});return;
+    requestAnimationFrame(()=>{const cat=document.getElementById('candidateCategory');if(cat&&advisorSelectedCategory){const map={'General Workforce':'Labour / General Worker','Skilled Trades':'Skilled Trade','Technical Roles':'Technical','Engineering / Professional':'Engineering / Professional'};cat.value=map[advisorSelectedCategory]||advisorSelectedCategory;cat.dispatchEvent(new Event('change',{bubbles:true}));}const pass=document.getElementById('candidatePassport');if(pass&&advisorSelectedPassport)pass.value=advisorSelectedPassport;advisorScrollTo('candidate-enquiry');});return;
   }
   if(action.startsWith('scroll:')){const id=action.slice(7);if(['packages','documents-required','travel-enquiry'].includes(id))setMode('travel',{scroll:false});requestAnimationFrame(()=>advisorScrollTo(id));return;}
   if(action.startsWith('package:')){const pkg=action.slice(8);setMode('travel',{scroll:false});requestAnimationFrame(()=>{const service=document.getElementById('travelService'),pack=document.getElementById('travelPackage');if(service){service.value='Hajj & Umrah';service.dispatchEvent(new Event('change',{bubbles:true}));}if(pack)pack.value=pkg;advisorScrollTo('travel-enquiry');});return;}
@@ -784,3 +784,47 @@ advisorResetExperience();
 function escapeHtml(value){
   return String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
 }
+
+// =========================================================
+// Recruitment candidate studio — live profile summary.
+// Keeps the custom recruitment interface useful, not decorative.
+// =========================================================
+(() => {
+  const category = document.getElementById('candidateCategory');
+  const role = document.getElementById('candidateRole');
+  const experience = document.getElementById('candidateExperience');
+  const passport = document.getElementById('candidatePassport');
+  const name = document.getElementById('candidateName');
+  const phone = document.getElementById('candidatePhone');
+  const summaryCategory = document.getElementById('candidateSummaryCategory');
+  const summaryRole = document.getElementById('candidateSummaryRole');
+  const summaryExperience = document.getElementById('candidateSummaryExperience');
+  const summaryPassport = document.getElementById('candidateSummaryPassport');
+  const progressText = document.getElementById('candidateProgressText');
+  const progressBar = document.getElementById('candidateProgressBar');
+  const lanes = [...document.querySelectorAll('.recruitment-lane[data-category]')];
+
+  if (!category || !role || !summaryCategory) return;
+
+  const syncCandidateStudio = () => {
+    const categoryValue = category.value || '';
+    const roleValue = role.value || '';
+    summaryCategory.textContent = categoryValue || 'Select a category';
+    summaryRole.textContent = roleValue || 'Not selected';
+    if (summaryExperience && experience) summaryExperience.textContent = experience.value || 'Not selected';
+    if (summaryPassport && passport) summaryPassport.textContent = passport.value || 'Not selected';
+
+    lanes.forEach((lane) => lane.classList.toggle('is-selected', lane.dataset.category === categoryValue));
+
+    const essentials = [name?.value.trim(), phone?.value.trim(), categoryValue, roleValue];
+    const complete = essentials.filter(Boolean).length;
+    if (progressText) progressText.textContent = `${complete} of 4`;
+    if (progressBar) progressBar.style.width = `${complete * 25}%`;
+  };
+
+  [category, role, experience, passport].forEach((field) => field?.addEventListener('change', syncCandidateStudio));
+  [name, phone].forEach((field) => field?.addEventListener('input', syncCandidateStudio));
+  lanes.forEach((lane) => lane.addEventListener('click', () => requestAnimationFrame(syncCandidateStudio)));
+
+  syncCandidateStudio();
+})();

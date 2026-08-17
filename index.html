@@ -326,7 +326,7 @@
 
     </div>
 
-    <div class="recruitment-view" data-panel="recruitment" hidden>
+    <div class="recruitment-view recruitment-portal" data-panel="recruitment" hidden>
       <section class="recruitment-hero recruitment-hero-slider" id="recruitment-overview">
         <div class="recruitment-hero-media" aria-hidden="true">
           <figure class="recruitment-slide is-active"><img src="assets/images/recruitment-hero/recruitment-01.jpg" alt="" fetchpriority="high"></figure>
@@ -336,51 +336,130 @@
           <figure class="recruitment-slide"><img src="assets/images/recruitment-hero/recruitment-05.jpg" alt="" loading="lazy"></figure>
         </div>
         <div class="shell recruitment-hero-shell">
-          <div class="recruitment-hero-panel reveal">
-            <p class="eyebrow">AL HADI RECRUITMENT · KINGDOM OF SAUDI ARABIA</p>
-            <h1>Saudi recruitment, handled with clarity from candidate enquiry to employer coordination.</h1>
-            <p>Recruitment support across labour, skilled trades, technical, engineering and professional categories. Candidates can share their details online, then attach their resume directly through WhatsApp or Gmail.</p>
+          <div class="recruitment-hero-panel recruitment-hero-editorial reveal">
+            <div class="recruitment-desk-label"><span></span> AL HADI RECRUITMENT DESK</div>
+            <p class="eyebrow">MUMBAI → KINGDOM OF SAUDI ARABIA</p>
+            <h1>Recruitment support for candidates applying to Saudi Arabia.</h1>
+            <p>We accept enquiries for labour, skilled trades, technical, engineering and professional roles. Fill in your basic details, then send your CV directly to our team through WhatsApp or Gmail.</p>
             <div class="recruitment-hero-actions">
-              <a class="btn btn-solid" href="#candidate-enquiry">Send your resume</a>
-              <a class="btn recruitment-btn-secondary" href="#recruitment-categories">View categories</a>
+              <a class="btn btn-solid" href="#candidate-enquiry">Submit your details</a>
+              <a class="recruitment-text-link" href="#recruitment-categories">View job categories <span>↗</span></a>
             </div>
-            <div class="recruitment-hero-meta">
-              <span><strong>Saudi Arabia</strong><small>Primary recruitment market</small></span>
-              <span><strong>Labour → Engineer</strong><small>Multiple candidate categories</small></span>
+            <div class="recruitment-route-line" aria-label="Recruitment route from Mumbai to Saudi Arabia">
+              <div><i></i><span>Mumbai</span><small>Candidate enquiries</small></div>
+              <b><span></span></b>
+              <div><i></i><span>Saudi Arabia</span><small>Recruitment market</small></div>
             </div>
           </div>
           <div class="recruitment-slider-status" aria-label="Recruitment hero image controls">
+            <span class="recruitment-slider-label">FIELD VIEW</span>
             <small id="recruitmentHeroCount">01 / 05</small>
             <div class="recruitment-hero-dots" id="recruitmentHeroDots"></div>
           </div>
         </div>
       </section>
 
-      <section class="shell recruitment-intro centered-block">
-        <div class="section-heading reveal centered">
-          <p class="eyebrow">RECRUITMENT SUPPORT</p>
-          <h2>A direct candidate route without unnecessary steps.</h2>
-          <p>We are not displaying open jobs on the website. Instead, candidates can share their basic details and continue through WhatsApp or Email with their resume attached there.</p>
+      <section class="recruitment-brief shell" aria-labelledby="recruitmentBriefHeading">
+        <div class="recruitment-section-number" aria-hidden="true">01</div>
+        <div class="recruitment-brief-copy reveal">
+          <p class="eyebrow">RECRUITMENT ENQUIRY</p>
+          <h2 id="recruitmentBriefHeading">A straightforward way to send your profile.</h2>
+          <p>Choose your work category, add your experience and contact details, then continue to WhatsApp or Gmail to attach your CV. Current openings are shared directly by our team when available.</p>
+        </div>
+        <div class="recruitment-brief-facts reveal">
+          <div><span>Recruitment market</span><strong>Saudi Arabia</strong></div>
+          <div><span>Categories</span><strong>Labour to Engineering</strong></div>
+          <div><span>Send CV via</span><strong>WhatsApp / Gmail</strong></div>
         </div>
       </section>
 
-      <section class="recruitment-categories shell" id="recruitment-categories">
-        <div class="category-grid reveal">
-          <button type="button" data-category="Labour / General Worker"><span>01</span><strong>Labour & General</strong><small>Helpers, general workers and support roles</small></button>
-          <button type="button" data-category="Skilled Trade"><span>02</span><strong>Skilled Trades</strong><small>Electricians, welders, carpenters, plumbers and more</small></button>
-          <button type="button" data-category="Technical"><span>03</span><strong>Technical</strong><small>Operators, technicians and maintenance roles</small></button>
-          <button type="button" data-category="Engineering / Professional"><span>04</span><strong>Engineering & Professional</strong><small>Engineering, QA/QC, site and professional roles</small></button>
-        </div>
-      </section>
-
-      <section class="candidate-section" id="candidate-enquiry">
-        <div class="shell candidate-layout themed-enquiry">
-          <div class="candidate-copy reveal">
-            <p class="eyebrow">CANDIDATE ENQUIRY</p>
-            <h2>Fill your details, then attach your resume in WhatsApp or Email.</h2>
-            <p>The website does not store your CV. This keeps the process simple and avoids duplicate uploading.</p>
+      <section class="recruitment-lanes-section" id="recruitment-categories">
+        <div class="shell">
+          <div class="recruitment-lanes-head reveal">
+            <div class="recruitment-section-number" aria-hidden="true">02</div>
+            <div>
+              <p class="eyebrow">RECRUITMENT CATEGORIES</p>
+              <h2>Select the category that matches your experience.</h2>
+            </div>
+            <p>Your selection will be added to the candidate enquiry form below.</p>
           </div>
-          <form class="candidate-form reveal" id="candidateForm" novalidate>
+
+          <div class="recruitment-lanes reveal">
+            <button class="recruitment-lane" type="button" data-category="Labour / General Worker">
+              <span class="lane-number">01</span>
+              <span class="lane-icon" aria-hidden="true"><img src="assets/icons/recruitment/workforce.svg" alt=""></span>
+              <span class="lane-copy"><strong>General Workforce</strong><small>Helpers · general labour · support staff</small></span>
+              <span class="lane-action">Choose <b>→</b></span>
+            </button>
+            <button class="recruitment-lane" type="button" data-category="Skilled Trade">
+              <span class="lane-number">02</span>
+              <span class="lane-icon" aria-hidden="true"><img src="assets/icons/recruitment/skilled-trades.svg" alt=""></span>
+              <span class="lane-copy"><strong>Skilled Trades</strong><small>Electricians · welders · carpenters · plumbers</small></span>
+              <span class="lane-action">Choose <b>→</b></span>
+            </button>
+            <button class="recruitment-lane" type="button" data-category="Technical">
+              <span class="lane-number">03</span>
+              <span class="lane-icon" aria-hidden="true"><img src="assets/icons/recruitment/technical.svg" alt=""></span>
+              <span class="lane-copy"><strong>Technical Roles</strong><small>Operators · technicians · maintenance staff</small></span>
+              <span class="lane-action">Choose <b>→</b></span>
+            </button>
+            <button class="recruitment-lane" type="button" data-category="Engineering / Professional">
+              <span class="lane-number">04</span>
+              <span class="lane-icon" aria-hidden="true"><img src="assets/icons/recruitment/engineering.svg" alt=""></span>
+              <span class="lane-copy"><strong>Engineering &amp; Professional</strong><small>Engineers · QA/QC · site · professional roles</small></span>
+              <span class="lane-action">Choose <b>→</b></span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="recruitment-process-section" aria-labelledby="recruitmentProcessHeading">
+        <div class="shell recruitment-process-shell">
+          <div class="recruitment-process-intro reveal">
+            <div class="recruitment-section-number" aria-hidden="true">03</div>
+            <p class="eyebrow">HOW TO APPLY</p>
+            <h2 id="recruitmentProcessHeading">How to send your application.</h2>
+            <p>Complete the short enquiry form, then continue on WhatsApp or Gmail and attach your CV before sending.</p>
+          </div>
+          <div class="recruitment-process-track reveal">
+            <article><span>01</span><div><strong>Select a category</strong><p>Choose the option closest to your trade or profession.</p></div></article>
+            <article><span>02</span><div><strong>Add your details</strong><p>Enter your contact details, position, experience and passport status.</p></div></article>
+            <article><span>03</span><div><strong>Continue to WhatsApp or Gmail</strong><p>We prepare the enquiry message using the details you entered.</p></div></article>
+            <article><span>04</span><div><strong>Attach and send your CV</strong><p>Attach your resume in WhatsApp or Gmail and send it to our team.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="candidate-section candidate-studio-section" id="candidate-enquiry">
+        <div class="shell candidate-studio">
+          <aside class="candidate-profile-board reveal" aria-label="Candidate profile summary">
+            <div class="candidate-board-kicker">AL HADI · APPLICATION DETAILS</div>
+            <h2>Review your application details before you continue.</h2>
+            <p>This summary updates as you complete the form and shows the information that will be included in your enquiry.</p>
+
+            <div class="candidate-progress-wrap">
+              <div class="candidate-progress-meta"><span>Form progress</span><strong id="candidateProgressText">0 of 4</strong></div>
+              <div class="candidate-progress"><i id="candidateProgressBar"></i></div>
+            </div>
+
+            <dl class="candidate-live-summary">
+              <div><dt>Market</dt><dd>Saudi Arabia</dd></div>
+              <div><dt>Category</dt><dd id="candidateSummaryCategory">Select a category</dd></div>
+              <div><dt>Position</dt><dd id="candidateSummaryRole">Not selected</dd></div>
+              <div><dt>Experience</dt><dd id="candidateSummaryExperience">Fresher</dd></div>
+              <div><dt>Passport</dt><dd id="candidateSummaryPassport">Valid passport</dd></div>
+            </dl>
+
+            <div class="candidate-privacy-note"><span>CV PRIVACY</span><p>Your CV is sent directly through WhatsApp or Gmail. This website does not upload or store it.</p></div>
+          </aside>
+
+          <form class="candidate-form candidate-form-premium reveal" id="candidateForm" novalidate>
+            <div class="candidate-form-header">
+              <div><span>CANDIDATE APPLICATION</span><strong>Candidate details</strong></div>
+              <small>Required fields are marked *</small>
+            </div>
+
+            <div class="candidate-form-step"><span>01</span><strong>Contact</strong><i></i></div>
             <div class="field-row two">
               <label><span>Full name *</span><input id="candidateName" type="text" autocomplete="name" placeholder="Your name"></label>
               <label><span>Mobile number *</span><input id="candidatePhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Mobile number"></label>
@@ -389,6 +468,8 @@
               <label><span>Email</span><input id="candidateEmail" type="email" autocomplete="email" placeholder="Email address"></label>
               <label><span>Current location</span><input id="candidateLocation" type="text" placeholder="City / country"></label>
             </div>
+
+            <div class="candidate-form-step"><span>02</span><strong>Work profile</strong><i></i></div>
             <div class="field-row two">
               <label><span>Category *</span><select id="candidateCategory"><option value="">Select category</option><option>Labour / General Worker</option><option>Skilled Trade</option><option>Technical</option><option>Engineering / Professional</option></select></label>
               <label><span>Position / trade *</span><select id="candidateRole" disabled><option value="">Select category first</option></select></label>
@@ -397,11 +478,13 @@
               <label><span>Experience</span><select id="candidateExperience"><option>Fresher</option><option>Less than 2 years</option><option>2–5 years</option><option>5–10 years</option><option>10+ years</option></select></label>
               <label><span>Passport status</span><select id="candidatePassport"><option>Valid passport</option><option>Passport applied</option><option>No passport yet</option></select></label>
             </div>
+
+            <div class="candidate-form-step"><span>03</span><strong>Send your application</strong><i></i></div>
             <label><span>Short note <em>Optional</em></span><textarea id="candidateNote" rows="3" placeholder="Current role, availability, preferred position, etc."></textarea></label>
-            <div class="resume-note"><strong>Resume step:</strong> after the next click, attach your resume in the app that opens.</div>
+            <div class="resume-note recruitment-resume-note"><strong>Next step</strong><span>Choose WhatsApp or Gmail below. Attach your CV in the app that opens before sending.</span></div>
             <div class="candidate-actions">
               <button class="form-submit" type="button" id="sendCandidateWhatsApp">Continue on WhatsApp</button>
-              <button class="form-submit secondary" type="button" id="sendCandidateEmail">Continue by Email</button>
+              <button class="form-submit secondary" type="button" id="sendCandidateEmail">Continue with Gmail</button>
             </div>
             <p class="form-status" id="candidateStatus" aria-live="polite"></p>
           </form>
