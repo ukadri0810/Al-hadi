@@ -34,7 +34,17 @@ function setMode(mode, { scroll = true } = {}) {
     button.setAttribute('aria-pressed', String(active));
   });
   if (scroll) window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-  if (mode === 'travel' && !reduceMotion) startHeroTimer(); else clearInterval(heroTimer);
+  if (mode === 'travel' && !reduceMotion) {
+    startHeroTimer();
+    clearInterval(recruitmentHeroTimer);
+  } else if (mode === 'recruitment' && !reduceMotion) {
+    clearInterval(heroTimer);
+    startRecruitmentHeroTimer();
+  } else {
+    clearInterval(heroTimer);
+    clearInterval(recruitmentHeroTimer);
+  }
+  if (typeof syncAssistantMode === 'function') syncAssistantMode(mode);
 }
 modeButtons.forEach((button) => button.addEventListener('click', () => setMode(button.dataset.modeOption)));
 
@@ -77,6 +87,47 @@ document.querySelector('.hero')?.addEventListener('mouseleave', () => {
   if (!reduceMotion && body.dataset.mode === 'travel') startHeroTimer();
 });
 if (!reduceMotion) startHeroTimer();
+
+// Recruitment hero uses its own image set and 5-second rotation.
+const recruitmentHero = document.querySelector('.recruitment-hero-slider');
+const recruitmentSlides = [...document.querySelectorAll('.recruitment-slide')];
+const recruitmentHeroCount = document.getElementById('recruitmentHeroCount');
+const recruitmentHeroDotsContainer = document.getElementById('recruitmentHeroDots');
+let recruitmentHeroDots = [];
+let currentRecruitmentHero = 0;
+let recruitmentHeroTimer;
+
+if (recruitmentHeroDotsContainer) {
+  recruitmentHeroDotsContainer.innerHTML = '';
+  recruitmentHeroDots = recruitmentSlides.map((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = `recruitment-hero-dot${i === 0 ? ' is-active' : ''}`;
+    dot.setAttribute('aria-label', `Show recruitment image ${i + 1}`);
+    dot.addEventListener('click', () => showRecruitmentHero(i));
+    recruitmentHeroDotsContainer.appendChild(dot);
+    return dot;
+  });
+}
+
+function showRecruitmentHero(index, restart = true) {
+  if (!recruitmentSlides.length) return;
+  currentRecruitmentHero = (index + recruitmentSlides.length) % recruitmentSlides.length;
+  recruitmentSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === currentRecruitmentHero));
+  recruitmentHeroDots.forEach((dot, i) => dot.classList.toggle('is-active', i === currentRecruitmentHero));
+  if (recruitmentHeroCount) recruitmentHeroCount.textContent = `${String(currentRecruitmentHero + 1).padStart(2, '0')} / ${String(recruitmentSlides.length).padStart(2, '0')}`;
+  if (restart && !reduceMotion && body.dataset.mode === 'recruitment') startRecruitmentHeroTimer();
+}
+
+function startRecruitmentHeroTimer() {
+  clearInterval(recruitmentHeroTimer);
+  if (recruitmentSlides.length > 1) recruitmentHeroTimer = setInterval(() => showRecruitmentHero(currentRecruitmentHero + 1, false), 5000);
+}
+
+recruitmentHero?.addEventListener('mouseenter', () => clearInterval(recruitmentHeroTimer));
+recruitmentHero?.addEventListener('mouseleave', () => {
+  if (!reduceMotion && body.dataset.mode === 'recruitment') startRecruitmentHeroTimer();
+});
 
 const reveals = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window && !reduceMotion) {
@@ -427,3 +478,309 @@ window.addEventListener('resize', () => {
   mobileMenu.setAttribute('aria-hidden', 'true');
   body.classList.remove('menu-open');
 });
+
+
+// ---------------------------------------------------------
+// Al Hadi Journey Advisor
+// Frontend-only guided consultation. No AI API or backend.
+// ---------------------------------------------------------
+const journeyAdvisor = document.getElementById('journeyAdvisor');
+const journeyAdvisorEyebrow = document.getElementById('journeyAdvisorEyebrow');
+const journeyAdvisorHeading = document.getElementById('journeyAdvisorHeading');
+const journeyAdvisorIntro = document.getElementById('journeyAdvisorIntro');
+const advisorModeBadge = document.getElementById('advisorModeBadge');
+const advisorSessionTitle = document.getElementById('advisorSessionTitle');
+const advisorSessionText = document.getElementById('advisorSessionText');
+const advisorWorkspaceKicker = document.getElementById('advisorWorkspaceKicker');
+const advisorWorkspaceName = document.getElementById('advisorWorkspaceName');
+const advisorQuestionTitle = document.getElementById('advisorQuestionTitle');
+const advisorQuestionCopy = document.getElementById('advisorQuestionCopy');
+const advisorForm = document.getElementById('advisorForm');
+const advisorInput = document.getElementById('advisorInput');
+const advisorSubmit = document.getElementById('advisorSubmit');
+const advisorPrompts = document.getElementById('advisorPrompts');
+const advisorOpening = document.getElementById('advisorOpening');
+const advisorProcessing = document.getElementById('advisorProcessing');
+const advisorProcessingQuestion = document.getElementById('advisorProcessingQuestion');
+const advisorProcessingCount = document.getElementById('advisorProcessingCount');
+const advisorProcessingNote = document.getElementById('advisorProcessingNote');
+const advisorResponse = document.getElementById('advisorResponse');
+const advisorReset = document.getElementById('advisorReset');
+const advisorStatusText = document.getElementById('advisorStatusText');
+const advisorProcessNodes = [...document.querySelectorAll('.advisor-route-node')];
+const advisorContextItems = [...document.querySelectorAll('.advisor-context-item')];
+const advisorContextLabels = [document.getElementById('advisorContextLabel1'),document.getElementById('advisorContextLabel2'),document.getElementById('advisorContextLabel3')];
+const advisorContextValues = [document.getElementById('advisorContextValue1'),document.getElementById('advisorContextValue2'),document.getElementById('advisorContextValue3')];
+
+let advisorMode = body.dataset.mode === 'recruitment' ? 'recruitment' : 'travel';
+let advisorBusy = false;
+let advisorTimers = [];
+let advisorContext = {service:'', preference:'', route:''};
+let advisorSelectedCategory = '';
+let advisorSelectedPassport = '';
+
+const advisorMeta = {
+  travel:{
+    eyebrow:'AL HADI JOURNEY ADVISOR',
+    heading:'Plan your journey, one decision at a time.',
+    intro:'Ask about packages, documents, arrival sectors, hotels, flights or Gulf visas. The advisor keeps your choices together and takes you to the right next step.',
+    badge:'HAJJ / UMRAH', kicker:'PERSONAL JOURNEY GUIDANCE', name:'Ask Al Hadi',
+    title:'What would you like help planning?',
+    copy:'Write a short question in your own words. You can start with something as simple as “Umrah packages”.',
+    placeholder:'Ask about Umrah packages, documents, hotels, flights…',
+    prompts:['Umrah packages','What documents do I need?','Can I arrive in Madinah?','I need hotel booking'],
+    labels:['Service','Preference','Arrival / route']
+  },
+  recruitment:{
+    eyebrow:'AL HADI RECRUITMENT ADVISOR',
+    heading:'A clearer route from candidate enquiry to resume handoff.',
+    intro:'Ask about categories, passport status, applying or sending your resume for Saudi recruitment. Your choices stay visible while you move through the process.',
+    badge:'RECRUITMENT', kicker:'SAUDI CANDIDATE GUIDANCE', name:'Recruitment Advisor',
+    title:'What do you need help with?',
+    copy:'Ask in your own words, for example “How do I send my CV?” or “Do you recruit engineers?”.',
+    placeholder:'Ask about applying, categories, passport or your CV…',
+    prompts:['How do I apply?','How do I send my CV?','Do you recruit engineers?','What passport status is needed?'],
+    labels:['Category','Passport status','Next step']
+  }
+};
+
+function advisorClearTimers(){advisorTimers.forEach(clearTimeout);advisorTimers=[];}
+function advisorSchedule(fn,ms){const id=setTimeout(fn,ms);advisorTimers.push(id);return id;}
+function advisorNormalize(value){return String(value||'').toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9\s/&-]/g,' ').replace(/\s+/g,' ').trim();}
+function advisorScrollTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});}
+
+function advisorSetContext(key,value){
+  advisorContext[key]=value||'';
+  const keys=['service','preference','route'];
+  const index=keys.indexOf(key);
+  if(index<0)return;
+  const item=advisorContextItems[index],target=advisorContextValues[index];
+  if(target)target.textContent=value||'Not selected';
+  if(item){
+    item.classList.toggle('is-set',Boolean(value));
+    item.classList.remove('is-updating');
+    if(value){requestAnimationFrame(()=>item.classList.add('is-updating'));advisorSchedule(()=>item.classList.remove('is-updating'),650);}
+  }
+  advisorUpdateSessionCopy();
+}
+function advisorUpdateSessionCopy(){
+  const active=Object.values(advisorContext).filter(Boolean);
+  if(!active.length){advisorSessionTitle.textContent='Start with a question.';advisorSessionText.textContent='Your useful choices will collect here as you plan.';return;}
+  if(advisorMode==='travel'){
+    advisorSessionTitle.textContent=advisorContext.service?`Planning ${advisorContext.service}`:'Your journey is taking shape.';
+    advisorSessionText.textContent=active.join(' · ');
+  }else{
+    advisorSessionTitle.textContent=advisorContext.service?`${advisorContext.service} enquiry`:'Your candidate route is taking shape.';
+    advisorSessionText.textContent=active.join(' · ');
+  }
+}
+function advisorResetContext(){advisorContext={service:'',preference:'',route:''};advisorSelectedCategory='';advisorSelectedPassport='';['service','preference','route'].forEach(k=>advisorSetContext(k,''));}
+
+function advisorRenderPrompts(){
+  if(!advisorPrompts)return;
+  advisorPrompts.innerHTML='';
+  advisorMeta[advisorMode].prompts.forEach((label,i)=>{
+    const btn=document.createElement('button');btn.type='button';btn.className='advisor-prompt';
+    btn.innerHTML=`<span>${String(i+1).padStart(2,'0')}</span><strong>${escapeHtml(label)}</strong>`;
+    btn.addEventListener('click',()=>advisorAsk(label));advisorPrompts.appendChild(btn);
+  });
+}
+function advisorApplyMode(){
+  if(!journeyAdvisor)return;
+  const meta=advisorMeta[advisorMode];journeyAdvisor.dataset.advisorMode=advisorMode;
+  journeyAdvisorEyebrow.textContent=meta.eyebrow;journeyAdvisorHeading.textContent=meta.heading;journeyAdvisorIntro.textContent=meta.intro;
+  advisorModeBadge.textContent=meta.badge;advisorWorkspaceKicker.textContent=meta.kicker;advisorWorkspaceName.textContent=meta.name;
+  advisorQuestionTitle.textContent=meta.title;advisorQuestionCopy.textContent=meta.copy;advisorInput.placeholder=meta.placeholder;
+  advisorContextLabels.forEach((el,i)=>{if(el)el.textContent=meta.labels[i];});
+  advisorRenderPrompts();
+}
+function advisorResetExperience(){
+  advisorClearTimers();advisorBusy=false;advisorResetContext();
+  if(advisorInput){advisorInput.disabled=false;advisorInput.value='';}
+  if(advisorSubmit)advisorSubmit.disabled=false;
+  if(advisorOpening)advisorOpening.hidden=false;
+  if(advisorProcessing)advisorProcessing.hidden=true;
+  if(advisorResponse){advisorResponse.hidden=true;advisorResponse.innerHTML='';}
+  advisorProcessNodes.forEach((n,i)=>{n.classList.toggle('is-active',i===0);n.classList.remove('is-done');});
+  if(advisorStatusText)advisorStatusText.textContent='Ready when you are';
+  advisorApplyMode();
+}
+function syncAssistantMode(mode){
+  const next=mode==='recruitment'?'recruitment':'travel';
+  if(advisorMode!==next){advisorMode=next;advisorResetExperience();}else advisorApplyMode();
+}
+
+function advisorDetectTravelIntent(query){
+  const q=advisorNormalize(query);
+  if(/\b(umrah|hajj)\b/.test(q)) advisorSetContext('service',q.includes('umrah')&&!q.includes('hajj')?'Umrah':'Hajj / Umrah');
+  if(/\b(madinah|medina)\b/.test(q))advisorSetContext('route','Madinah');
+  else if(/\bjeddah\b/.test(q))advisorSetContext('route','Jeddah');
+  else if(/\briyadh\b/.test(q))advisorSetContext('route','Riyadh');
+  else if(/\bdammam\b/.test(q))advisorSetContext('route','Dammam');
+  if(/\b(premium|comfort|better hotel|luxury)\b/.test(q)){advisorSetContext('preference','Premium');return 'packages';}
+  if(/\b(economy|budget|value|affordable|cheap)\b/.test(q)){advisorSetContext('preference','Economy');return 'packages';}
+  if(/\b(custom|specific requirement|personalised|personalized)\b/.test(q)){advisorSetContext('preference','Custom');return 'packages';}
+  if(/\bfamily\b/.test(q)){advisorSetContext('preference','Premium');return 'packages';}
+  if(/\b(package|packages|umrah tour|hajj tour|plan)\b/.test(q))return 'packages';
+  if(/\b(document|documents|passport|paperwork|photograph|photo)\b/.test(q))return 'documents';
+  if(/\b(sector|airport|arrival|madinah|medina|jeddah|riyadh|dammam)\b/.test(q))return 'sector';
+  if(/\b(hotel|room|stay|accommodation)\b/.test(q)){advisorSetContext('service','Hotel Booking');return 'hotel';}
+  if(/\b(flight|airline|ticket|emirates|etihad|saudia|indigo|qatar airways)\b/.test(q)){advisorSetContext('service','Flight Tickets');return 'flight';}
+  if(/\b(visa|kuwait|uae|oman|bahrain|gulf)\b/.test(q)){advisorSetContext('service','Visa Assistance');return 'visa';}
+  if(/\b(forex|currency|exchange|riyal|money)\b/.test(q)){advisorSetContext('service','Forex');return 'forex';}
+  return 'fallback';
+}
+function advisorDetectRecruitmentIntent(query){
+  const q=advisorNormalize(query);
+  if(/\b(engineer|engineering|professional)\b/.test(q))advisorSetContext('service','Engineering / Professional');
+  else if(/\b(labour|worker|helper|general)\b/.test(q))advisorSetContext('service','Labour / General');
+  else if(/\b(technical|technician|operator)\b/.test(q))advisorSetContext('service','Technical');
+  else if(/\b(skilled|electrician|welder|carpenter|plumber)\b/.test(q))advisorSetContext('service','Skilled Trades');
+  if(/\b(resume|cv|curriculum)\b/.test(q))return 'resume';
+  if(/\b(category|categories|engineer|engineering|labour|worker|technical|skilled|professional)\b/.test(q))return 'categories';
+  if(/\b(passport)\b/.test(q))return 'passport';
+  if(/\b(country|saudi|ksa|kingdom)\b/.test(q))return 'country';
+  if(/\b(apply|application|job|join|candidate)\b/.test(q))return 'apply';
+  return 'fallback';
+}
+
+function advisorStartProcessing(query,done){
+  advisorClearTimers();advisorBusy=true;if(advisorInput)advisorInput.disabled=true;if(advisorSubmit)advisorSubmit.disabled=true;
+  advisorOpening.hidden=true;advisorResponse.hidden=true;advisorProcessing.hidden=false;
+  advisorProcessingQuestion.textContent=query.length>58?`${query.slice(0,58)}…`:query;
+  const notes=advisorMode==='travel'?['Reading the travel need behind your question.','Checking the relevant Al Hadi travel service.','Preparing the most useful next decision.']:['Reading the candidate requirement.','Checking the relevant recruitment route.','Preparing the next candidate step.'];
+  advisorProcessNodes.forEach((node,i)=>{node.classList.toggle('is-active',i===0);node.classList.remove('is-done');});
+  advisorProcessingCount.textContent='01 / 03';advisorProcessingNote.textContent=notes[0];advisorStatusText.textContent='Preparing guidance';
+  const steps=reduceMotion?[0,80,160]:[0,360,760];
+  advisorSchedule(()=>{advisorProcessNodes[0]?.classList.add('is-done');advisorProcessNodes[0]?.classList.remove('is-active');advisorProcessNodes[1]?.classList.add('is-active');advisorProcessingCount.textContent='02 / 03';advisorProcessingNote.textContent=notes[1];},steps[1]);
+  advisorSchedule(()=>{advisorProcessNodes[1]?.classList.add('is-done');advisorProcessNodes[1]?.classList.remove('is-active');advisorProcessNodes[2]?.classList.add('is-active');advisorProcessingCount.textContent='03 / 03';advisorProcessingNote.textContent=notes[2];},steps[2]);
+  advisorSchedule(()=>{advisorProcessNodes[2]?.classList.add('is-done');advisorProcessing.hidden=true;advisorBusy=false;if(advisorInput)advisorInput.disabled=false;if(advisorSubmit)advisorSubmit.disabled=false;advisorStatusText.textContent='Guidance ready';done();},reduceMotion?240:1120);
+}
+
+function advisorBaseResponse(label,title,text,body='',actions=''){
+  return `<div class="advisor-response-enter"><div class="advisor-response-top"><span>${escapeHtml(label)}</span><button type="button" class="advisor-new-question" data-advisor-action="new-question">Ask another question</button></div><h3>${escapeHtml(title)}</h3><p class="advisor-response-copy">${escapeHtml(text)}</p>${body}${actions?`<div class="advisor-response-actions">${actions}</div>`:''}</div>`;
+}
+function advisorAction(label,action,secondary=false){return `<button type="button" class="advisor-action${secondary?' secondary':''}" data-advisor-action="${escapeHtml(action)}">${escapeHtml(label)}<span>→</span></button>`;}
+function advisorAttachActions(){advisorResponse.querySelectorAll('[data-advisor-action]').forEach(btn=>btn.addEventListener('click',()=>advisorDoAction(btn.dataset.advisorAction)));}
+function advisorShow(html){advisorResponse.innerHTML=html;advisorResponse.hidden=false;requestAnimationFrame(()=>advisorResponse.firstElementChild?.classList.add('is-visible'));advisorAttachActions();}
+
+function advisorRenderPackages(query){
+  if(!advisorContext.service)advisorSetContext('service',advisorNormalize(query).includes('hajj')?'Hajj / Umrah':'Umrah');
+  const selected=advisorContext.preference;
+  const cards=[
+    ['Economy','Essential arrangements','Best for value-focused travellers','A carefully organised journey with a stronger focus on essential arrangements and value.'],
+    ['Premium','Comfort-led planning','Best for hotel comfort & families','A stronger starting point when hotel category and a smoother overall arrangement matter more.'],
+    ['Custom','Built around you','Best for specific requirements','For preferred hotels, family requirements, route preferences or a more personalised plan.']
+  ].map(([name,sub,best,desc])=>`<button type="button" class="advisor-package-card${selected===name?' is-selected':''}" data-package-pick="${name}"><span>${name}</span><strong>${sub}</strong><p>${desc}</p><small>${best}</small><i>${selected===name?'Selected':'Explore'}</i></button>`).join('');
+  const body=`<div class="advisor-package-board">${cards}</div><div class="advisor-preference-box"><div><small>WHAT MATTERS MOST?</small><strong>Choose one priority and the advisor will bring the strongest fit forward.</strong></div><div class="advisor-preference-options"><button data-package-priority="Economy">Best value</button><button data-package-priority="Premium">Hotel comfort</button><button data-package-priority="Premium">Family comfort</button><button data-package-priority="Custom">Specific requirements</button></div></div><div class="advisor-recommendation" id="advisorRecommendation" ${selected?'':'hidden'}></div>`;
+  const actions=advisorAction('Compare full packages','scroll:packages',true)+advisorAction('Start Hajj / Umrah enquiry','service:Hajj & Umrah');
+  advisorShow(advisorBaseResponse('PACKAGE ADVISOR','Three ways to shape your journey.','Prices are shared after travel dates, hotel preference, traveller count and availability are confirmed.',body,actions));
+  advisorResponse.querySelectorAll('[data-package-pick]').forEach(btn=>btn.addEventListener('click',()=>advisorRecommendPackage(btn.dataset.packagePick,'You selected this package direction.')));
+  advisorResponse.querySelectorAll('[data-package-priority]').forEach(btn=>btn.addEventListener('click',()=>advisorRecommendPackage(btn.dataset.packagePriority,`Based on “${btn.textContent.trim()}”, this is the strongest starting point.`)));
+  if(selected)advisorRecommendPackage(selected,'Based on what you asked, this is the strongest starting point.',false);
+}
+function advisorRecommendPackage(pkg,reason,animate=true){
+  advisorSetContext('preference',pkg);
+  advisorResponse.querySelectorAll('.advisor-package-card').forEach(card=>{const on=card.dataset.packagePick===pkg;card.classList.toggle('is-selected',on);const i=card.querySelector('i');if(i)i.textContent=on?'Recommended':'Explore';});
+  const box=document.getElementById('advisorRecommendation');if(box){box.hidden=false;box.innerHTML=`<span>RECOMMENDED DIRECTION</span><div><strong>${escapeHtml(pkg)}</strong><p>${escapeHtml(reason)}</p></div>${advisorAction(`Continue with ${pkg}`,`package:${pkg}`)}`;if(animate){box.classList.remove('is-visible');requestAnimationFrame(()=>box.classList.add('is-visible'));}else box.classList.add('is-visible');advisorAttachActions();}
+}
+
+const documentSets={
+  'Hajj / Umrah':['Passport','Photographs','Required ID / supporting documents','Preferred travel dates','Arrival sector preference'],
+  'Flight Tickets':['Passenger names as per travel document','Passport details where required','Route and preferred travel date','Preferred airline, if any'],
+  'Hotel Booking':['City / destination','Check-in and check-out dates','Guest count','Hotel name or stay preference'],
+  'Visa Assistance':['Passport','Photograph','Destination country','Country-specific supporting documents']
+};
+function advisorRenderDocuments(){
+  const tabs=Object.keys(documentSets).map((name,i)=>`<button type="button" class="advisor-doc-tab${i===0?' is-active':''}" data-doc-set="${name}">${name}</button>`).join('');
+  const body=`<div class="advisor-doc-layout"><div class="advisor-doc-tabs">${tabs}</div><div class="advisor-checklist" id="advisorChecklist"></div></div>`;
+  advisorShow(advisorBaseResponse('DOCUMENT GUIDE','Keep the right details ready before you enquire.','Exact requirements can vary by service and destination. Use this as a planning checklist, then confirm the final current requirement with Al Hadi.',body,advisorAction('View full document section','scroll:documents-required',true)+advisorAction('Start an enquiry','scroll:travel-enquiry')));
+  const choose=(name)=>{advisorSetContext('service',name);advisorResponse.querySelectorAll('.advisor-doc-tab').forEach(b=>b.classList.toggle('is-active',b.dataset.docSet===name));const target=document.getElementById('advisorChecklist');target.innerHTML=`<span>${escapeHtml(name.toUpperCase())}</span><ul>${documentSets[name].map(x=>`<li><i>✓</i>${escapeHtml(x)}</li>`).join('')}</ul>`;};
+  advisorResponse.querySelectorAll('[data-doc-set]').forEach(btn=>btn.addEventListener('click',()=>choose(btn.dataset.docSet)));choose('Hajj / Umrah');
+}
+function advisorRenderSector(){
+  if(!advisorContext.service)advisorSetContext('service','Hajj / Umrah');
+  const sectors=['Madinah','Jeddah','Riyadh','Dammam'];
+  const body=`<div class="advisor-sector-map"><div class="advisor-sector-route" aria-hidden="true"><span></span><i></i></div>${sectors.map(s=>`<button type="button" data-sector="${s}" class="advisor-sector-point${advisorContext.route===s?' is-selected':''}"><b></b><span>${s}</span></button>`).join('')}</div><div class="advisor-sector-note" id="advisorSectorNote">Choose a sector to add it to your planning session.</div>`;
+  advisorShow(advisorBaseResponse('ARRIVAL SECTOR','Yes — you can choose your preferred arrival sector.','Madinah, Jeddah, Riyadh and Dammam are available in the Hajj & Umrah enquiry, with an additional manual option.',body,advisorAction('Open Hajj / Umrah enquiry','service:Hajj & Umrah')+advisorAction('Ask the team on WhatsApp','whatsapp',true)));
+  advisorResponse.querySelectorAll('[data-sector]').forEach(btn=>btn.addEventListener('click',()=>{const sector=btn.dataset.sector;advisorSetContext('route',sector);advisorResponse.querySelectorAll('[data-sector]').forEach(b=>b.classList.toggle('is-selected',b===btn));document.getElementById('advisorSectorNote').innerHTML=`<strong>${sector}</strong><span>Added to your planning session. Final routing still depends on the confirmed itinerary and flight plan.</span>${advisorAction(`Use ${sector} in enquiry`,`sector:${sector}`)}`;advisorAttachActions();}));
+}
+function advisorRenderSimple(kind){
+  const data={
+    hotel:['HOTEL GUIDANCE','Request the stay you actually want.','Choose Hotel Booking and the form changes to a hotel-name field instead of package options.','Hotel Booking',['Add your preferred hotel name','Share dates and traveller count','Use the note for room or stay preferences'],['Open hotel enquiry','service:Hotel Booking']],
+    flight:['FLIGHT GUIDANCE','Share your preferred airline — or keep it flexible.','The flight enquiry includes common carriers such as IndiGo, Air India, Saudia, Emirates, Etihad and Qatar Airways.','Flight Tickets',['Final options depend on route and date','You can leave the airline preference flexible','The team confirms availability'],['Open flight enquiry','service:Flight Tickets']],
+    visa:['GULF VISA GUIDANCE','Start by choosing the destination country.','Visa Assistance supports Saudi Arabia, Kuwait, UAE, Qatar, Oman and Bahrain, with another Gulf country option.','Visa Assistance',['Requirements differ by country','Passport and photograph are common starting documents','The team confirms current supporting documents'],['Open visa enquiry','service:Gulf Visa Assistance']],
+    forex:['FOREX GUIDANCE','Add foreign exchange support to your travel planning.','Use the Forex service in the enquiry and share any specific currency requirement in the note.','Forex',['Useful alongside international travel planning','Final exchange availability is confirmed by the team'],['Open travel enquiry','service:Forex']]
+  }[kind];
+  advisorSetContext('service',data[3]);
+  const body=`<div class="advisor-detail-list">${data[4].map((x,i)=>`<div><span>${String(i+1).padStart(2,'0')}</span><p>${escapeHtml(x)}</p></div>`).join('')}</div>`;
+  advisorShow(advisorBaseResponse(data[0],data[1],data[2],body,advisorAction(data[5][0],data[5][1])+advisorAction('Speak with Al Hadi','whatsapp',true)));
+}
+function advisorRenderFallback(){
+  const prompts=advisorMeta[advisorMode].prompts.map(q=>`<button type="button" class="advisor-fallback-prompt" data-fallback-query="${escapeHtml(q)}">${escapeHtml(q)}<span>→</span></button>`).join('');
+  advisorShow(advisorBaseResponse('LET’S NARROW IT DOWN','I need one clearer travel detail.','Choose the closest example below, or ask another short question.',`<div class="advisor-fallback-grid">${prompts}</div>`,''));
+  advisorResponse.querySelectorAll('[data-fallback-query]').forEach(btn=>btn.addEventListener('click',()=>advisorAsk(btn.dataset.fallbackQuery)));
+}
+
+function advisorRenderRecruitment(kind){
+  if(kind==='categories'){
+    const cats=['Labour / General','Skilled Trades','Technical','Engineering / Professional'];
+    const body=`<div class="advisor-category-board">${cats.map(c=>`<button type="button" data-recruit-category="${c}" class="advisor-category-card${advisorContext.service===c?' is-selected':''}"><span></span><strong>${c}</strong><small>Select category</small></button>`).join('')}</div><div class="advisor-category-note" id="advisorCategoryNote">Choose a category to carry it into your candidate route.</div>`;
+    advisorShow(advisorBaseResponse('RECRUITMENT CATEGORIES','Which category best describes your work?','Al Hadi accepts recruitment enquiries from labour through engineering and professional categories.',body,advisorAction('Open candidate form','candidate-form')+advisorAction('WhatsApp recruitment','whatsapp',true)));
+    advisorResponse.querySelectorAll('[data-recruit-category]').forEach(btn=>btn.addEventListener('click',()=>{advisorSelectedCategory=btn.dataset.recruitCategory;advisorSetContext('service',advisorSelectedCategory);advisorResponse.querySelectorAll('[data-recruit-category]').forEach(b=>b.classList.toggle('is-selected',b===btn));document.getElementById('advisorCategoryNote').innerHTML=`<strong>${escapeHtml(advisorSelectedCategory)}</strong><span>Added to your candidate planning session.</span>`;}));
+    return;
+  }
+  if(kind==='passport'){
+    const statuses=['Valid passport','Passport applied','No passport yet'];
+    const body=`<div class="advisor-passport-options">${statuses.map(s=>`<button data-passport-status="${s}">${s}</button>`).join('')}</div><div class="advisor-category-note" id="advisorPassportNote">Choose your current status accurately.</div>`;
+    advisorShow(advisorBaseResponse('PASSPORT STATUS','Your current status can be recorded as it is.','The candidate form supports all three common passport states, so you do not need to wait before making an enquiry.',body,advisorAction('Open candidate form','candidate-form')));
+    advisorResponse.querySelectorAll('[data-passport-status]').forEach(btn=>btn.addEventListener('click',()=>{advisorSelectedPassport=btn.dataset.passportStatus;advisorSetContext('preference',advisorSelectedPassport);advisorResponse.querySelectorAll('[data-passport-status]').forEach(b=>b.classList.toggle('is-selected',b===btn));document.getElementById('advisorPassportNote').innerHTML=`<strong>${escapeHtml(advisorSelectedPassport)}</strong><span>Added to your candidate planning session.</span>`;}));return;
+  }
+  const info={
+    apply:['APPLICATION ROUTE','Start with the candidate enquiry form.','Enter your details, category, role, experience and passport status. Then choose WhatsApp or Email and attach your resume in the app that opens.',['No CV is stored on the website','Your enquiry is prepared before WhatsApp or Gmail opens']],
+    resume:['RESUME PROCESS','Attach your CV after the website prepares your enquiry.','Complete the candidate form, choose WhatsApp or Email, and attach the resume directly there before sending.',['The website does not upload or store CV files','This avoids asking you to upload the same resume twice']],
+    country:['DESTINATION','Recruitment enquiries focus on Saudi Arabia.','The recruitment destination provided for this website is the Kingdom of Saudi Arabia.',['Categories range from labour to engineering','Live vacancies are not displayed on the website']]
+  }[kind]||null;
+  if(!info){advisorRenderFallback();return;}
+  advisorSetContext('route',kind==='country'?'Saudi Arabia':'Candidate form');
+  const body=`<div class="advisor-detail-list">${info[3].map((x,i)=>`<div><span>${String(i+1).padStart(2,'0')}</span><p>${escapeHtml(x)}</p></div>`).join('')}</div>`;
+  advisorShow(advisorBaseResponse(info[0],info[1],info[2],body,advisorAction('Open candidate form','candidate-form')+advisorAction('WhatsApp recruitment','whatsapp',true)));
+}
+
+function advisorShowIntent(intent,query){
+  if(advisorMode==='travel'){
+    if(intent==='packages')advisorRenderPackages(query);
+    else if(intent==='documents')advisorRenderDocuments();
+    else if(intent==='sector')advisorRenderSector();
+    else if(['hotel','flight','visa','forex'].includes(intent))advisorRenderSimple(intent);
+    else advisorRenderFallback();
+  }else advisorRenderRecruitment(intent);
+}
+function advisorAsk(question){
+  const q=String(question||'').trim();if(!q||advisorBusy)return;
+  if(advisorInput)advisorInput.value=q;
+  const intent=advisorMode==='travel'?advisorDetectTravelIntent(q):advisorDetectRecruitmentIntent(q);
+  advisorStartProcessing(q,()=>advisorShowIntent(intent,q));
+}
+advisorForm?.addEventListener('submit',e=>{e.preventDefault();advisorAsk(advisorInput.value);});
+advisorReset?.addEventListener('click',advisorResetExperience);
+
+function advisorDoAction(action){
+  if(!action)return;
+  if(action==='new-question'){advisorResponse.hidden=true;advisorOpening.hidden=false;if(advisorInput){advisorInput.value='';advisorInput.focus({preventScroll:true});}advisorStatusText.textContent='Ready for another question';return;}
+  if(action==='whatsapp'){window.open(`https://wa.me/${WHATSAPP_NUMBER}`,'_blank','noopener');return;}
+  if(action==='candidate-form'){
+    setMode('recruitment',{scroll:false});
+    requestAnimationFrame(()=>{const cat=document.getElementById('candidateCategory');if(cat&&advisorSelectedCategory){const map={'Labour / General':'Labour / General Worker','Skilled Trades':'Skilled Trade','Technical':'Technical','Engineering / Professional':'Engineering / Professional'};cat.value=map[advisorSelectedCategory]||advisorSelectedCategory;cat.dispatchEvent(new Event('change',{bubbles:true}));}const pass=document.getElementById('candidatePassport');if(pass&&advisorSelectedPassport)pass.value=advisorSelectedPassport;advisorScrollTo('candidate-enquiry');});return;
+  }
+  if(action.startsWith('scroll:')){const id=action.slice(7);if(['packages','documents-required','travel-enquiry'].includes(id))setMode('travel',{scroll:false});requestAnimationFrame(()=>advisorScrollTo(id));return;}
+  if(action.startsWith('package:')){const pkg=action.slice(8);setMode('travel',{scroll:false});requestAnimationFrame(()=>{const service=document.getElementById('travelService'),pack=document.getElementById('travelPackage');if(service){service.value='Hajj & Umrah';service.dispatchEvent(new Event('change',{bubbles:true}));}if(pack)pack.value=pkg;advisorScrollTo('travel-enquiry');});return;}
+  if(action.startsWith('service:')){const name=action.slice(8);setMode('travel',{scroll:false});requestAnimationFrame(()=>{const service=document.getElementById('travelService');if(service){service.value=name;service.dispatchEvent(new Event('change',{bubbles:true}));}advisorScrollTo('travel-enquiry');});return;}
+  if(action.startsWith('sector:')){const sector=action.slice(7);setMode('travel',{scroll:false});requestAnimationFrame(()=>{const service=document.getElementById('travelService'),field=document.getElementById('hajjSector');if(service){service.value='Hajj & Umrah';service.dispatchEvent(new Event('change',{bubbles:true}));}if(field)field.value=sector;advisorScrollTo('travel-enquiry');});}
+}
+
+advisorResetExperience();
+
+function escapeHtml(value){
+  return String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+}

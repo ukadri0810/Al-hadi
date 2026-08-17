@@ -323,41 +323,35 @@
         </div>
       </section>
 
-      <section class="faq-section" id="faq">
-        <div class="shell faq-layout">
-          <div class="faq-intro reveal">
-            <p class="eyebrow">TRAVEL HELP DESK</p>
-            <h2>Answers to the questions travellers usually ask first.</h2>
-            <p>Clear information before you enquire. For live prices, departure dates and availability, speak directly with the Al Hadi team.</p>
-            <a class="faq-contact-link" href="#travel-enquiry">Still have a question? Send an enquiry</a>
-          </div>
-          <div class="faq-list reveal">
-            <details class="faq-item" open><summary><span class="faq-no">01</span><span class="faq-question">How do I get the price for a Hajj or Umrah package?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>Package pricing is shared after discussing your travel date, number of travellers, arrival sector, hotel preference and package level.</p></div></details>
-            <details class="faq-item"><summary><span class="faq-no">02</span><span class="faq-question">Can I choose my arrival airport or sector?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>Yes. For Hajj &amp; Umrah enquiries you can select Madinah, Jeddah, Riyadh or Dammam, or enter another airport or sector manually.</p></div></details>
-            <details class="faq-item"><summary><span class="faq-no">03</span><span class="faq-question">Can I request a specific hotel?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>Yes. Choose Hotel Booking in the enquiry form and enter the hotel name or your preferred stay requirement.</p></div></details>
-            <details class="faq-item"><summary><span class="faq-no">04</span><span class="faq-question">Can I choose a preferred airline?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>Yes. Selecting Flight Tickets reveals an airline list so you can quickly share your preference.</p></div></details>
-            <details class="faq-item"><summary><span class="faq-no">05</span><span class="faq-question">Which Gulf countries can I enquire about for visa assistance?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>The enquiry form includes Saudi Arabia, Kuwait, UAE, Qatar, Oman and Bahrain, plus an option for another Gulf country.</p></div></details>
-            <details class="faq-item"><summary><span class="faq-no">06</span><span class="faq-question">How do recruitment candidates send their resume?</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>Fill the candidate form, choose WhatsApp or Email, then attach your resume directly in the app that opens. The website does not store your CV.</p></div></details>
-          </div>
-        </div>
-      </section>
+
     </div>
 
     <div class="recruitment-view" data-panel="recruitment" hidden>
-      <section class="recruitment-hero" id="recruitment-overview">
-        <div class="shell recruitment-hero-grid">
-          <div class="recruitment-copy reveal">
-            <p class="eyebrow">AL HADI RECRUITMENT / KINGDOM OF SAUDI ARABIA</p>
-            <h1>Saudi recruitment, handled with a clear and professional process.</h1>
-            <p>For labour, skilled, technical, engineering and professional categories. Fill the short enquiry form, then continue through WhatsApp or Email and attach your resume there.</p>
-            <a class="btn btn-solid" href="#candidate-enquiry">Send your resume</a>
-          </div>
-          <div class="recruitment-frame reveal">
-            <img src="assets/images/recruitment-team.jpg" alt="Professional office environment for recruitment services">
-            <div class="recruitment-badge">
-              <small>Recruitment categories</small>
-              <strong>Labour · Skilled · Technical · Engineering</strong>
+      <section class="recruitment-hero recruitment-hero-slider" id="recruitment-overview">
+        <div class="recruitment-hero-media" aria-hidden="true">
+          <figure class="recruitment-slide is-active"><img src="assets/images/recruitment-hero/recruitment-01.jpg" alt="" fetchpriority="high"></figure>
+          <figure class="recruitment-slide"><img src="assets/images/recruitment-hero/recruitment-02.jpg" alt="" loading="lazy"></figure>
+          <figure class="recruitment-slide"><img src="assets/images/recruitment-hero/recruitment-03.jpg" alt="" loading="lazy"></figure>
+          <figure class="recruitment-slide"><img src="assets/images/recruitment-hero/recruitment-04.jpg" alt="" loading="lazy"></figure>
+          <figure class="recruitment-slide"><img src="assets/images/recruitment-hero/recruitment-05.jpg" alt="" loading="lazy"></figure>
+        </div>
+        <div class="shell recruitment-hero-shell">
+          <div class="recruitment-hero-panel reveal">
+            <p class="eyebrow">AL HADI RECRUITMENT · KINGDOM OF SAUDI ARABIA</p>
+            <h1>Saudi recruitment, handled with clarity from candidate enquiry to employer coordination.</h1>
+            <p>Recruitment support across labour, skilled trades, technical, engineering and professional categories. Candidates can share their details online, then attach their resume directly through WhatsApp or Gmail.</p>
+            <div class="recruitment-hero-actions">
+              <a class="btn btn-solid" href="#candidate-enquiry">Send your resume</a>
+              <a class="btn recruitment-btn-secondary" href="#recruitment-categories">View categories</a>
             </div>
+            <div class="recruitment-hero-meta">
+              <span><strong>Saudi Arabia</strong><small>Primary recruitment market</small></span>
+              <span><strong>Labour → Engineer</strong><small>Multiple candidate categories</small></span>
+            </div>
+          </div>
+          <div class="recruitment-slider-status" aria-label="Recruitment hero image controls">
+            <small id="recruitmentHeroCount">01 / 05</small>
+            <div class="recruitment-hero-dots" id="recruitmentHeroDots"></div>
           </div>
         </div>
       </section>
@@ -370,7 +364,7 @@
         </div>
       </section>
 
-      <section class="recruitment-categories shell">
+      <section class="recruitment-categories shell" id="recruitment-categories">
         <div class="category-grid reveal">
           <button type="button" data-category="Labour / General Worker"><span>01</span><strong>Labour & General</strong><small>Helpers, general workers and support roles</small></button>
           <button type="button" data-category="Skilled Trade"><span>02</span><strong>Skilled Trades</strong><small>Electricians, welders, carpenters, plumbers and more</small></button>
@@ -414,6 +408,103 @@
         </div>
       </section>
     </div>
+
+    <section class="journey-advisor-section" id="ask-al-hadi" aria-labelledby="journeyAdvisorHeading">
+      <div class="journey-advisor-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="shell">
+        <div class="journey-advisor-heading reveal">
+          <div>
+            <p class="eyebrow" id="journeyAdvisorEyebrow">ASK AL HADI</p>
+            <h2 id="journeyAdvisorHeading">Plan your journey, one decision at a time.</h2>
+          </div>
+          <p id="journeyAdvisorIntro">Ask about packages, documents, arrival sectors, hotels, flights or Gulf visas. The advisor keeps your choices together and takes you to the right next step.</p>
+        </div>
+
+        <div class="journey-advisor-frame reveal" id="journeyAdvisor" data-advisor-mode="travel">
+          <aside class="advisor-session-panel">
+            <div class="advisor-session-brand">
+              <img src="assets/logo/al-hadi-logo.png" alt="Al Hadi Tours and Travels">
+              <span id="advisorModeBadge">HAJJ / UMRAH</span>
+            </div>
+
+            <div class="advisor-session-copy">
+              <small>YOUR PLANNING SESSION</small>
+              <h3 id="advisorSessionTitle">Start with a question.</h3>
+              <p id="advisorSessionText">Your useful choices will collect here as you plan.</p>
+            </div>
+
+            <div class="advisor-context-stack" id="advisorContextStack">
+              <div class="advisor-context-item" data-context-key="service">
+                <span class="advisor-context-dot"></span>
+                <div><small id="advisorContextLabel1">Service</small><strong id="advisorContextValue1">Not selected</strong></div>
+              </div>
+              <div class="advisor-context-item" data-context-key="preference">
+                <span class="advisor-context-dot"></span>
+                <div><small id="advisorContextLabel2">Preference</small><strong id="advisorContextValue2">Not selected</strong></div>
+              </div>
+              <div class="advisor-context-item" data-context-key="route">
+                <span class="advisor-context-dot"></span>
+                <div><small id="advisorContextLabel3">Arrival / route</small><strong id="advisorContextValue3">Not selected</strong></div>
+              </div>
+            </div>
+
+            <div class="advisor-session-foot">
+              <span class="advisor-private-mark" aria-hidden="true"></span>
+              <p>Guidance follows Al Hadi's website services. For live price and availability, the team confirms the final details.</p>
+            </div>
+          </aside>
+
+          <div class="advisor-workspace">
+            <header class="advisor-workspace-head">
+              <div>
+                <small id="advisorWorkspaceKicker">PERSONAL JOURNEY GUIDANCE</small>
+                <strong id="advisorWorkspaceName">Ask Al Hadi</strong>
+              </div>
+              <button type="button" class="advisor-reset" id="advisorReset">Plan another journey</button>
+            </header>
+
+            <div class="advisor-main" aria-live="polite">
+              <div class="advisor-opening" id="advisorOpening">
+                <span class="advisor-step-label">START HERE</span>
+                <h3 id="advisorQuestionTitle">What would you like help planning?</h3>
+                <p id="advisorQuestionCopy">Write a short question in your own words. You can start with something as simple as “Umrah packages”.</p>
+
+                <form class="advisor-command" id="advisorForm">
+                  <span class="advisor-command-mark" aria-hidden="true"><i></i></span>
+                  <label class="sr-only" for="advisorInput">Ask Al Hadi a question</label>
+                  <input id="advisorInput" type="text" autocomplete="off" placeholder="Ask about Umrah packages, documents, hotels, flights…">
+                  <button type="submit" id="advisorSubmit" aria-label="Send question"><span>Ask Al Hadi</span><b aria-hidden="true">→</b></button>
+                </form>
+
+                <div class="advisor-prompts" id="advisorPrompts" aria-label="Suggested questions"></div>
+              </div>
+
+              <div class="advisor-processing" id="advisorProcessing" hidden>
+                <div class="advisor-processing-head">
+                  <div><small>PREPARING GUIDANCE</small><strong id="advisorProcessingQuestion">Reviewing your request</strong></div>
+                  <span id="advisorProcessingCount">01 / 03</span>
+                </div>
+                <div class="advisor-route-track" id="advisorRouteTrack">
+                  <span class="advisor-route-line"><i></i></span>
+                  <div class="advisor-route-node is-active" data-process-step="1"><b>01</b><span>Understanding request</span></div>
+                  <div class="advisor-route-node" data-process-step="2"><b>02</b><span>Matching Al Hadi services</span></div>
+                  <div class="advisor-route-node" data-process-step="3"><b>03</b><span>Preparing next step</span></div>
+                </div>
+                <p class="advisor-processing-note" id="advisorProcessingNote">Keeping the guidance focused on the service you asked about.</p>
+              </div>
+
+              <div class="advisor-response" id="advisorResponse" hidden></div>
+            </div>
+
+            <footer class="advisor-workspace-foot">
+              <div class="advisor-session-status"><span></span><small id="advisorStatusText">Ready when you are</small></div>
+              <a href="https://wa.me/919167493183" target="_blank" rel="noopener"><span>Prefer a person?</span><strong>Speak with Al Hadi</strong><b>→</b></a>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <section class="contact-section" id="contact">
       <div class="shell contact-layout">
@@ -477,7 +568,7 @@
         <a data-travel-footer-link href="#why-al-hadi">Why Choose Al Hadi</a>
         <a data-travel-footer-link href="#process">Our Process</a>
         <a data-travel-footer-link href="#documents-required">Documents Required</a>
-        <a data-travel-footer-link href="#faq">FAQ</a>
+        <a href="#ask-al-hadi">Ask Al Hadi</a>
       </div>
       <div class="footer-links-group">
         <p>Connect</p>
@@ -500,7 +591,7 @@
       <div class="privacy-copy">
         <p>Information entered in the travel enquiry form is used to prepare your enquiry and open WhatsApp for direct communication with Al Hadi Tours &amp; Travels.</p>
         <p>For recruitment enquiries, the website prepares your details for WhatsApp or Email. Resumes are attached by the candidate in the selected app and are not stored by this website.</p>
-        <p>Do not submit sensitive information beyond what is necessary for your enquiry. For questions about information you have sent, contact Al Hadi directly at hadisaudi@gmail.com.</p>
+        <p>Do not submit sensitive information beyond what is necessary for your enquiry. For questions about information you have sent, contact Al Hadi directly at <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=hadisaudi%40gmail.com" target="_blank" rel="noopener">hadisaudi@gmail.com</a>.</p>
       </div>
     </div>
   </dialog>
