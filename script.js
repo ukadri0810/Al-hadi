@@ -828,3 +828,46 @@ function escapeHtml(value){
 
   syncCandidateStudio();
 })();
+
+// Recruitment role directory — photography-led category browser.
+(() => {
+  const directory = document.getElementById('roleDirectory');
+  if (!directory) return;
+
+  const tabs = [...directory.querySelectorAll('.role-tab')];
+  const image = document.getElementById('rolePreviewImage');
+  const title = document.getElementById('rolePreviewTitle');
+  const text = document.getElementById('rolePreviewText');
+  const list = document.getElementById('rolePreviewList');
+  const useButton = document.getElementById('roleUseCategory');
+
+  const selectTab = (tab) => {
+    if (!tab) return;
+    tabs.forEach((item) => {
+      const active = item === tab;
+      item.classList.toggle('is-active', active);
+      item.setAttribute('aria-selected', String(active));
+    });
+
+    directory.classList.add('is-changing');
+    window.setTimeout(() => {
+      if (image) {
+        image.src = tab.dataset.image || image.src;
+        image.alt = `${tab.dataset.title || 'Recruitment'} category`;
+      }
+      if (title) title.textContent = tab.dataset.title || '';
+      if (text) text.textContent = tab.dataset.copy || '';
+      if (list) {
+        list.replaceChildren(...String(tab.dataset.roles || '').split('|').filter(Boolean).map((role) => {
+          const item = document.createElement('span');
+          item.textContent = role;
+          return item;
+        }));
+      }
+      if (useButton) useButton.dataset.category = tab.dataset.categoryValue || '';
+      directory.classList.remove('is-changing');
+    }, 140);
+  };
+
+  tabs.forEach((tab) => tab.addEventListener('click', () => selectTab(tab)));
+})();

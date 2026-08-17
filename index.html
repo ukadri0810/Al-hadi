@@ -339,8 +339,8 @@
           <div class="recruitment-hero-panel recruitment-hero-editorial reveal">
             <div class="recruitment-desk-label"><span></span> AL HADI RECRUITMENT DESK</div>
             <p class="eyebrow">MUMBAI → KINGDOM OF SAUDI ARABIA</p>
-            <h1>Recruitment support for candidates applying to Saudi Arabia.</h1>
-            <p>We accept enquiries for labour, skilled trades, technical, engineering and professional roles. Fill in your basic details, then send your CV directly to our team through WhatsApp or Gmail.</p>
+            <h1>Saudi recruitment, coordinated from Mumbai.</h1>
+            <p>For labour, trades, technical and professional enquiries. Send your details and CV directly to our team.</p>
             <div class="recruitment-hero-actions">
               <a class="btn btn-solid" href="#candidate-enquiry">Submit your details</a>
               <a class="recruitment-text-link" href="#recruitment-categories">View job categories <span>↗</span></a>
@@ -352,114 +352,131 @@
             </div>
           </div>
           <div class="recruitment-slider-status" aria-label="Recruitment hero image controls">
-            <span class="recruitment-slider-label">FIELD VIEW</span>
+            <span class="recruitment-slider-label">RECRUITMENT</span>
             <small id="recruitmentHeroCount">01 / 05</small>
             <div class="recruitment-hero-dots" id="recruitmentHeroDots"></div>
           </div>
         </div>
       </section>
 
-      <section class="recruitment-brief shell" aria-labelledby="recruitmentBriefHeading">
-        <div class="recruitment-section-number" aria-hidden="true">01</div>
-        <div class="recruitment-brief-copy reveal">
-          <p class="eyebrow">RECRUITMENT ENQUIRY</p>
-          <h2 id="recruitmentBriefHeading">A straightforward way to send your profile.</h2>
-          <p>Choose your work category, add your experience and contact details, then continue to WhatsApp or Gmail to attach your CV. Current openings are shared directly by our team when available.</p>
-        </div>
-        <div class="recruitment-brief-facts reveal">
-          <div><span>Recruitment market</span><strong>Saudi Arabia</strong></div>
-          <div><span>Categories</span><strong>Labour to Engineering</strong></div>
-          <div><span>Send CV via</span><strong>WhatsApp / Gmail</strong></div>
-        </div>
-      </section>
-
-      <section class="recruitment-lanes-section" id="recruitment-categories">
-        <div class="shell">
-          <div class="recruitment-lanes-head reveal">
-            <div class="recruitment-section-number" aria-hidden="true">02</div>
-            <div>
-              <p class="eyebrow">RECRUITMENT CATEGORIES</p>
-              <h2>Select the category that matches your experience.</h2>
+      <section class="recruitment-intro-custom" aria-labelledby="recruitmentIntroTitle">
+        <div class="shell recruitment-intro-custom-grid">
+          <div class="recruitment-intro-title reveal">
+            <p class="eyebrow">SAUDI RECRUITMENT</p>
+            <h2 id="recruitmentIntroTitle">For candidates looking for work in Saudi Arabia.</h2>
+          </div>
+          <div class="recruitment-intro-copy reveal">
+            <p>Choose your work area below. If it matches your experience, send us your details and CV.</p>
+            <div class="recruitment-facts-inline" aria-label="Recruitment information">
+              <span><small>Market</small><strong>Saudi Arabia</strong></span>
+              <span><small>Roles</small><strong>Labour to Professional</strong></span>
+              <span><small>CV</small><strong>WhatsApp or Gmail</strong></span>
             </div>
-            <p>Your selection will be added to the candidate enquiry form below.</p>
-          </div>
-
-          <div class="recruitment-lanes reveal">
-            <button class="recruitment-lane" type="button" data-category="Labour / General Worker">
-              <span class="lane-number">01</span>
-              <span class="lane-icon" aria-hidden="true"><img src="assets/icons/recruitment/workforce.svg" alt=""></span>
-              <span class="lane-copy"><strong>General Workforce</strong><small>Helpers · general labour · support staff</small></span>
-              <span class="lane-action">Choose <b>→</b></span>
-            </button>
-            <button class="recruitment-lane" type="button" data-category="Skilled Trade">
-              <span class="lane-number">02</span>
-              <span class="lane-icon" aria-hidden="true"><img src="assets/icons/recruitment/skilled-trades.svg" alt=""></span>
-              <span class="lane-copy"><strong>Skilled Trades</strong><small>Electricians · welders · carpenters · plumbers</small></span>
-              <span class="lane-action">Choose <b>→</b></span>
-            </button>
-            <button class="recruitment-lane" type="button" data-category="Technical">
-              <span class="lane-number">03</span>
-              <span class="lane-icon" aria-hidden="true"><img src="assets/icons/recruitment/technical.svg" alt=""></span>
-              <span class="lane-copy"><strong>Technical Roles</strong><small>Operators · technicians · maintenance staff</small></span>
-              <span class="lane-action">Choose <b>→</b></span>
-            </button>
-            <button class="recruitment-lane" type="button" data-category="Engineering / Professional">
-              <span class="lane-number">04</span>
-              <span class="lane-icon" aria-hidden="true"><img src="assets/icons/recruitment/engineering.svg" alt=""></span>
-              <span class="lane-copy"><strong>Engineering &amp; Professional</strong><small>Engineers · QA/QC · site · professional roles</small></span>
-              <span class="lane-action">Choose <b>→</b></span>
-            </button>
           </div>
         </div>
       </section>
 
-      <section class="recruitment-process-section" aria-labelledby="recruitmentProcessHeading">
-        <div class="shell recruitment-process-shell">
-          <div class="recruitment-process-intro reveal">
-            <div class="recruitment-section-number" aria-hidden="true">03</div>
+      <section class="role-directory-section" id="recruitment-categories" aria-labelledby="roleDirectoryTitle">
+        <div class="shell role-directory-shell">
+          <div class="role-directory-head reveal">
+            <p class="eyebrow">WORK CATEGORIES</p>
+            <h2 id="roleDirectoryTitle">What kind of work are you looking for?</h2>
+            <p>Select a category to see common roles.</p>
+          </div>
+
+          <div class="role-directory reveal" id="roleDirectory">
+            <div class="role-directory-tabs" role="tablist" aria-label="Recruitment categories">
+              <button class="role-tab is-active" type="button" role="tab" aria-selected="true"
+                data-role-key="general"
+                data-title="General Workforce"
+                data-copy="General labour and support roles for site, warehouse and facility work."
+                data-roles="General Labour|Helper|Cleaner|Warehouse Worker|Loading / Unloading"
+                data-category-value="Labour / General Worker"
+                data-image="assets/images/recruitment-hero/recruitment-05.jpg">
+                <span>General Workforce</span><small>Labour &amp; support</small><b>01</b>
+              </button>
+              <button class="role-tab" type="button" role="tab" aria-selected="false"
+                data-role-key="trades"
+                data-title="Skilled Trades"
+                data-copy="Trade roles for candidates with practical site or workshop experience."
+                data-roles="Electrician|Welder|Carpenter|Plumber|Mason|Driver"
+                data-category-value="Skilled Trade"
+                data-image="assets/images/recruitment-hero/recruitment-03.jpg">
+                <span>Skilled Trades</span><small>Trade &amp; site work</small><b>02</b>
+              </button>
+              <button class="role-tab" type="button" role="tab" aria-selected="false"
+                data-role-key="technical"
+                data-title="Technical Roles"
+                data-copy="Technical and maintenance roles across industrial and operational work."
+                data-roles="HVAC Technician|Mechanical Technician|Electrical Technician|Machine Operator|Maintenance Technician"
+                data-category-value="Technical"
+                data-image="assets/images/recruitment-hero/recruitment-04.jpg">
+                <span>Technical Roles</span><small>Technical &amp; maintenance</small><b>03</b>
+              </button>
+              <button class="role-tab" type="button" role="tab" aria-selected="false"
+                data-role-key="professional"
+                data-title="Engineering &amp; Professional"
+                data-copy="Engineering, site, quality and professional positions for experienced candidates."
+                data-roles="Civil Engineer|Mechanical Engineer|Electrical Engineer|Site Engineer|QA / QC|Safety Officer"
+                data-category-value="Engineering / Professional"
+                data-image="assets/images/recruitment-hero/recruitment-02.jpg">
+                <span>Engineering &amp; Professional</span><small>Engineering &amp; site</small><b>04</b>
+              </button>
+            </div>
+
+            <div class="role-directory-preview" aria-live="polite">
+              <div class="role-preview-image">
+                <img id="rolePreviewImage" src="assets/images/recruitment-hero/recruitment-05.jpg" alt="Recruitment work category">
+                <span>Saudi Arabia Recruitment</span>
+              </div>
+              <div class="role-preview-copy">
+                <small class="role-preview-label">SELECTED CATEGORY</small>
+                <h3 id="rolePreviewTitle">General Workforce</h3>
+                <p id="rolePreviewText">General labour and support roles for site, warehouse and facility work.</p>
+                <div class="role-preview-list" id="rolePreviewList">
+                  <span>General Labour</span><span>Helper</span><span>Cleaner</span><span>Warehouse Worker</span><span>Loading / Unloading</span>
+                </div>
+                <button class="role-use-category" type="button" id="roleUseCategory" data-category="Labour / General Worker">Use this category <span>→</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="recruitment-steps-custom" aria-labelledby="applyStepsTitle">
+        <div class="shell recruitment-steps-grid">
+          <div class="recruitment-steps-head reveal">
             <p class="eyebrow">HOW TO APPLY</p>
-            <h2 id="recruitmentProcessHeading">How to send your application.</h2>
-            <p>Complete the short enquiry form, then continue on WhatsApp or Gmail and attach your CV before sending.</p>
+            <h2 id="applyStepsTitle">Send your profile in three steps.</h2>
           </div>
-          <div class="recruitment-process-track reveal">
-            <article><span>01</span><div><strong>Select a category</strong><p>Choose the option closest to your trade or profession.</p></div></article>
-            <article><span>02</span><div><strong>Add your details</strong><p>Enter your contact details, position, experience and passport status.</p></div></article>
-            <article><span>03</span><div><strong>Continue to WhatsApp or Gmail</strong><p>We prepare the enquiry message using the details you entered.</p></div></article>
-            <article><span>04</span><div><strong>Attach and send your CV</strong><p>Attach your resume in WhatsApp or Gmail and send it to our team.</p></div></article>
-          </div>
+          <ol class="recruitment-steps-list reveal">
+            <li><span>1</span><div><strong>Choose your work area</strong><p>Select the category closest to your experience.</p></div></li>
+            <li><span>2</span><div><strong>Fill in your details</strong><p>Add your contact, role and experience.</p></div></li>
+            <li><span>3</span><div><strong>Attach your CV</strong><p>Continue on WhatsApp or Gmail and send your CV.</p></div></li>
+          </ol>
         </div>
       </section>
 
-      <section class="candidate-section candidate-studio-section" id="candidate-enquiry">
-        <div class="shell candidate-studio">
-          <aside class="candidate-profile-board reveal" aria-label="Candidate profile summary">
-            <div class="candidate-board-kicker">AL HADI · APPLICATION DETAILS</div>
-            <h2>Review your application details before you continue.</h2>
-            <p>This summary updates as you complete the form and shows the information that will be included in your enquiry.</p>
-
-            <div class="candidate-progress-wrap">
-              <div class="candidate-progress-meta"><span>Form progress</span><strong id="candidateProgressText">0 of 4</strong></div>
-              <div class="candidate-progress"><i id="candidateProgressBar"></i></div>
+      <section class="candidate-section candidate-custom-section" id="candidate-enquiry">
+        <div class="shell candidate-custom-layout">
+          <aside class="candidate-custom-aside reveal">
+            <div class="candidate-aside-photo">
+              <img src="assets/images/recruitment-hero/recruitment-01.jpg" alt="Saudi recruitment office">
             </div>
-
-            <dl class="candidate-live-summary">
-              <div><dt>Market</dt><dd>Saudi Arabia</dd></div>
-              <div><dt>Category</dt><dd id="candidateSummaryCategory">Select a category</dd></div>
-              <div><dt>Position</dt><dd id="candidateSummaryRole">Not selected</dd></div>
-              <div><dt>Experience</dt><dd id="candidateSummaryExperience">Fresher</dd></div>
-              <div><dt>Passport</dt><dd id="candidateSummaryPassport">Valid passport</dd></div>
-            </dl>
-
-            <div class="candidate-privacy-note"><span>CV PRIVACY</span><p>Your CV is sent directly through WhatsApp or Gmail. This website does not upload or store it.</p></div>
+            <div class="candidate-aside-copy">
+              <p class="eyebrow">SEND YOUR CV</p>
+              <h2>Tell us what you do.</h2>
+              <p>Fill in the short form, then attach your CV in WhatsApp or Gmail.</p>
+              <div class="candidate-privacy-simple"><span></span><p>Your CV is not stored on this website.</p></div>
+            </div>
           </aside>
 
-          <form class="candidate-form candidate-form-premium reveal" id="candidateForm" novalidate>
-            <div class="candidate-form-header">
-              <div><span>CANDIDATE APPLICATION</span><strong>Candidate details</strong></div>
-              <small>Required fields are marked *</small>
+          <form class="candidate-form candidate-form-custom reveal" id="candidateForm" novalidate>
+            <div class="candidate-form-header-simple">
+              <div><small>CANDIDATE DETAILS</small><h3>Recruitment enquiry</h3></div>
+              <span>* Required</span>
             </div>
 
-            <div class="candidate-form-step"><span>01</span><strong>Contact</strong><i></i></div>
             <div class="field-row two">
               <label><span>Full name *</span><input id="candidateName" type="text" autocomplete="name" placeholder="Your name"></label>
               <label><span>Mobile number *</span><input id="candidatePhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Mobile number"></label>
@@ -469,7 +486,7 @@
               <label><span>Current location</span><input id="candidateLocation" type="text" placeholder="City / country"></label>
             </div>
 
-            <div class="candidate-form-step"><span>02</span><strong>Work profile</strong><i></i></div>
+            <div class="candidate-form-divider"><span>Work details</span></div>
             <div class="field-row two">
               <label><span>Category *</span><select id="candidateCategory"><option value="">Select category</option><option>Labour / General Worker</option><option>Skilled Trade</option><option>Technical</option><option>Engineering / Professional</option></select></label>
               <label><span>Position / trade *</span><select id="candidateRole" disabled><option value="">Select category first</option></select></label>
@@ -479,9 +496,8 @@
               <label><span>Passport status</span><select id="candidatePassport"><option>Valid passport</option><option>Passport applied</option><option>No passport yet</option></select></label>
             </div>
 
-            <div class="candidate-form-step"><span>03</span><strong>Send your application</strong><i></i></div>
-            <label><span>Short note <em>Optional</em></span><textarea id="candidateNote" rows="3" placeholder="Current role, availability, preferred position, etc."></textarea></label>
-            <div class="resume-note recruitment-resume-note"><strong>Next step</strong><span>Choose WhatsApp or Gmail below. Attach your CV in the app that opens before sending.</span></div>
+            <label><span>Note <em>Optional</em></span><textarea id="candidateNote" rows="3" placeholder="Preferred role or availability"></textarea></label>
+            <p class="candidate-next-note">Next: choose WhatsApp or Gmail and attach your CV before sending.</p>
             <div class="candidate-actions">
               <button class="form-submit" type="button" id="sendCandidateWhatsApp">Continue on WhatsApp</button>
               <button class="form-submit secondary" type="button" id="sendCandidateEmail">Continue with Gmail</button>
