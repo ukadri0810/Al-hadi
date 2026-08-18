@@ -2512,3 +2512,259 @@ body[data-mode="recruitment"] .journey-advisor-section{border-top:1px solid #e1e
   .role-tab:last-child{border-bottom:0;}
   .role-preview-image{height:200px;min-height:200px;}
 }
+
+/* =========================================================
+   DESKTOP HERO COMPOSITION — protect the photography
+   Move content toward the outer edges and keep a clear visual
+   corridor through the centre. Tablet/mobile remain unchanged.
+   ========================================================= */
+@media (min-width:1200px){
+  .hero > .hero-shell{
+    width:calc(100vw - 56px);
+    max-width:1500px;
+    grid-template-columns:580px 370px;
+    justify-content:space-between;
+    column-gap:50px;
+    padding:68px 0;
+  }
+
+  .hero > .hero-shell > .hero-copy{
+    width:580px;
+    max-width:580px;
+    justify-self:start;
+    margin:0;
+    padding:28px 28px;
+  }
+
+  .hero > .hero-shell > .hero-card{
+    width:370px;
+    max-width:370px;
+    justify-self:end;
+    margin:0;
+    transform:none !important;
+  }
+}
+
+@media (min-width:1450px){
+  .hero > .hero-shell{
+    width:calc(100vw - 40px);
+    max-width:1540px;
+    grid-template-columns:610px 390px;
+    column-gap:70px;
+  }
+
+  .hero > .hero-shell > .hero-copy{
+    width:610px;
+    max-width:610px;
+  }
+
+  .hero > .hero-shell > .hero-card{
+    width:390px;
+    max-width:390px;
+  }
+}
+
+/* =========================================================
+   CINEMATIC HERO HEIGHT — client refinement 2026-08-18
+   A controlled desktop hero keeps photography sharp, reduces
+   aggressive cropping and leaves a visible cue to scroll.
+   Mobile keeps its existing image/copy/form split layout.
+   ========================================================= */
+
+/* Remove the old slow zoom/compositing effect which can make
+   photographic detail appear softer while a slide is active. */
+.hero-slide,
+.hero-slide.is-active,
+.recruitment-slide,
+.recruitment-slide.is-active{
+  transform:none !important;
+}
+.hero-slide img,
+.recruitment-slide img{
+  transform:none !important;
+  filter:none !important;
+  opacity:1 !important;
+  image-rendering:auto;
+  backface-visibility:visible;
+}
+.hero-slide{transition:opacity .78s ease !important;}
+.recruitment-slide{transition:opacity .78s ease !important;}
+
+@media (min-width:981px){
+  /* Travel hero: no longer takes the entire desktop viewport. */
+  .travel-view > .hero{
+    min-height:650px !important;
+    height:clamp(650px,72vh,690px);
+    max-height:690px;
+    display:grid;
+    align-items:center;
+  }
+  .travel-view > .hero .hero-media,
+  .travel-view > .hero .hero-overlay,
+  .travel-view > .hero .hero-slide,
+  .travel-view > .hero .hero-slide img{
+    height:100%;
+    min-height:0;
+  }
+  .travel-view > .hero .hero-slide img{
+    object-fit:cover;
+  }
+
+  /* Subject-aware crops for the five pilgrimage photographs. */
+  .travel-view > .hero .hero-slide:nth-child(1) img{object-position:52% 52%;}
+  .travel-view > .hero .hero-slide:nth-child(2) img{object-position:50% 46%;}
+  .travel-view > .hero .hero-slide:nth-child(3) img{object-position:52% 50%;}
+  .travel-view > .hero .hero-slide:nth-child(4) img{object-position:52% 49%;}
+  .travel-view > .hero .hero-slide:nth-child(5) img{object-position:50% 44%;}
+
+  /* Bring the UI slightly inward from the previous extreme-edge version,
+     but keep a protected visual corridor through the centre. */
+  .travel-view > .hero > .hero-shell{
+    width:min(calc(100vw - 92px),1680px);
+    max-width:none;
+    height:100%;
+    min-height:0;
+    margin-inline:auto;
+    padding:24px 0;
+    grid-template-columns:minmax(0,540px) 350px;
+    column-gap:clamp(90px,11vw,220px);
+    justify-content:space-between;
+    align-items:center;
+  }
+  .travel-view > .hero > .hero-shell > .hero-copy{
+    width:540px;
+    max-width:540px;
+    margin:0;
+    padding:24px 26px 25px;
+    border-radius:22px;
+    background:rgba(6,34,72,.73);
+    box-shadow:0 18px 46px rgba(3,20,43,.18);
+  }
+  .travel-view > .hero .hero-script{
+    font-size:clamp(2.55rem,3.4vw,3.25rem);
+    margin-bottom:7px;
+  }
+  .travel-view > .hero .hero-copy h1{
+    font-size:clamp(3rem,4.25vw,4.25rem);
+    line-height:.98;
+  }
+  .travel-view > .hero .hero-lead{
+    margin-top:12px;
+    font-size:.96rem;
+    line-height:1.55;
+  }
+  .travel-view > .hero .hero-feature-strip{
+    margin-top:18px;
+    gap:7px 9px;
+  }
+  .travel-view > .hero .hero-feature-strip span{
+    grid-template-columns:36px 1fr;
+    gap:7px;
+    padding:5px 3px;
+    font-size:9.5px;
+  }
+  .travel-view > .hero .hero-feature-strip img{
+    width:36px;
+    height:36px;
+  }
+  .travel-view > .hero .hero-actions{
+    margin-top:19px;
+    gap:10px;
+  }
+  .travel-view > .hero .hero-actions .btn{
+    padding:12px 16px;
+    min-height:46px;
+  }
+
+  /* Compact enquiry panel so the hero can be shorter without feeling crowded. */
+  .travel-view > .hero > .hero-shell > .hero-card{
+    width:350px;
+    max-width:350px;
+    margin:0;
+    padding:16px;
+    border-radius:22px;
+    transform:none !important;
+  }
+  .travel-view > .hero .hero-card-top small{font-size:10px;}
+  .travel-view > .hero .hero-card-top span{font-size:12px;margin-top:3px;}
+  .travel-view > .hero .hero-card-grid{
+    gap:7px;
+    margin-top:12px;
+  }
+  .travel-view > .hero .hero-card .mini-field{
+    gap:3px;
+    padding:8px 10px;
+    border-radius:10px;
+  }
+  .travel-view > .hero .hero-card .mini-field span{font-size:8.5px;}
+  .travel-view > .hero .hero-card .mini-field input,
+  .travel-view > .hero .hero-card .mini-field select{
+    padding:2px 0 !important;
+    font-size:12px;
+    line-height:1.35;
+  }
+  .travel-view > .hero .hero-enquiry-button{
+    min-height:46px;
+    margin-top:10px;
+    padding:11px 14px;
+    border-radius:11px;
+    font-size:13px;
+  }
+  .travel-view > .hero .hero-form-status{margin-top:5px;min-height:12px;}
+  .travel-view > .hero .hero-meta-bar{
+    margin-top:8px;
+    padding-top:9px;
+    gap:7px;
+  }
+  .travel-view > .hero .hero-dot{width:27px;height:5px;}
+
+  /* Recruitment uses the same controlled-height philosophy.
+     Its source photos are lower resolution, so avoiding full-screen scaling
+     makes them visibly cleaner on large monitors. */
+  .recruitment-portal .recruitment-hero-slider{
+    min-height:600px !important;
+    height:clamp(600px,68vh,640px);
+    max-height:640px;
+  }
+  .recruitment-portal .recruitment-hero-media,
+  .recruitment-portal .recruitment-slide,
+  .recruitment-portal .recruitment-slide img{
+    height:100%;
+    min-height:0;
+  }
+  .recruitment-portal .recruitment-slide img{
+    object-fit:cover;
+    object-position:center center;
+  }
+  .recruitment-portal .recruitment-hero-shell{
+    width:min(calc(100vw - 92px),1680px);
+    max-width:none;
+    min-height:0 !important;
+    height:100%;
+    margin-inline:auto;
+    padding:28px 0;
+    align-items:center;
+  }
+  .recruitment-portal .recruitment-hero-panel{
+    width:min(520px,44%);
+    padding:31px 34px 29px 40px;
+  }
+  .recruitment-portal .recruitment-hero-panel h1{
+    font-size:clamp(2.35rem,3.45vw,3.35rem);
+    line-height:1.02;
+  }
+  .recruitment-portal .recruitment-hero-panel>p:not(.eyebrow){
+    margin-top:14px;
+    font-size:.9rem;
+    line-height:1.62;
+  }
+  .recruitment-portal .recruitment-hero-actions{margin-top:20px;}
+  .recruitment-portal .recruitment-route-line{margin-top:22px;padding-top:16px;}
+}
+
+/* Medium desktop / tablet keeps a comfortable, non-full-screen hero without
+   forcing the stacked tablet layout into a fixed height. */
+@media (min-width:721px) and (max-width:980px){
+  .travel-view > .hero{min-height:620px;}
+  .recruitment-portal .recruitment-hero-slider{min-height:580px;}
+}
