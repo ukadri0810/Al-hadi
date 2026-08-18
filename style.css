@@ -2513,19 +2513,15 @@ body[data-mode="recruitment"] .journey-advisor-section{border-top:1px solid #e1e
   .role-preview-image{height:200px;min-height:200px;}
 }
 
-/* =========================================================
-   CLIENT HERO CORNER NUDGE — preserve approved hero design
-   Only moves the two desktop foreground panels slightly outward
-   so more of the hero photography remains visible in the centre.
-   ========================================================= */
-@media (min-width:1280px){
+/* Requested client adjustment only: move the two Travel hero panels slightly outward on desktop.
+   No hero sizing, image framing, or Recruitment styles are changed. */
+@media (min-width: 1280px){
   #travel-home .hero-copy{
     position:relative;
-    left:-28px;
+    left:-20px;
   }
   #travel-home .hero-card{
     position:relative;
-    left:28px;
-    justify-self:end;
+    right:-20px;
   }
 }
