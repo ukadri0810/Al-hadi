@@ -2518,10 +2518,10 @@ body[data-mode="recruitment"] .journey-advisor-section{border-top:1px solid #e1e
 @media (min-width: 1280px){
   #travel-home .hero-copy{
     position:relative;
-    left:-40px;
+    left:-45px;
   }
   #travel-home .hero-card{
     position:relative;
-    right:-40px;
+    right:-45px;
   }
 }
