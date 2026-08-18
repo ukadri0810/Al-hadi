@@ -2513,19 +2513,15 @@ body[data-mode="recruitment"] .journey-advisor-section{border-top:1px solid #e1e
   .role-preview-image{height:200px;min-height:200px;}
 }
 
-/* Travel hero: keep the image untouched, remove the copy panel background,
-   and nudge the enquiry form slightly closer to the right edge on desktop. */
-@media (min-width: 1100px){
+/* Requested client adjustment only: move the two Travel hero panels slightly outward on desktop.
+   No hero sizing, image framing, or Recruitment styles are changed. */
+@media (min-width: 1280px){
   #travel-home .hero-copy{
-    background:transparent !important;
-    border:0 !important;
-    box-shadow:none !important;
-    border-radius:0 !important;
-    backdrop-filter:none !important;
+    position:relative;
+    left:-20px;
   }
-
   #travel-home .hero-card{
-    position:relative !important;
-    right:-28px !important;
+    position:relative;
+    right:-20px;
   }
 }
