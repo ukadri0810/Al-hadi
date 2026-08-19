@@ -2212,8 +2212,15 @@ body[data-mode="recruitment"] .journey-advisor-section{border-top:1px solid #e1e
   .role-directory-shell,
   .candidate-custom-layout,
   .recruitment-steps-grid{
-    width:100%;
     min-width:0;
+  }
+
+  .recruitment-intro-custom-grid,
+  .role-directory-shell,
+  .recruitment-steps-grid{
+    width:calc(100% - 36px);
+    margin-left:auto;
+    margin-right:auto;
   }
 
   .recruitment-intro-custom{
@@ -2642,17 +2649,3 @@ body[data-mode="recruitment"] .journey-advisor-section{border-top:1px solid #e1e
   }
 }
 
-/* Recruitment mobile text spacing */
-@media (max-width: 760px){
-  .recruitment-portal .recruitment-intro-title,
-  .recruitment-portal .role-directory-head,
-  .recruitment-portal .recruitment-steps-head{
-    padding-left:18px;
-    padding-right:18px;
-  }
-
-  .recruitment-portal .recruitment-intro-copy > p{
-    padding-left:18px;
-    padding-right:18px;
-  }
-}
