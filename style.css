@@ -2518,12 +2518,12 @@ body[data-mode="recruitment"] .journey-advisor-section{border-top:1px solid #e1e
 
  #travel-home .hero-copy {
   position: relative !important;
-  left: -60px !important;
+  left: -40px !important;
 }
 
 #travel-home .hero-card {
   position: relative !important;
-  right: -60px !important;
+  right: -40px !important;
 }
 
 
