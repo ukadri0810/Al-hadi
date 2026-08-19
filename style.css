@@ -2641,3 +2641,18 @@ body[data-mode="recruitment"] .journey-advisor-section{border-top:1px solid #e1e
     word-break:normal;
   }
 }
+
+/* Recruitment mobile text spacing */
+@media (max-width: 760px){
+  .recruitment-portal .recruitment-intro-title,
+  .recruitment-portal .role-directory-head,
+  .recruitment-portal .recruitment-steps-head{
+    padding-left:18px;
+    padding-right:18px;
+  }
+
+  .recruitment-portal .recruitment-intro-copy > p{
+    padding-left:18px;
+    padding-right:18px;
+  }
+}
