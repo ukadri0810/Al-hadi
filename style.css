@@ -2619,3 +2619,25 @@ body[data-mode="recruitment"] .journey-advisor-section{border-top:1px solid #e1e
   .visa-documents-box{padding:16px;margin-bottom:12px}
   .visa-documents-box ul{grid-template-columns:1fr;gap:7px}
 }
+
+/* Recruitment text overflow fix — mobile only */
+@media (max-width: 760px){
+  .recruitment-portal .recruitment-hero-panel h1,
+  .recruitment-portal .recruitment-hero-panel > p:not(.eyebrow),
+  .recruitment-portal .recruitment-intro-title h2,
+  .recruitment-portal .recruitment-intro-copy > p,
+  .recruitment-portal .role-directory-head h2,
+  .recruitment-portal .role-directory-head > p:last-child,
+  .recruitment-portal .role-preview-copy > p,
+  .recruitment-portal .recruitment-steps-head h2,
+  .recruitment-portal .recruitment-steps-list p,
+  .recruitment-portal .candidate-aside-copy > p:not(.eyebrow),
+  .recruitment-portal .candidate-privacy-simple p,
+  .recruitment-portal .candidate-next-note{
+    max-width:100%;
+    min-width:0;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    word-break:normal;
+  }
+}
