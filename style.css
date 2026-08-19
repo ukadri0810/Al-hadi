@@ -2525,3 +2525,63 @@ body[data-mode="recruitment"] .journey-advisor-section{border-top:1px solid #e1e
     right:-60px;
   }
 }
+
+/* Saudi visa options inside the travel enquiry */
+.visa-documents-box{
+  margin:-2px 0 16px;
+  padding:18px 20px;
+  border:1px solid #dce6ef;
+  border-left:4px solid var(--gold);
+  border-radius:14px;
+  background:#f8fafc;
+}
+.visa-documents-label{
+  display:block;
+  margin-bottom:5px;
+  color:#9a6d22;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.visa-documents-box strong{
+  display:block;
+  color:#173a68;
+  font-size:1rem;
+}
+.visa-documents-box ul{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px 16px;
+  margin:12px 0 0;
+  padding:0;
+  list-style:none;
+}
+.visa-documents-box li{
+  position:relative;
+  padding-left:15px;
+  color:#4f647b;
+  font-size:.88rem;
+}
+.visa-documents-box li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.58em;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--gold);
+}
+.visa-documents-box p{
+  margin-top:12px;
+  padding-top:11px;
+  border-top:1px solid #e1e8ef;
+  color:#7a5a23;
+  font-size:.82rem;
+  font-weight:700;
+}
+@media(max-width:720px){
+  .visa-documents-box{padding:16px;margin-bottom:12px}
+  .visa-documents-box ul{grid-template-columns:1fr;gap:7px}
+}

@@ -174,6 +174,12 @@ const airlineField = document.getElementById('airlineField');
 const preferredAirline = document.getElementById('preferredAirline');
 const visaCountryField = document.getElementById('visaCountryField');
 const visaCountry = document.getElementById('visaCountry');
+const saudiVisaRow = document.getElementById('saudiVisaRow');
+const saudiVisaType = document.getElementById('saudiVisaType');
+const visaDocumentsBox = document.getElementById('visaDocumentsBox');
+const visaDocumentsTitle = document.getElementById('visaDocumentsTitle');
+const visaDocumentsList = document.getElementById('visaDocumentsList');
+const visaDocumentsNote = document.getElementById('visaDocumentsNote');
 const hajjSectorRow = document.getElementById('hajjSectorRow');
 const hajjSector = document.getElementById('hajjSector');
 const customSectorField = document.getElementById('customSectorField');
@@ -181,6 +187,49 @@ const customSector = document.getElementById('customSector');
 const serviceDetailRow = document.getElementById('serviceDetailRow');
 const travelDate = document.getElementById('travelDate');
 if (travelDate) travelDate.min = new Date().toISOString().slice(0, 10);
+
+const saudiVisaDocuments = {
+  'Absher Visa': {
+    items: ['Passport copy — front & back', 'Valid Iqama', 'Contact number linked with Absher', 'National Address', 'Confirmed round-trip ticket copy'],
+  },
+  'Without Absher': {
+    items: ['Passport copy — front & back', 'Confirmed round-trip ticket copy', 'PAN Card'],
+  },
+  'Tourist Visa': {
+    items: ['Original passport', 'Bank statement', 'Passport-size photo with white background'],
+  },
+  'Employment Visa': {
+    items: ['Original passport', 'Medical', 'Passport-size photo with white background', 'Trade test'],
+    note: 'Visa number / ID number is required if it is a visa-only service.',
+  },
+};
+
+function syncSaudiVisaDetails() {
+  const isSaudiVisa = travelService?.value === 'Gulf Visa Assistance' && visaCountry?.value === 'Saudi Arabia';
+  if (saudiVisaRow) saudiVisaRow.hidden = !isSaudiVisa;
+
+  if (!isSaudiVisa) {
+    if (saudiVisaType) saudiVisaType.value = '';
+    if (visaDocumentsBox) visaDocumentsBox.hidden = true;
+    return;
+  }
+
+  const selected = saudiVisaDocuments[saudiVisaType?.value || ''];
+  if (!selected) {
+    if (visaDocumentsBox) visaDocumentsBox.hidden = true;
+    return;
+  }
+
+  if (visaDocumentsTitle) visaDocumentsTitle.textContent = saudiVisaType.value;
+  if (visaDocumentsList) {
+    visaDocumentsList.innerHTML = selected.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
+  }
+  if (visaDocumentsNote) {
+    visaDocumentsNote.textContent = selected.note || '';
+    visaDocumentsNote.hidden = !selected.note;
+  }
+  if (visaDocumentsBox) visaDocumentsBox.hidden = false;
+}
 
 function syncTravelDetails() {
   const service = travelService?.value || '';
@@ -205,6 +254,12 @@ function syncTravelDetails() {
   if (service !== 'Hotel Booking' && hotelName) hotelName.value = '';
   if (service !== 'Flight Tickets' && preferredAirline) preferredAirline.value = '';
   if (service !== 'Gulf Visa Assistance' && visaCountry) visaCountry.value = '';
+  if (service !== 'Gulf Visa Assistance') {
+    if (saudiVisaType) saudiVisaType.value = '';
+    if (saudiVisaRow) saudiVisaRow.hidden = true;
+    if (visaDocumentsBox) visaDocumentsBox.hidden = true;
+  }
+  syncSaudiVisaDetails();
   if (service !== 'Hajj & Umrah' && travelPackage) travelPackage.value = 'Not selected';
   if (service !== 'Hajj & Umrah') {
     if (hajjSector) hajjSector.value = '';
@@ -213,6 +268,8 @@ function syncTravelDetails() {
   }
 }
 travelService?.addEventListener('change', syncTravelDetails);
+visaCountry?.addEventListener('change', syncSaudiVisaDetails);
+saudiVisaType?.addEventListener('change', syncSaudiVisaDetails);
 hajjSector?.addEventListener('change', () => {
   const custom = hajjSector.value === 'Other';
   if (customSectorField) customSectorField.hidden = !custom;
@@ -300,11 +357,19 @@ travelForm?.addEventListener('submit', (event) => {
     const badCountry = !String(visaCountry?.value || '').trim();
     markInvalid(visaCountry, badCountry);
     if (badCountry) valid = false;
+
+    if (visaCountry?.value === 'Saudi Arabia') {
+      const badVisaType = !String(saudiVisaType?.value || '').trim();
+      markInvalid(saudiVisaType, badVisaType);
+      if (badVisaType) valid = false;
+    }
   }
 
   if (!valid) {
     if (travelService?.value === 'Hajj & Umrah') {
       travelStatus.textContent = 'Please complete your name, WhatsApp number, service and arrival sector.';
+    } else if (travelService?.value === 'Gulf Visa Assistance' && visaCountry?.value === 'Saudi Arabia') {
+      travelStatus.textContent = 'Please complete your name, WhatsApp number, service, Gulf country and Saudi visa type.';
     } else if (travelService?.value === 'Gulf Visa Assistance') {
       travelStatus.textContent = 'Please complete your name, WhatsApp number, service and Gulf country.';
     } else {
@@ -327,7 +392,12 @@ travelForm?.addEventListener('submit', (event) => {
   }
   if (service === 'Hotel Booking') serviceSpecific.push(`Hotel preference: ${hotelName?.value.trim() || 'Not specified'}`);
   if (service === 'Flight Tickets') serviceSpecific.push(`Preferred airline: ${preferredAirline?.value || 'No preference'}`);
-  if (service === 'Gulf Visa Assistance') serviceSpecific.push(`Country: ${visaCountry?.value || 'Not selected'}`);
+  if (service === 'Gulf Visa Assistance') {
+    serviceSpecific.push(`Country: ${visaCountry?.value || 'Not selected'}`);
+    if (visaCountry?.value === 'Saudi Arabia') {
+      serviceSpecific.push(`Visa type: ${saudiVisaType?.value || 'Not selected'}`);
+    }
+  }
 
   const lines = [
     'Assalamu Alaikum, I would like to enquire with Al Hadi Tours & Travels.',
