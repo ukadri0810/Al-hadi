@@ -2515,16 +2515,17 @@ body[data-mode="recruitment"] .journey-advisor-section{border-top:1px solid #e1e
 
 /* Requested client adjustment only: move the two Travel hero panels slightly outward on desktop.
    No hero sizing, image framing, or Recruitment styles are changed. */
-@media (min-width: 1200px){
-  #travel-home .hero-copy{
-    position:relative;
-    left:-60px;
-  }
-  #travel-home .hero-card{
-    position:relative;
-    right:-60px;
-  }
+
+ #travel-home .hero-copy {
+  position: relative !important;
+  left: -60px !important;
 }
+
+#travel-home .hero-card {
+  position: relative !important;
+  right: -60px !important;
+}
+
 
 /* Saudi visa options inside the travel enquiry */
 .visa-documents-box{
